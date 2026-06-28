@@ -1,0 +1,54 @@
+{
+  "items": [
+    {
+      "id": "rev-1",
+      "targetId": "prod-1",
+      "targetType": "product",
+      "userId": "user-1",
+      "userName": "John D.",
+      "rating": 5,
+      "comment": "Amazing sound quality! Battery lasts forever. Highly recommend.",
+      "createdAt": "2026-05-15T10:30:00Z"
+    },
+    {
+      "id": "rev-2",
+      "targetId": "prod-1",
+      "targetType": "product",
+      "userId": "user-2",
+      "userName": "Sarah M.",
+      "rating": 4,
+      "comment": "Great headphones, comfortable for long sessions. Slightly pricey but worth it.",
+      "createdAt": "2026-05-20T14:15:00Z"
+    },
+    {
+      "id": "rev-3",
+      "targetId": "svc-1",
+      "targetType": "service",
+      "userId": "user-3",
+      "userName": "Mike R.",
+      "rating": 5,
+      "comment": "Fixed our leak in under an hour. Professional and courteous.",
+      "createdAt": "2026-05-10T09:00:00Z"
+    },
+    {
+      "id": "rev-4",
+      "targetId": "svc-2",
+      "targetType": "service",
+      "userId": "user-4",
+      "userName": "Emily K.",
+      "rating": 5,
+      "comment": "Our apartment has never been cleaner. Will definitely book again!",
+      "createdAt": "2026-05-18T16:45:00Z"
+    },
+    {
+      "id": "rev-5",
+      "targetId": "prod-5",
+      "targetType": "product",
+      "userId": "user-5",
+      "userName": "Alex T.",
+      "rating": 5,
+      "comment": "Best running shoes I've ever owned. Great cushioning and support.",
+      "createdAt": "2026-06-01T11:20:00Z"
+    }
+  ]
+}

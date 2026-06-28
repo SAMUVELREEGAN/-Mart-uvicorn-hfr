@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-primary, 'Inter', sans-serif);
+  background: var(--color-background, #f8fafc);
+  color: var(--color-text, #0f172a);
+  line-height: 1.5;
+  overflow-x: clip;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--color-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading, 'Inter', sans-serif);
+}
+
+.page-placeholder {
+  text-align: center;
+  padding: var(--spacing-2xl);
+}
+
+.page-placeholder h1 {
+  font-size: 1.75rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.page-placeholder p {
+  color: var(--color-textMuted);
+}
+
+.auth-page__card--wide {
+  max-width: 600px;
+}

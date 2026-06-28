@@ -1,0 +1,13 @@
+{
+  "defaults": {
+    "text": { "type": "text" },
+    "email": { "type": "email", "autoComplete": "email" },
+    "password": { "type": "password", "autoComplete": "current-password" },
+    "tel": { "type": "tel", "autoComplete": "tel" },
+    "number": { "type": "number", "min": 0 },
+    "textarea": { "rows": 4 },
+    "file": { "type": "file" },
+    "select": { "type": "select" },
+    "rating": { "type": "rating", "max": 5 }
+  }
+}

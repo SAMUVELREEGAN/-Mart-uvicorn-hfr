@@ -1,0 +1,85 @@
+{
+  "auth": {
+    "login": { "title": "Welcome Back", "subtitle": "Sign in to your account", "footerText": "Don't have an account?", "footerLink": { "label": "Sign Up", "path": "/signup" } },
+    "signup": { "title": "Create Account", "subtitle": "Join our marketplace today", "footerText": "Already have an account?", "footerLink": { "label": "Login", "path": "/login" } },
+    "vendorLogin": { "title": "Vendor Login", "subtitle": "Access your business dashboard", "footerText": "New vendor?", "footerLink": { "label": "Register your business", "path": "/start-business" } }
+  },
+  "userLogin": [
+    { "key": "email", "label": "Email Address", "type": "email", "placeholder": "Enter your email", "required": true, "icon": "FaEnvelope" },
+    { "key": "password", "label": "Password", "type": "password", "placeholder": "Enter your password", "required": true, "icon": "FaLock" }
+  ],
+  "userSignup": [
+    { "key": "name", "label": "Full Name", "type": "text", "placeholder": "Enter your full name", "required": true, "icon": "FaUser" },
+    { "key": "email", "label": "Email Address", "type": "email", "placeholder": "Enter your email", "required": true, "icon": "FaEnvelope" },
+    { "key": "phone", "label": "Phone Number", "type": "tel", "placeholder": "Enter your phone number", "required": true, "icon": "FaPhone" },
+    { "key": "password", "label": "Password", "type": "password", "placeholder": "Create a password", "required": true, "icon": "FaLock" },
+    { "key": "confirmPassword", "label": "Confirm Password", "type": "password", "placeholder": "Confirm your password", "required": true, "icon": "FaLock" }
+  ],
+  "vendorLogin": [
+    { "key": "email", "label": "Business Email", "type": "email", "placeholder": "Enter business email", "required": true, "icon": "FaEnvelope" },
+    { "key": "password", "label": "Password", "type": "password", "placeholder": "Enter your password", "required": true, "icon": "FaLock" }
+  ],
+  "vendorRegister": [
+    { "key": "businessName", "label": "Business Name", "type": "text", "placeholder": "Enter business name", "required": true, "icon": "FaStore" },
+    { "key": "ownerName", "label": "Owner Name", "type": "text", "placeholder": "Enter owner name", "required": true, "icon": "FaUser" },
+    { "key": "email", "label": "Business Email", "type": "email", "placeholder": "Enter business email", "required": true, "icon": "FaEnvelope" },
+    { "key": "phone", "label": "Phone Number", "type": "tel", "placeholder": "Enter phone number", "required": true, "icon": "FaPhone" },
+    { "key": "address", "label": "Business Address", "type": "textarea", "placeholder": "Enter business address", "required": true, "icon": "FaMapMarkerAlt" },
+    { "key": "category", "label": "Business Category", "type": "select", "placeholder": "Select category", "required": true, "icon": "FaTags", "optionsKey": "productCategories" },
+    { "key": "password", "label": "Password", "type": "password", "placeholder": "Create a password", "required": true, "icon": "FaLock" },
+    { "key": "confirmPassword", "label": "Confirm Password", "type": "password", "placeholder": "Confirm your password", "required": true, "icon": "FaLock" }
+  ],
+  "product": [
+    { "key": "image", "label": "Product Image", "type": "file", "accept": "image/*", "required": true, "icon": "FaImage" },
+    { "key": "name", "label": "Product Name", "type": "text", "placeholder": "Enter product name", "required": true, "icon": "FaTag" },
+    { "key": "category", "label": "Product Category", "type": "select", "placeholder": "Select category", "required": true, "icon": "FaTags", "optionsKey": "productCategories" },
+    { "key": "type", "label": "Product Type", "type": "text", "placeholder": "e.g. New, Used, Refurbished", "required": true, "icon": "FaLayerGroup" },
+    { "key": "price", "label": "Price", "type": "number", "placeholder": "Enter price", "required": true, "icon": "FaDollarSign" },
+    { "key": "description", "label": "Description", "type": "textarea", "placeholder": "Describe your product", "required": true, "icon": "FaAlignLeft" },
+    { "key": "gallery", "label": "Gallery Images (URLs, comma-separated)", "type": "textarea", "placeholder": "https://..., https://...", "required": false, "icon": "FaImages" },
+    { "key": "youtubeLinks", "label": "YouTube Video Links", "type": "textarea", "placeholder": "https://youtube.com/..., comma-separated", "required": false, "icon": "FaYoutube" },
+    { "key": "specifications", "label": "Specifications", "type": "textarea", "placeholder": "Key: Value (one per line)", "required": false, "icon": "FaList" },
+    { "key": "availability", "label": "Availability", "type": "select", "placeholder": "Select availability", "required": true, "icon": "FaCheckCircle", "options": [{ "value": "in_stock", "label": "In Stock" }, { "value": "limited", "label": "Limited Stock" }, { "value": "out_of_stock", "label": "Out of Stock" }] },
+    { "key": "contactPhone", "label": "Contact Phone", "type": "tel", "placeholder": "Contact phone number", "required": true, "icon": "FaPhone" },
+    { "key": "contactEmail", "label": "Contact Email", "type": "email", "placeholder": "Contact email", "required": false, "icon": "FaEnvelope" }
+  ],
+  "service": [
+    { "key": "image", "label": "Service Image", "type": "file", "accept": "image/*", "required": true, "icon": "FaImage" },
+    { "key": "name", "label": "Service Name", "type": "text", "placeholder": "Enter service name", "required": true, "icon": "FaConciergeBell" },
+    { "key": "category", "label": "Service Category", "type": "select", "placeholder": "Select category", "required": true, "icon": "FaTags", "optionsKey": "serviceCategories" },
+    { "key": "description", "label": "Description", "type": "textarea", "placeholder": "Describe your service", "required": true, "icon": "FaAlignLeft" },
+    { "key": "gallery", "label": "Gallery Images (URLs, comma-separated)", "type": "textarea", "placeholder": "https://..., https://...", "required": false, "icon": "FaImages" },
+    { "key": "youtubeLinks", "label": "YouTube Video Links", "type": "textarea", "placeholder": "https://youtube.com/..., comma-separated", "required": false, "icon": "FaYoutube" },
+    { "key": "contactPhone", "label": "Contact Phone", "type": "tel", "placeholder": "Contact phone number", "required": true, "icon": "FaPhone" },
+    { "key": "contactEmail", "label": "Contact Email", "type": "email", "placeholder": "Contact email", "required": false, "icon": "FaEnvelope" },
+    { "key": "workingHours", "label": "Working Hours", "type": "text", "placeholder": "e.g. Mon-Fri 9AM-6PM", "required": true, "icon": "FaClock" },
+    { "key": "serviceArea", "label": "Service Area", "type": "text", "placeholder": "e.g. Downtown, City Center", "required": true, "icon": "FaMapMarkedAlt" }
+  ],
+  "review": [
+    { "key": "rating", "label": "Rating", "type": "rating", "required": true },
+    { "key": "comment", "label": "Your Review", "type": "textarea", "placeholder": "Share your experience...", "required": true, "icon": "FaComment" }
+  ],
+  "search": [
+    { "key": "query", "label": "Search", "type": "text", "placeholder": "What are you looking for?", "required": false, "icon": "FaSearch" },
+    { "key": "category", "label": "Category", "type": "select", "placeholder": "All Categories", "required": false, "icon": "FaTags", "optionsKey": "productCategories" },
+    { "key": "location", "label": "Location", "type": "select", "placeholder": "All Locations", "required": false, "icon": "FaMapMarkerAlt", "optionsKey": "locations" }
+  ],
+  "brand": [
+    { "key": "logo", "label": "Brand Logo URL", "type": "text", "placeholder": "https://...", "required": true, "icon": "FaImage" },
+    { "key": "name", "label": "Brand Name", "type": "text", "placeholder": "Enter brand name", "required": true, "icon": "FaCertificate" },
+    { "key": "coverBanner", "label": "Cover Banner URL", "type": "text", "placeholder": "https://...", "required": true, "icon": "FaImage" },
+    { "key": "description", "label": "Short Description", "type": "textarea", "placeholder": "Brief brand description", "required": true, "icon": "FaAlignLeft" },
+    { "key": "overview", "label": "Company Overview", "type": "textarea", "placeholder": "Detailed company overview", "required": false, "icon": "FaBuilding" },
+    { "key": "photos", "label": "Photos (URLs, comma-separated)", "type": "textarea", "placeholder": "https://..., https://...", "required": false, "icon": "FaImages" },
+    { "key": "youtubeLinks", "label": "YouTube Links", "type": "textarea", "placeholder": "https://youtube.com/..., comma-separated", "required": false, "icon": "FaYoutube" },
+    { "key": "website", "label": "Website", "type": "text", "placeholder": "https://yourbrand.com", "required": false, "icon": "FaGlobe" },
+    { "key": "contactPhone", "label": "Contact Phone", "type": "tel", "placeholder": "+1-555-0000", "required": false, "icon": "FaPhone" },
+    { "key": "contactEmail", "label": "Contact Email", "type": "email", "placeholder": "hello@brand.com", "required": false, "icon": "FaEnvelope" },
+    { "key": "contactAddress", "label": "Contact Address", "type": "textarea", "placeholder": "Business address", "required": false, "icon": "FaMapMarkerAlt" },
+    { "key": "socialFacebook", "label": "Facebook URL", "type": "text", "placeholder": "https://facebook.com/...", "required": false, "icon": "FaFacebook" },
+    { "key": "socialInstagram", "label": "Instagram URL", "type": "text", "placeholder": "https://instagram.com/...", "required": false, "icon": "FaInstagram" },
+    { "key": "socialTwitter", "label": "Twitter URL", "type": "text", "placeholder": "https://twitter.com/...", "required": false, "icon": "FaTwitter" },
+    { "key": "termsAndConditions", "label": "Terms & Conditions", "type": "textarea", "placeholder": "Brand terms and policies", "required": false, "icon": "FaFileContract" },
+    { "key": "additionalDetails", "label": "Additional Details", "type": "textarea", "placeholder": "Any other information", "required": false, "icon": "FaInfoCircle" }
+  ]
+}

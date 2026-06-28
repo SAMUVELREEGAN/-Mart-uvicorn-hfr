@@ -1,0 +1,54 @@
+.service-card { padding: 0 !important; }
+
+.service-card__link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+
+.service-card__image-wrap { overflow: hidden; }
+
+.service-card__image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.service-card:hover .service-card__image { transform: scale(1.05); }
+
+.service-card__details {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.service-card__name {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.service-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm) var(--spacing-md);
+  font-size: 0.8125rem;
+  color: var(--color-textMuted);
+}
+
+.service-card__vendor,
+.service-card__city {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.service-card__desc {
+  font-size: 0.8125rem;
+  color: var(--color-textMuted);
+  margin: 0;
+  line-height: 1.5;
+}

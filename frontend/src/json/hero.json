@@ -1,0 +1,306 @@
+{
+  "title": "Discover Products & Services Near You",
+  "subtitle": "Shop from trusted vendors or book professional services in your area",
+  "cta": {
+    "primary": { "label": "Browse Products", "path": "/search?type=products", "icon": "FaShoppingBag" },
+    "secondary": { "label": "Find Services", "path": "/search?type=services", "icon": "FaConciergeBell" }
+  },
+  "backgroundImage": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1600&q=80",
+  "sections": {
+    "exploreCategories": { "title": "Explore Categories", "subtitle": "Browse top categories tailored for you" },
+    "popularCategories": { "title": "Popular Categories", "subtitle": "Most shopped categories this week" },
+    "productCategories": { "title": "Product Categories", "subtitle": "Shop by category" },
+    "trendingProducts": { "title": "Trending Products", "subtitle": "Hot picks everyone is buying" },
+    "featuredProducts": { "title": "Featured Products", "subtitle": "Hand-picked deals near you" },
+    "serviceCategories": { "title": "Service Categories", "subtitle": "Find trusted professionals" },
+    "featuredServices": { "title": "Featured Services", "subtitle": "Top-rated professionals near you" },
+    "popularServices": { "title": "Popular Services", "subtitle": "Top-rated services in your area" },
+    "brands": { "title": "Trusted Brands", "subtitle": "Shop from leading brands on MartPlace" },
+    "whyChooseUs": { "title": "Why Choose Us", "subtitle": "The marketplace built for you" },
+    "customerReviews": { "title": "Customer Reviews", "subtitle": "What our community says" },
+    "businessSolutions": { "title": "Business Solutions", "subtitle": "Tools to grow your business" },
+    "topVendors": { "title": "Top Vendors", "subtitle": "Highly rated sellers and providers" },
+    "recentProducts": { "title": "Recently Added Products", "subtitle": "Fresh listings just for you" },
+    "recommendedServices": { "title": "Recommended Services", "subtitle": "Services picked based on your area" },
+    "marketplaceStats": { "title": "Marketplace at a Glance", "subtitle": "Trusted by millions nationwide" },
+    "appDeals": { "title": "Get Exclusive App-Only Deals", "subtitle": "Download the MartPlace app for special offers, faster checkout, and personalized recommendations." },
+    "faq": { "title": "Frequently Asked Questions", "subtitle": "Quick answers to common questions" },
+    "newsletter": { "title": "Stay in the Loop", "subtitle": "Get deals, updates, and marketplace news in your inbox" }
+  },
+  "homeLayout": {
+    "sectionSpacing": "2xl",
+    "fullWidthSections": ["exploreCategories", "hero", "whyChooseUs", "appDeals"],
+    "bands": {
+      "default": { "background": "transparent", "padding": "lg" },
+      "tinted": { "background": "#f1f5f9", "padding": "2xl" },
+      "subtle": { "background": "#fafbfc", "padding": "2xl" }
+    },
+    "sectionOrder": [
+      "exploreCategories",
+      "productCategories",
+      "trendingProducts",
+      "featuredProducts",
+      "hero",
+      "brands",
+      "serviceCategories",
+      "popularServices",
+      "whyChooseUs",
+      "recentProducts",
+      "recommendedServices",
+      "appDeals",
+      "faq",
+      "newsletter"
+    ]
+  },
+  "homeContent": {
+    "brands": {
+      "section": {
+        "background": "linear-gradient(135deg, #f8fafc 0%, #eef2ff 50%, #f0fdf4 100%)",
+        "badge": "Partners",
+        "logoSize": 88
+      },
+      "items": [
+        { "id": "brand-techhub", "name": "TechHub", "logo": "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=120&q=80" },
+        { "id": "brand-fashion", "name": "Fashion Forward", "logo": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=120&q=80" },
+        { "id": "brand-homecomfort", "name": "Home Comfort", "logo": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=120&q=80" },
+        { "id": "brand-sports", "name": "Sports Gear Pro", "logo": "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=120&q=80" },
+        { "id": "brand-readmore", "name": "Read More", "logo": "https://images.unsplash.com/photo-1512820790801-4153c739de98?w=120&q=80" },
+        { "id": "brand-fixit", "name": "FixIt Pro", "logo": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=120&q=80" },
+        { "id": "brand-sparkle", "name": "Sparkle Home", "logo": "https://images.unsplash.com/photo-1563453392219-159a756e0b3f?w=120&q=80" },
+        { "id": "brand-powerpro", "name": "PowerPro", "logo": "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=120&q=80" }
+      ]
+    },
+    "appDeals": {
+      "badge": "App Exclusive",
+      "heading": "Get Exclusive App-Only Deals",
+      "description": "Download the MartPlace app for special offers, faster checkout, and personalized recommendations.",
+      "features": ["Exclusive discounts", "Faster checkout", "Order tracking"],
+      "button": { "label": "Download App", "icon": "FaDownload", "path": "#" },
+      "qrImage": "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://martplace.app",
+      "qrLabel": "Scan to download",
+      "illustration": "https://images.unsplash.com/photo-1512941937669-90a1ba58a7e9?w=400&q=80",
+      "background": "linear-gradient(135deg, #0f172a 0%, #1e3a8a 45%, #312e81 100%)",
+      "accentColor": "#60a5fa",
+      "layout": {
+        "phoneWidth": "240px",
+        "qrSize": "136px",
+        "contentMaxWidth": "520px"
+      }
+    },
+    "whyChooseUs": {
+      "items": [
+        { "id": "wcu-1", "title": "Trusted Vendors", "description": "Every seller is verified for quality and reliability.", "icon": "FaShieldAlt", "color": "#2563eb" },
+        { "id": "wcu-2", "title": "Local First", "description": "Find products and services right in your neighborhood.", "icon": "FaMapMarkerAlt", "color": "#10b981" },
+        { "id": "wcu-3", "title": "Best Prices", "description": "Compare deals and save with competitive marketplace pricing.", "icon": "FaTags", "color": "#f59e0b" },
+        { "id": "wcu-4", "title": "Easy Returns", "description": "Hassle-free returns and dedicated customer support.", "icon": "FaUndo", "color": "#7c3aed" }
+      ]
+    },
+    "customerReviews": {
+      "items": [
+        { "id": "cr-1", "name": "Emily R.", "review": "Best marketplace app I've used. Found a great local vendor in minutes!", "rating": 5, "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" },
+        { "id": "cr-2", "name": "Tom H.", "review": "Booked a plumber through MartPlace — professional and affordable.", "rating": 5, "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" },
+        { "id": "cr-3", "name": "Aisha K.", "review": "Love the variety of products and the smooth checkout experience.", "rating": 4, "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" }
+      ]
+    },
+    "businessSolutions": {
+      "items": [
+        { "id": "bs-1", "title": "Vendor Dashboard", "description": "Manage products, services, and orders in one place.", "icon": "FaTachometerAlt", "color": "#2563eb", "path": "/start-business" },
+        { "id": "bs-2", "title": "Analytics", "description": "Track performance and grow with data-driven insights.", "icon": "FaChartLine", "color": "#10b981", "path": "/start-business" },
+        { "id": "bs-3", "title": "Marketing Tools", "description": "Reach more customers with built-in promotion features.", "icon": "FaBullhorn", "color": "#7c3aed", "path": "/start-business" }
+      ]
+    },
+    "topVendors": {
+      "items": [
+        { "id": "vendor-1", "name": "TechHub Electronics", "icon": "FaLaptop", "color": "#2563eb", "rating": 4.7 },
+        { "id": "vendor-7", "name": "Sparkle Home Cleaning", "icon": "FaBroom", "color": "#10b981", "rating": 4.8 },
+        { "id": "vendor-4", "name": "Sports Gear Pro", "icon": "FaFutbol", "color": "#d97706", "rating": 4.6 },
+        { "id": "vendor-9", "name": "Craft Masters", "icon": "FaHammer", "color": "#7c3aed", "rating": 4.9 }
+      ]
+    },
+    "marketplaceStats": {
+      "items": [
+        { "id": "ms-1", "label": "Active Vendors", "value": "12K+", "icon": "FaStore", "color": "#2563eb" },
+        { "id": "ms-2", "label": "Products", "value": "850K+", "icon": "FaBox", "color": "#7c3aed" },
+        { "id": "ms-3", "label": "Services", "value": "320K+", "icon": "FaConciergeBell", "color": "#10b981" },
+        { "id": "ms-4", "label": "Cities", "value": "500+", "icon": "FaCity", "color": "#f59e0b" }
+      ]
+    },
+    "faq": {
+      "openIcon": "FaPlus",
+      "closeIcon": "FaMinus",
+      "accentColor": "#2563eb",
+      "items": [
+        { "id": "hf-1", "question": "How do I find products near me?", "answer": "Select your location in the header to see products and services available in your area." },
+        { "id": "hf-2", "question": "Is it free to create an account?", "answer": "Yes! Creating a buyer account is completely free." },
+        { "id": "hf-3", "question": "How do I become a vendor?", "answer": "Click Start Your Business and follow the simple registration process." },
+        { "id": "hf-4", "question": "Are payments secure?", "answer": "All transactions are processed through secure, encrypted payment channels." }
+      ]
+    },
+    "newsletter": {
+      "placeholder": "Enter your email address",
+      "button": { "label": "Subscribe", "icon": "FaPaperPlane" },
+      "privacyNote": "We respect your privacy. Unsubscribe anytime."
+    }
+  },
+  "vendorLanding": {
+    "hero": {
+      "title": "Grow Your Business with MartPlace",
+      "subtitle": "Join thousands of vendors selling products and offering services to customers near you",
+      "backgroundImage": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1600&q=80",
+      "cta": { "label": "Get Started", "icon": "FaRocket", "path": "/vendor/get-started" },
+      "floatBadge": { "icon": "FaChartLine", "text": "+127% avg. growth", "color": "#10b981" }
+    },
+    "whySellWithUs": {
+      "title": "Why Sell With Us",
+      "subtitle": "The smartest way to reach local buyers",
+      "items": [
+        { "id": "ws-1", "title": "Zero Setup Hassle", "description": "Create your store in minutes with our guided onboarding.", "icon": "FaRocket", "color": "#2563eb" },
+        { "id": "ws-2", "title": "Local Discovery", "description": "Get found by customers searching in your area.", "icon": "FaMapMarkerAlt", "color": "#10b981" },
+        { "id": "ws-3", "title": "Secure Payments", "description": "Trusted checkout experience for you and your buyers.", "icon": "FaShieldAlt", "color": "#7c3aed" }
+      ]
+    },
+    "whyOfferServices": {
+      "title": "Why Offer Your Services",
+      "subtitle": "Turn your expertise into a thriving business",
+      "items": [
+        { "id": "os-1", "title": "Get Booked Fast", "description": "Customers find and contact you directly through the platform.", "icon": "FaCalendarCheck", "color": "#2563eb" },
+        { "id": "os-2", "title": "Build Your Reputation", "description": "Collect reviews and ratings that attract more clients.", "icon": "FaStar", "color": "#f59e0b" },
+        { "id": "os-3", "title": "Manage Easily", "description": "Update availability, pricing, and service areas anytime.", "icon": "FaCog", "color": "#10b981" }
+      ]
+    },
+    "businessGrowth": {
+      "title": "Business Growth Benefits",
+      "subtitle": "Tools and insights to help you scale",
+      "items": [
+        { "id": "bg-1", "title": "Analytics Dashboard", "description": "Track views, inquiries, and performance at a glance.", "icon": "FaChartBar", "color": "#2563eb" },
+        { "id": "bg-2", "title": "Marketing Reach", "description": "Appear in search results and category pages automatically.", "icon": "FaBullhorn", "color": "#7c3aed" },
+        { "id": "bg-3", "title": "Customer Insights", "description": "Understand what sells and optimize your listings.", "icon": "FaLightbulb", "color": "#f59e0b" },
+        { "id": "bg-4", "title": "24/7 Visibility", "description": "Your business works for you even while you sleep.", "icon": "FaClock", "color": "#10b981" }
+      ]
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "subtitle": "Start selling in four simple steps",
+      "steps": [
+        { "id": "step-1", "step": "01", "title": "Sign Up", "description": "Create your vendor account in under 2 minutes.", "icon": "FaUserPlus" },
+        { "id": "step-2", "step": "02", "title": "Choose Your Type", "description": "Select products, services, or both.", "icon": "FaCheckCircle" },
+        { "id": "step-3", "step": "03", "title": "List Your Offerings", "description": "Add products or services with photos and details.", "icon": "FaPlusCircle" },
+        { "id": "step-4", "step": "04", "title": "Start Selling", "description": "Reach customers and grow your business.", "icon": "FaRocket" }
+      ]
+    },
+    "platformFeatures": {
+      "title": "Platform Features",
+      "subtitle": "Everything built for vendor success",
+      "items": [
+        { "id": "pf-1", "title": "Product Catalog", "description": "Rich listings with galleries, specs, and videos.", "icon": "FaBoxOpen", "color": "#2563eb" },
+        { "id": "pf-2", "title": "Service Booking", "description": "Let customers book and contact you instantly.", "icon": "FaConciergeBell", "color": "#7c3aed" },
+        { "id": "pf-3", "title": "Review System", "description": "Build trust with verified customer reviews.", "icon": "FaStarHalfAlt", "color": "#f59e0b" },
+        { "id": "pf-4", "title": "Mobile Ready", "description": "Manage your business from any device.", "icon": "FaMobileAlt", "color": "#10b981" },
+        { "id": "pf-5", "title": "Location Targeting", "description": "Reach customers in your service area.", "icon": "FaMapMarkedAlt", "color": "#0891b2" },
+        { "id": "pf-6", "title": "Vendor Dashboard", "description": "One hub for products, services, and analytics.", "icon": "FaTachometerAlt", "color": "#dc2626" }
+      ]
+    },
+    "businessAdvantages": {
+      "title": "Business Advantages",
+      "subtitle": "Stay ahead of the competition",
+      "items": [
+        { "id": "ba-1", "title": "Low Barrier to Entry", "description": "No technical skills required to get started.", "icon": "FaDoorOpen", "color": "#2563eb" },
+        { "id": "ba-2", "title": "Flexible Business Model", "description": "Sell products, offer services, or do both.", "icon": "FaRandom", "color": "#7c3aed" },
+        { "id": "ba-3", "title": "Community Support", "description": "Join a network of successful local vendors.", "icon": "FaHandsHelping", "color": "#10b981" }
+      ]
+    },
+    "benefits": {
+      "title": "Why Sell on MartPlace?",
+      "subtitle": "Everything you need to succeed online",
+      "items": [
+        { "id": "sell-products", "title": "Sell Products", "description": "List and manage your product catalog with ease.", "icon": "FaBox", "color": "#2563eb" },
+        { "id": "offer-services", "title": "Offer Services", "description": "Showcase your professional services and get booked.", "icon": "FaConciergeBell", "color": "#7c3aed" },
+        { "id": "grow-business", "title": "Grow Your Business", "description": "Access analytics, reviews, and scaling tools.", "icon": "FaChartLine", "color": "#10b981" },
+        { "id": "reach-customers", "title": "Reach More Customers", "description": "Get discovered by thousands of local shoppers.", "icon": "FaUsers", "color": "#f59e0b" }
+      ]
+    },
+    "successStories": {
+      "title": "Success Stories",
+      "subtitle": "Real vendors, real results",
+      "items": [
+        { "id": "ss-1", "name": "Sarah Chen", "role": "Electronics Vendor", "story": "Tripled sales in 3 months with MartPlace's local reach.", "metric": "3x Sales Growth", "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80", "color": "#2563eb" },
+        { "id": "ss-2", "name": "Marcus Johnson", "role": "Home Services Pro", "story": "Went from 5 to 30+ clients per week.", "metric": "6x More Clients", "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80", "color": "#10b981" },
+        { "id": "ss-3", "name": "Priya Sharma", "role": "Fashion Boutique", "story": "Doubled monthly revenue online.", "metric": "2x Revenue", "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&q=80", "color": "#7c3aed" }
+      ]
+    },
+    "testimonials": {
+      "title": "Customer Testimonials",
+      "subtitle": "What buyers say about our vendors",
+      "items": [
+        { "id": "ct-1", "name": "James Wilson", "review": "Found an amazing local electronics vendor. Fast delivery!", "rating": 5, "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&q=80" },
+        { "id": "ct-2", "name": "Lisa Park", "review": "Booked a cleaning service in minutes. Professional!", "rating": 5, "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&q=80" },
+        { "id": "ct-3", "name": "David Brown", "review": "MartPlace makes it easy to support local businesses.", "rating": 5, "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&q=80" }
+      ]
+    },
+    "reviews": {
+      "title": "Vendor Success Stories",
+      "subtitle": "Hear from businesses thriving on MartPlace",
+      "items": [
+        { "id": "vs-1", "name": "Sarah Chen", "role": "Electronics Vendor", "review": "MartPlace helped me triple my sales in just 3 months.", "rating": 5, "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80" },
+        { "id": "vs-2", "name": "Marcus Johnson", "role": "Home Services", "review": "I went from 5 clients a week to 30+. Reviews built trust.", "rating": 5, "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80" },
+        { "id": "vs-3", "name": "Priya Sharma", "role": "Fashion Boutique", "review": "Best decision for my boutique. Great customer reach.", "rating": 4, "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&q=80" }
+      ]
+    },
+    "statistics": {
+      "title": "Vendor Statistics",
+      "subtitle": "Trusted by businesses nationwide",
+      "items": [
+        { "id": "stat-vendors", "label": "Vendors Joined", "value": "12,500+", "icon": "FaStore", "color": "#2563eb" },
+        { "id": "stat-products", "label": "Products Listed", "value": "850K+", "icon": "FaBox", "color": "#7c3aed" },
+        { "id": "stat-services", "label": "Services Available", "value": "320K+", "icon": "FaConciergeBell", "color": "#10b981" },
+        { "id": "stat-customers", "label": "Happy Customers", "value": "2M+", "icon": "FaSmile", "color": "#f59e0b" }
+      ]
+    },
+    "trustedBy": {
+      "title": "Trusted by Businesses",
+      "subtitle": "Join industry leaders on MartPlace",
+      "logos": [
+        { "id": "tb-1", "name": "TechHub", "icon": "FaLaptop" },
+        { "id": "tb-2", "name": "HomePro", "icon": "FaHome" },
+        { "id": "tb-3", "name": "StyleCo", "icon": "FaTshirt" },
+        { "id": "tb-4", "name": "FixIt", "icon": "FaTools" },
+        { "id": "tb-5", "name": "GreenLife", "icon": "FaLeaf" },
+        { "id": "tb-6", "name": "AutoMax", "icon": "FaCar" }
+      ]
+    },
+    "faq": {
+      "openIcon": "FaPlus",
+      "closeIcon": "FaMinus",
+      "accentColor": "#2563eb",
+      "title": "Frequently Asked Questions",
+      "subtitle": "Everything you need to know before getting started",
+      "items": [
+        { "id": "faq-1", "question": "How much does it cost to join?", "answer": "Creating a vendor account is free. We only charge a small commission on successful sales." },
+        { "id": "faq-2", "question": "Can I sell both products and services?", "answer": "Yes! Choose Product Business, Service Business, or Both during setup." },
+        { "id": "faq-3", "question": "How do I get paid?", "answer": "Payments are processed securely and transferred to your account regularly." },
+        { "id": "faq-4", "question": "How long does setup take?", "answer": "Most vendors complete setup and list their first item within 15 minutes." },
+        { "id": "faq-5", "question": "Do I need technical skills?", "answer": "Not at all. Our platform is designed for everyone." }
+      ]
+    },
+    "cta": {
+      "title": "Ready to Start Selling?",
+      "subtitle": "Join MartPlace today and reach customers in your area",
+      "button": { "label": "Get Started", "icon": "FaArrowRight", "path": "/vendor/get-started" }
+    },
+    "ctaSecondary": {
+      "title": "Your Business Deserves a Bigger Audience",
+      "subtitle": "Take the first step toward growth today",
+      "button": { "label": "Get Started Now", "icon": "FaRocket", "path": "/vendor/get-started" }
+    },
+    "animations": {
+      "enabledSections": ["hero", "features", "statistics", "faq", "cta", "journey"],
+      "fadeInUp": { "duration": "700ms", "distance": "24px" },
+      "stagger": { "interval": "100ms" }
+    },
+    "layout": {
+      "heroStyle": "split",
+      "featureStyle": "rows",
+      "statsStyle": "inline"
+    }
+  }
+}

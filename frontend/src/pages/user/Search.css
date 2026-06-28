@@ -1,0 +1,20 @@
+.search-page__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 var(--spacing-xl);
+}
+
+.search-page__count {
+  font-weight: 400;
+  color: var(--color-textMuted);
+  font-size: 1rem;
+  margin-left: var(--spacing-sm);
+}
+
+.search-page__grid {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+.search-page__grid--products { grid-template-columns: 1fr; }
+.search-page__grid--services { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }

@@ -1,0 +1,74 @@
+{
+  "brand": {
+    "name": "MartPlace",
+    "tagline": "Your one-stop marketplace for products and services",
+    "description": "MartPlace connects buyers with trusted local vendors. Shop products, book services, and grow your business — all in one place.",
+    "icon": "FaStore"
+  },
+  "columns": [
+    {
+      "id": "about",
+      "title": "About Us",
+      "links": [
+        { "label": "Our Story", "path": "/about" },
+        { "label": "Careers", "path": "/careers" },
+        { "label": "Press", "path": "/press" },
+        { "label": "Blog", "path": "/blog" }
+      ]
+    },
+    {
+      "id": "services",
+      "title": "Our Services",
+      "links": [
+        { "label": "Product Marketplace", "path": "/search?type=products" },
+        { "label": "Service Booking", "path": "/search?type=services" },
+        { "label": "Vendor Solutions", "path": "/start-business" },
+        { "label": "Business Tools", "path": "/start-business" }
+      ]
+    },
+    {
+      "id": "productCategories",
+      "title": "Product Categories",
+      "dynamic": "productCategories",
+      "limit": 6
+    },
+    {
+      "id": "serviceCategories",
+      "title": "Service Categories",
+      "dynamic": "serviceCategories",
+      "limit": 6
+    },
+    {
+      "id": "quickLinks",
+      "title": "Quick Links",
+      "links": [
+        { "label": "Home", "path": "/" },
+        { "label": "Categories", "path": "/categories" },
+        { "label": "Products", "path": "/search?type=products" },
+        { "label": "Services", "path": "/search?type=services" },
+        { "label": "Vendors", "path": "/vendors" }
+      ]
+    },
+    {
+      "id": "support",
+      "title": "Support",
+      "links": [
+        { "label": "Become a Vendor", "path": "/start-business" },
+        { "label": "Contact", "path": "/contact" },
+        { "label": "Privacy Policy", "path": "/privacy" },
+        { "label": "Terms & Conditions", "path": "/terms" }
+      ]
+    }
+  ],
+  "social": {
+    "title": "Follow Us",
+    "links": [
+      { "icon": "FaFacebook", "url": "#", "label": "Facebook" },
+      { "icon": "FaTwitter", "url": "#", "label": "Twitter" },
+      { "icon": "FaInstagram", "url": "#", "label": "Instagram" },
+      { "icon": "FaLinkedin", "url": "#", "label": "LinkedIn" },
+      { "icon": "FaYoutube", "url": "#", "label": "YouTube" }
+    ]
+  },
+  "copyright": "© 2026 MartPlace. All rights reserved."
+}

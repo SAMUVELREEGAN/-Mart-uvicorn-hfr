@@ -1,0 +1,23 @@
+{
+  "primary": { "variant": "primary", "icon": null },
+  "secondary": { "variant": "secondary", "icon": null },
+  "outline": { "variant": "outline", "icon": null },
+  "danger": { "variant": "danger", "icon": "FaTrash" },
+  "success": { "variant": "success", "icon": "FaCheck" },
+  "login": { "label": "Login", "variant": "primary", "icon": "FaSignInAlt", "type": "submit" },
+  "signup": { "label": "Sign Up", "variant": "primary", "icon": "FaUserPlus", "type": "submit" },
+  "vendorLogin": { "label": "Vendor Login", "variant": "primary", "icon": "FaSignInAlt", "type": "submit" },
+  "vendorRegister": { "label": "Register Business", "variant": "primary", "icon": "FaStore", "type": "submit" },
+  "save": { "label": "Save", "variant": "primary", "icon": "FaSave", "type": "submit" },
+  "cancel": { "label": "Cancel", "variant": "outline", "icon": "FaTimes" },
+  "delete": { "label": "Delete", "variant": "danger", "icon": "FaTrash" },
+  "edit": { "label": "Edit", "variant": "outline", "icon": "FaEdit" },
+  "add": { "label": "Add New", "variant": "primary", "icon": "FaPlus" },
+  "search": { "label": "Search", "variant": "primary", "icon": "FaSearch", "type": "submit" },
+  "buy": { "label": "Buy Now", "variant": "primary", "icon": "FaShoppingCart" },
+  "book": { "label": "Book Service", "variant": "primary", "icon": "FaCalendarCheck" },
+  "contact": { "label": "Contact Provider", "variant": "secondary", "icon": "FaPhone" },
+  "submitReview": { "label": "Submit Review", "variant": "primary", "icon": "FaStar", "type": "submit" },
+  "viewAll": { "label": "View All", "variant": "outline", "icon": "FaArrowRight" },
+  "getStarted": { "label": "Get Started", "variant": "primary", "icon": "FaRocket", "size": "lg" }
+}

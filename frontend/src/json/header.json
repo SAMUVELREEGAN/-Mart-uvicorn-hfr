@@ -1,0 +1,65 @@
+{
+  "logo": {
+    "text": "MartPlace",
+    "icon": "FaStore"
+  },
+  "search": {
+    "placeholder": "Search products, services, vendors...",
+    "icon": "FaSearch",
+    "buttonIcon": "FaSearch"
+  },
+  "location": {
+    "label": "Deliver to",
+    "icon": "FaLocationDot",
+    "placeholder": "Select location",
+    "iconSize": "1.125rem"
+  },
+  "actions": {
+    "vendor": {
+      "label": "Start Your Business",
+      "labelShort": "Business",
+      "icon": "FaRocket",
+      "path": "/start-business"
+    },
+    "login": {
+      "label": "Login",
+      "icon": "FaUser",
+      "path": "/login"
+    },
+    "profile": {
+      "label": "Profile",
+      "icon": "FaUserCircle",
+      "path": "/profile"
+    },
+    "logout": {
+      "label": "Logout",
+      "icon": "FaSignOutAlt"
+    },
+    "dashboard": {
+      "label": "Dashboard",
+      "icon": "FaTachometerAlt",
+      "path": "/vendor/dashboard"
+    }
+  },
+  "layout": {
+    "sticky": true,
+    "scrollShadow": true
+  },
+  "vendorPopup": {
+    "title": "Continue as User",
+    "subtitle": "Sign in to access vendor features and manage your account",
+    "continueButton": { "label": "Continue", "icon": "FaArrowRight", "submitKey": "login" },
+    "skipLink": { "label": "Continue without signing in", "path": "/start-business" },
+    "closeIcon": "FaTimes"
+  },
+  "profileMenu": {
+    "defaultAvatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80",
+    "items": [
+      { "label": "My Profile", "path": "/profile", "icon": "FaUserCircle" },
+      { "label": "Orders", "path": "/orders", "icon": "FaShoppingBag" },
+      { "label": "Bookings", "path": "/bookings", "icon": "FaCalendarCheck" },
+      { "label": "Wishlist", "path": "/wishlist", "icon": "FaHeart" },
+      { "label": "Logout", "action": "logout", "icon": "FaSignOutAlt", "dividerBefore": true }
+    ]
+  }
+}

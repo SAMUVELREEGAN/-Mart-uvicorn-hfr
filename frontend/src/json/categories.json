@@ -1,0 +1,269 @@
+{
+  "categoryPage": {
+    "relatedTitle": "Related Categories",
+    "subcategoriesTitle": "Sub Categories",
+    "productsTitle": "Products in this Category",
+    "servicesTitle": "Services in this Category",
+    "defaultProductDescription": "Browse the best products in this category from trusted local vendors.",
+    "defaultServiceDescription": "Find professional services in this category from verified providers near you.",
+    "defaultBanner": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80"
+  },
+  "subcategories": {
+    "electronics": [
+      { "id": "phones", "name": "Phones", "icon": "FaMobileAlt", "color": "#2563eb" },
+      { "id": "laptops", "name": "Laptops", "icon": "FaLaptop", "color": "#4f46e5" },
+      { "id": "audio", "name": "Audio", "icon": "FaHeadphones", "color": "#7c3aed" },
+      { "id": "cameras", "name": "Cameras", "icon": "FaCamera", "color": "#0891b2" },
+      { "id": "accessories", "name": "Accessories", "icon": "FaPlug", "color": "#d97706" }
+    ],
+    "fashion": [
+      { "id": "mens", "name": "Men's", "icon": "FaMale", "color": "#2563eb" },
+      { "id": "womens", "name": "Women's", "icon": "FaFemale", "color": "#db2777" },
+      { "id": "kids", "name": "Kids", "icon": "FaChild", "color": "#f59e0b" },
+      { "id": "shoes", "name": "Shoes", "icon": "FaShoePrints", "color": "#7c3aed" },
+      { "id": "accessories-fashion", "name": "Accessories", "icon": "FaGem", "color": "#0891b2" }
+    ],
+    "home": [
+      { "id": "furniture", "name": "Furniture", "icon": "FaCouch", "color": "#059669" },
+      { "id": "decor", "name": "Decor", "icon": "FaPalette", "color": "#7c3aed" },
+      { "id": "kitchen", "name": "Kitchen", "icon": "FaUtensils", "color": "#d97706" },
+      { "id": "garden", "name": "Garden", "icon": "FaLeaf", "color": "#10b981" }
+    ],
+    "sports": [
+      { "id": "fitness", "name": "Fitness", "icon": "FaDumbbell", "color": "#dc2626" },
+      { "id": "outdoor", "name": "Outdoor", "icon": "FaHiking", "color": "#059669" },
+      { "id": "team-sports", "name": "Team Sports", "icon": "FaFutbol", "color": "#2563eb" },
+      { "id": "cycling", "name": "Cycling", "icon": "FaBicycle", "color": "#f59e0b" }
+    ],
+    "books": [
+      { "id": "fiction", "name": "Fiction", "icon": "FaBookOpen", "color": "#7c3aed" },
+      { "id": "non-fiction", "name": "Non-Fiction", "icon": "FaBook", "color": "#2563eb" },
+      { "id": "textbooks", "name": "Textbooks", "icon": "FaGraduationCap", "color": "#0891b2" }
+    ],
+    "toys": [
+      { "id": "action-figures", "name": "Action Figures", "icon": "FaRobot", "color": "#dc2626" },
+      { "id": "board-games", "name": "Board Games", "icon": "FaChess", "color": "#7c3aed" },
+      { "id": "outdoor-toys", "name": "Outdoor", "icon": "FaFootballBall", "color": "#10b981" }
+    ],
+    "automotive": [
+      { "id": "parts", "name": "Parts", "icon": "FaCog", "color": "#64748b" },
+      { "id": "accessories-auto", "name": "Accessories", "icon": "FaCar", "color": "#2563eb" },
+      { "id": "tools-auto", "name": "Tools", "icon": "FaWrench", "color": "#d97706" }
+    ],
+    "health": [
+      { "id": "vitamins", "name": "Vitamins", "icon": "FaPills", "color": "#10b981" },
+      { "id": "fitness-health", "name": "Fitness", "icon": "FaHeartbeat", "color": "#ec4899" },
+      { "id": "personal-care", "name": "Personal Care", "icon": "FaSpa", "color": "#7c3aed" }
+    ],
+    "plumbing": [
+      { "id": "repairs", "name": "Repairs", "icon": "FaWrench", "color": "#2563eb" },
+      { "id": "installation", "name": "Installation", "icon": "FaFaucet", "color": "#0891b2" },
+      { "id": "emergency", "name": "Emergency", "icon": "FaExclamationTriangle", "color": "#dc2626" }
+    ],
+    "electrical": [
+      { "id": "wiring", "name": "Wiring", "icon": "FaBolt", "color": "#f59e0b" },
+      { "id": "lighting", "name": "Lighting", "icon": "FaLightbulb", "color": "#eab308" },
+      { "id": "panels", "name": "Panels", "icon": "FaServer", "color": "#64748b" }
+    ],
+    "cleaning": [
+      { "id": "deep-clean", "name": "Deep Clean", "icon": "FaBroom", "color": "#10b981" },
+      { "id": "regular", "name": "Regular", "icon": "FaCalendarCheck", "color": "#2563eb" },
+      { "id": "commercial", "name": "Commercial", "icon": "FaBuilding", "color": "#7c3aed" }
+    ],
+    "carpentry": [
+      { "id": "custom", "name": "Custom Work", "icon": "FaHammer", "color": "#d97706" },
+      { "id": "repairs-carp", "name": "Repairs", "icon": "FaTools", "color": "#2563eb" },
+      { "id": "cabinetry", "name": "Cabinetry", "icon": "FaDoorOpen", "color": "#7c3aed" }
+    ],
+    "painting": [
+      { "id": "interior", "name": "Interior", "icon": "FaPaintRoller", "color": "#7c3aed" },
+      { "id": "exterior", "name": "Exterior", "icon": "FaHome", "color": "#2563eb" },
+      { "id": "commercial-paint", "name": "Commercial", "icon": "FaBuilding", "color": "#d97706" }
+    ],
+    "gardening": [
+      { "id": "landscaping", "name": "Landscaping", "icon": "FaTree", "color": "#059669" },
+      { "id": "lawn-care", "name": "Lawn Care", "icon": "FaLeaf", "color": "#10b981" },
+      { "id": "planting", "name": "Planting", "icon": "FaSeedling", "color": "#84cc16" }
+    ],
+    "moving": [
+      { "id": "local", "name": "Local Move", "icon": "FaTruck", "color": "#4f46e5" },
+      { "id": "long-distance", "name": "Long Distance", "icon": "FaRoad", "color": "#2563eb" },
+      { "id": "packing", "name": "Packing", "icon": "FaBox", "color": "#d97706" }
+    ],
+    "tutoring": [
+      { "id": "math", "name": "Math", "icon": "FaCalculator", "color": "#2563eb" },
+      { "id": "science", "name": "Science", "icon": "FaFlask", "color": "#10b981" },
+      { "id": "languages", "name": "Languages", "icon": "FaLanguage", "color": "#7c3aed" }
+    ]
+  },
+  "exploreCategories": {
+    "defaultExpandedFirst": true,
+    "transitionMs": 450,
+    "expandedFlex": 2.2,
+    "collapsedFlex": 0.85,
+    "desktopHeight": 360,
+    "mobileHeight": 200
+  },
+  "categoryIcons": {
+    "product": {
+      "shape": "box",
+      "borderRadius": "14px",
+      "containerSize": "72px",
+      "iconSize": "1.5rem",
+      "minWidth": "96px",
+      "nameMaxWidth": "88px",
+      "mobileContainerSize": "68px",
+      "mobileIconScale": "1.15",
+      "mobileMinWidth": "88px",
+      "mobileNameMaxWidth": "92px"
+    },
+    "service": {
+      "shape": "circle",
+      "borderRadius": "50%",
+      "containerSize": "72px",
+      "iconSize": "1.4375rem",
+      "minWidth": "96px",
+      "nameMaxWidth": "88px",
+      "mobileContainerSize": "68px",
+      "mobileIconScale": "1.12",
+      "mobileMinWidth": "88px",
+      "mobileNameMaxWidth": "92px"
+    },
+    "more": {
+      "shape": "box",
+      "borderRadius": "14px",
+      "containerSize": "72px",
+      "iconSize": "1.4375rem",
+      "minWidth": "96px",
+      "nameMaxWidth": "88px",
+      "mobileContainerSize": "68px",
+      "mobileIconScale": "1.1",
+      "mobileMinWidth": "88px",
+      "mobileNameMaxWidth": "92px"
+    }
+  },
+  "highlightCategories": [
+    {
+      "id": "b2b",
+      "title": "B2B",
+      "subtitle": "Quick Quotes",
+      "description": "Connect with businesses for wholesale deals, bulk orders, and B2B partnerships.",
+      "icon": "FaBuilding",
+      "color": "#2563eb",
+      "image": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80",
+      "bannerImage": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80",
+      "path": "/category/b2b"
+    },
+    {
+      "id": "repair-services",
+      "title": "Repairs & Services",
+      "subtitle": "Get Nearest Vendor",
+      "description": "Find skilled repair professionals and service providers in your neighborhood.",
+      "icon": "FaTools",
+      "color": "#1d4ed8",
+      "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80",
+      "bannerImage": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80",
+      "path": "/category/repair-services"
+    },
+    {
+      "id": "real-estate",
+      "title": "Real Estate",
+      "subtitle": "Finest Agents",
+      "description": "Explore properties, connect with agents, and find your perfect home or investment.",
+      "icon": "FaHome",
+      "color": "#7c3aed",
+      "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80",
+      "bannerImage": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80",
+      "path": "/category/real-estate"
+    },
+    {
+      "id": "doctors",
+      "title": "Doctors",
+      "subtitle": "Book Now",
+      "description": "Book appointments with qualified doctors and healthcare professionals.",
+      "icon": "FaUserDoctor",
+      "color": "#059669",
+      "image": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80",
+      "bannerImage": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1200&q=80",
+      "path": "/category/doctors"
+    },
+    {
+      "id": "wedding",
+      "title": "Wedding",
+      "subtitle": "Plan Your Day",
+      "description": "Everything you need for your special day — venues, planners, and vendors.",
+      "icon": "FaRing",
+      "color": "#db2777",
+      "image": "https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80",
+      "bannerImage": "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80",
+      "path": "/category/wedding"
+    },
+    {
+      "id": "education",
+      "title": "Education",
+      "subtitle": "Learn & Grow",
+      "description": "Courses, tutoring, and educational resources for all ages and skill levels.",
+      "icon": "FaGraduationCap",
+      "color": "#0891b2",
+      "image": "https://images.unsplash.com/photo-1503676260728-1c00da280a25?w=600&q=80",
+      "bannerImage": "https://images.unsplash.com/photo-1503676260728-1c00da280a25?w=1200&q=80",
+      "path": "/category/education"
+    },
+    {
+      "id": "electronics",
+      "title": "Electronics",
+      "subtitle": "Latest Tech",
+      "description": "Shop the latest gadgets, devices, and electronics from top vendors.",
+      "icon": "FaLaptop",
+      "color": "#4f46e5",
+      "image": "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=600&q=80",
+      "bannerImage": "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=1200&q=80",
+      "path": "/category/electronics"
+    },
+    {
+      "id": "beauty",
+      "title": "Beauty",
+      "subtitle": "Look Your Best",
+      "description": "Beauty products, salon services, and wellness from trusted professionals.",
+      "icon": "FaSpa",
+      "color": "#ec4899",
+      "image": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80",
+      "bannerImage": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&q=80",
+      "path": "/category/beauty"
+    },
+    {
+      "id": "home-services",
+      "title": "Home Services",
+      "subtitle": "Expert Help",
+      "description": "Professional home maintenance, cleaning, and improvement services.",
+      "icon": "FaHouseUser",
+      "color": "#d97706",
+      "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80",
+      "bannerImage": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80",
+      "path": "/category/home-services"
+    }
+  ],
+  "productCategories": [
+    { "id": "electronics", "name": "Electronics", "icon": "FaLaptop", "color": "#2563eb", "description": "Discover cutting-edge electronics, gadgets, and tech accessories from verified sellers.", "bannerImage": "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=1200&q=80" },
+    { "id": "fashion", "name": "Fashion", "icon": "FaTshirt", "color": "#db2777", "description": "Trendy clothing, footwear, and accessories for every style and occasion.", "bannerImage": "https://images.unsplash.com/photo-1445205170230-053b83016050?w=1200&q=80" },
+    { "id": "home", "name": "Home & Garden", "icon": "FaCouch", "color": "#059669", "description": "Furniture, decor, and garden essentials to transform your living space.", "bannerImage": "https://images.unsplash.com/photo-1618221195710-dd6b41fa5966?w=1200&q=80" },
+    { "id": "sports", "name": "Sports", "icon": "FaFutbol", "color": "#d97706", "description": "Sports gear, equipment, and apparel for athletes and fitness enthusiasts.", "bannerImage": "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&q=80" },
+    { "id": "books", "name": "Books", "icon": "FaBook", "color": "#7c3aed", "description": "Books, textbooks, and reading materials for all ages and interests.", "bannerImage": "https://images.unsplash.com/photo-1512820790801-4153c739de98?w=1200&q=80" },
+    { "id": "toys", "name": "Toys", "icon": "FaGamepad", "color": "#0891b2", "description": "Fun and educational toys, games, and entertainment for kids of all ages.", "bannerImage": "https://images.unsplash.com/photo-1558060370-9796a4ea5134?w=1200&q=80" },
+    { "id": "automotive", "name": "Automotive", "icon": "FaCar", "color": "#dc2626", "description": "Car parts, accessories, and automotive products from trusted dealers.", "bannerImage": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&q=80" },
+    { "id": "health", "name": "Health", "icon": "FaHeartbeat", "color": "#ec4899", "description": "Health and wellness products to support your active lifestyle.", "bannerImage": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80" }
+  ],
+  "serviceCategories": [
+    { "id": "plumbing", "name": "Plumbing", "icon": "FaFaucet", "color": "#2563eb", "description": "Expert plumbing repairs, installations, and emergency services.", "bannerImage": "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=1200&q=80" },
+    { "id": "electrical", "name": "Electrical", "icon": "FaBolt", "color": "#f59e0b", "description": "Licensed electricians for wiring, repairs, and safety inspections.", "bannerImage": "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1200&q=80" },
+    { "id": "cleaning", "name": "Cleaning", "icon": "FaBroom", "color": "#10b981", "description": "Professional cleaning services for homes and businesses.", "bannerImage": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80" },
+    { "id": "carpentry", "name": "Carpentry", "icon": "FaHammer", "color": "#d97706", "description": "Skilled carpenters for custom woodwork, repairs, and installations.", "bannerImage": "https://images.unsplash.com/photo-1504147087307-44edca63d2c3?w=1200&q=80" },
+    { "id": "painting", "name": "Painting", "icon": "FaPaintRoller", "color": "#7c3aed", "description": "Interior and exterior painting by experienced professionals.", "bannerImage": "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=1200&q=80" },
+    { "id": "gardening", "name": "Gardening", "icon": "FaLeaf", "color": "#059669", "description": "Landscaping, lawn care, and garden maintenance services.", "bannerImage": "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1200&q=80" },
+    { "id": "moving", "name": "Moving", "icon": "FaTruck", "color": "#4f46e5", "description": "Reliable moving and relocation services for stress-free transitions.", "bannerImage": "https://images.unsplash.com/photo-1600518464441-915cf83240d0?w=1200&q=80" },
+    { "id": "tutoring", "name": "Tutoring", "icon": "FaChalkboardTeacher", "color": "#0891b2", "description": "Private tutoring and educational support for students of all levels.", "bannerImage": "https://images.unsplash.com/photo-1503676260728-1c00da280a25?w=1200&q=80" }
+  ],
+  "moreLabel": "More",
+  "moreIcon": "FaEllipsisH",
+  "moreColor": "#64748b"
+}

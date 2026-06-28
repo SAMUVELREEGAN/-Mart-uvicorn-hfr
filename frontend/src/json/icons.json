@@ -1,0 +1,96 @@
+{
+  "productCard": {
+    "layout": "horizontal",
+    "fields": ["name", "price", "rating", "vendor", "location", "description"],
+    "pricePrefix": "$",
+    "descriptionMaxLength": 100,
+    "mobile": {
+      "imageWidth": "112px",
+      "layout": "horizontal"
+    }
+  },
+  "serviceCard": {
+    "layout": "vertical",
+    "fields": ["name", "rating", "vendor", "city", "description"],
+    "descriptionMaxLength": 120
+  },
+  "highlightCard": {
+    "layout": "overlay",
+    "fields": ["title"]
+  },
+  "categoryItem": {
+    "layout": "icon-label",
+    "fields": ["icon", "name"]
+  },
+  "carousels": {
+    "products": {
+      "carousel": true,
+      "responsiveOnly": true,
+      "breakpoint": 992,
+      "snap": true,
+      "hideScrollbar": true,
+      "autoScroll": false
+    },
+    "services": {
+      "carousel": true,
+      "responsiveOnly": true,
+      "breakpoint": 992,
+      "snap": true,
+      "hideScrollbar": true,
+      "autoScroll": false
+    },
+    "brands": {
+      "carousel": true,
+      "autoScroll": true,
+      "infinite": true,
+      "pauseOnHover": true,
+      "speed": 28,
+      "hideScrollbar": true,
+      "touchScroll": true,
+      "logoSize": 88
+    },
+    "highlights": {
+      "carousel": true,
+      "responsiveOnly": true,
+      "breakpoint": 768,
+      "snap": true,
+      "hideScrollbar": true,
+      "mobileReducedSize": true
+    },
+    "categories": {
+      "carousel": false
+    },
+    "subcategories": {
+      "carousel": true,
+      "responsiveOnly": false,
+      "snap": true,
+      "hideScrollbar": true
+    },
+    "reviews": {
+      "carousel": true,
+      "responsiveOnly": true,
+      "breakpoint": 992,
+      "snap": true,
+      "hideScrollbar": true
+    },
+    "vendors": {
+      "carousel": true,
+      "responsiveOnly": true,
+      "breakpoint": 768,
+      "snap": true,
+      "hideScrollbar": true
+    }
+  },
+  "emptyState": {
+    "products": { "icon": "FaBoxOpen", "title": "No Products Found", "message": "Try adjusting your search or browse categories" },
+    "services": { "icon": "FaConciergeBell", "title": "No Services Found", "message": "Try adjusting your search or browse service categories" },
+    "reviews": { "icon": "FaCommentSlash", "title": "No Reviews Yet", "message": "Be the first to leave a review" },
+    "orders": { "icon": "FaShoppingBag", "title": "No Orders Yet", "message": "Your order history will appear here" },
+    "wishlist": { "icon": "FaHeart", "title": "Wishlist Empty", "message": "Save items you love to your wishlist" },
+    "brands": { "icon": "FaStore", "title": "No Items for This Brand", "message": "This brand has no listed products or services yet" }
+  },
+  "errorState": {
+    "default": { "icon": "FaExclamationTriangle", "title": "Something went wrong", "message": "Please try again later" },
+    "notFound": { "icon": "FaSearch", "title": "Page Not Found", "message": "The page you're looking for doesn't exist" }
+  }
+}

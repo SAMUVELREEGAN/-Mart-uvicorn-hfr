@@ -1,0 +1,19 @@
+{
+  "locations": [
+    { "id": "nyc", "name": "New York, NY", "icon": "FaMapMarkerAlt" },
+    { "id": "la", "name": "Los Angeles, CA", "icon": "FaMapMarkerAlt" },
+    { "id": "chicago", "name": "Chicago, IL", "icon": "FaMapMarkerAlt" },
+    { "id": "houston", "name": "Houston, TX", "icon": "FaMapMarkerAlt" },
+    { "id": "phoenix", "name": "Phoenix, AZ", "icon": "FaMapMarkerAlt" },
+    { "id": "philadelphia", "name": "Philadelphia, PA", "icon": "FaMapMarkerAlt" },
+    { "id": "san-antonio", "name": "San Antonio, TX", "icon": "FaMapMarkerAlt" },
+    { "id": "san-diego", "name": "San Diego, CA", "icon": "FaMapMarkerAlt" },
+    { "id": "dallas", "name": "Dallas, TX", "icon": "FaMapMarkerAlt" },
+    { "id": "austin", "name": "Austin, TX", "icon": "FaMapMarkerAlt" }
+  ],
+  "selectLocation": {
+    "title": "Select Your Location",
+    "subtitle": "Choose your city to see relevant products and services",
+    "icon": "FaMapMarkerAlt"
+  }
+}

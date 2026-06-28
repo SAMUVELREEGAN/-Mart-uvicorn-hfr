@@ -1,0 +1,159 @@
+{
+  "page": {
+    "sections": {
+      "gallery": { "title": "Brand Gallery", "subtitle": "Photos and videos from our brand" },
+      "products": { "title": "Products", "subtitle": "Shop from this brand" },
+      "services": { "title": "Services", "subtitle": "Services offered by this brand" },
+      "about": { "title": "About Brand", "subtitle": "Company overview and contact" },
+      "terms": { "title": "Terms & Conditions", "subtitle": "Brand policies and terms" }
+    },
+    "labels": {
+      "website": "Website",
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "overview": "Company Overview",
+      "additionalDetails": "Additional Details",
+      "socialMedia": "Social Media",
+      "photosTab": "Photos",
+      "videosTab": "Videos"
+    }
+  },
+  "items": [
+    {
+      "id": "brand-techhub",
+      "name": "TechHub",
+      "logo": "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=200&q=80",
+      "coverBanner": "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=1600&q=80",
+      "description": "TechHub delivers cutting-edge electronics and audio gear trusted by customers nationwide.",
+      "overview": "Founded in 2015, TechHub partners with leading manufacturers to bring premium tech products to local markets through MartPlace.",
+      "photos": [
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80",
+        "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600&q=80",
+        "https://images.unsplash.com/photo-1546439609-9e4f261d0e0e?w=600&q=80"
+      ],
+      "youtubeLinks": ["https://www.youtube.com/watch?v=dQw4w9WgXcQ"],
+      "website": "https://techhub.example.com",
+      "contact": { "phone": "+1-555-0100", "email": "hello@techhub.example.com", "address": "100 Tech Avenue, New York, NY" },
+      "socialMedia": { "facebook": "https://facebook.com/techhub", "instagram": "https://instagram.com/techhub", "twitter": "https://twitter.com/techhub" },
+      "termsAndConditions": "All TechHub products sold through MartPlace are covered by a standard 1-year manufacturer warranty. Returns accepted within 30 days in original packaging. Shipping times vary by location.",
+      "additionalDetails": "Authorized dealer for major electronics brands. Business hours: Mon–Sat 9AM–8PM.",
+      "vendorId": "vendor-1"
+    },
+    {
+      "id": "brand-fashion",
+      "name": "Fashion Forward",
+      "logo": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=200&q=80",
+      "coverBanner": "https://images.unsplash.com/photo-1445205170230-053b83016050?w=1600&q=80",
+      "description": "Trend-setting fashion for every style — sustainable, affordable, and always on trend.",
+      "overview": "Fashion Forward curates contemporary apparel and accessories from ethical suppliers for the modern shopper.",
+      "photos": [
+        "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80",
+        "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&q=80"
+      ],
+      "youtubeLinks": [],
+      "website": "https://fashionforward.example.com",
+      "contact": { "phone": "+1-555-0200", "email": "style@fashionforward.example.com", "address": "45 Style Blvd, Los Angeles, CA" },
+      "socialMedia": { "instagram": "https://instagram.com/fashionforward" },
+      "termsAndConditions": "Fashion Forward items may be exchanged within 14 days. Sale items are final sale unless defective.",
+      "additionalDetails": "Free styling consultations available for orders over $100.",
+      "vendorId": "vendor-2"
+    },
+    {
+      "id": "brand-homecomfort",
+      "name": "Home Comfort",
+      "logo": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&q=80",
+      "coverBanner": "https://images.unsplash.com/photo-1618221195710-dd6b41fa5966?w=1600&q=80",
+      "description": "Transform your living space with quality home and garden essentials.",
+      "overview": "Home Comfort specializes in furniture, décor, and garden products that make houses feel like home.",
+      "photos": ["https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80"],
+      "youtubeLinks": [],
+      "website": "https://homecomfort.example.com",
+      "contact": { "phone": "+1-555-0300", "email": "care@homecomfort.example.com", "address": "789 Garden Lane, Austin, TX" },
+      "socialMedia": {},
+      "termsAndConditions": "Large furniture items require scheduled delivery. 60-day satisfaction guarantee on all furniture.",
+      "additionalDetails": "White-glove delivery available in select metro areas.",
+      "vendorId": "vendor-3"
+    },
+    {
+      "id": "brand-sports",
+      "name": "Sports Gear Pro",
+      "logo": "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=200&q=80",
+      "coverBanner": "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1600&q=80",
+      "description": "Professional-grade sports equipment and apparel for athletes at every level.",
+      "overview": "Sports Gear Pro has equipped athletes and fitness enthusiasts since 2010 with top-tier gear.",
+      "photos": ["https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&q=80"],
+      "youtubeLinks": ["https://www.youtube.com/watch?v=dQw4w9WgXcQ"],
+      "website": "https://sportsgearpro.example.com",
+      "contact": { "phone": "+1-555-0400", "email": "team@sportsgearpro.example.com", "address": "200 Athletic Drive, Denver, CO" },
+      "socialMedia": { "twitter": "https://twitter.com/sportsgearpro" },
+      "termsAndConditions": "Equipment warranty varies by manufacturer. Custom team orders require 50% deposit.",
+      "additionalDetails": "Team bulk discounts available.",
+      "vendorId": "vendor-4"
+    },
+    {
+      "id": "brand-readmore",
+      "name": "Read More",
+      "logo": "https://images.unsplash.com/photo-1512820790801-4153c739de98?w=200&q=80",
+      "coverBanner": "https://images.unsplash.com/photo-1512820790801-4153c739de98?w=1600&q=80",
+      "description": "Books, textbooks, and reading materials for all ages and interests.",
+      "overview": "Read More is your local bookstore brand bringing literature and learning to MartPlace.",
+      "photos": ["https://images.unsplash.com/photo-1512820790801-4153c739de98?w=600&q=80"],
+      "youtubeLinks": [],
+      "website": "https://readmore.example.com",
+      "contact": { "phone": "+1-555-0500", "email": "books@readmore.example.com", "address": "12 Library Street, Boston, MA" },
+      "socialMedia": {},
+      "termsAndConditions": "Digital downloads are non-refundable. Physical books returnable within 7 days.",
+      "additionalDetails": "Special orders welcome.",
+      "vendorId": "vendor-5"
+    },
+    {
+      "id": "brand-fixit",
+      "name": "FixIt Pro",
+      "logo": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=200&q=80",
+      "coverBanner": "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=1600&q=80",
+      "description": "Expert plumbing and home repair services you can trust.",
+      "overview": "FixIt Pro connects licensed professionals with homeowners for reliable repair services.",
+      "photos": ["https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=600&q=80"],
+      "youtubeLinks": [],
+      "website": "https://fixitpro.example.com",
+      "contact": { "phone": "+1-555-0600", "email": "service@fixitpro.example.com", "address": "55 Repair Road, Chicago, IL" },
+      "socialMedia": { "facebook": "https://facebook.com/fixitpro" },
+      "termsAndConditions": "Service quotes valid for 30 days. Emergency call-out fees apply after hours.",
+      "additionalDetails": "Licensed and insured in all service areas.",
+      "vendorId": "vendor-6"
+    },
+    {
+      "id": "brand-sparkle",
+      "name": "Sparkle Home",
+      "logo": "https://images.unsplash.com/photo-1563453392219-159a756e0b3f?w=200&q=80",
+      "coverBanner": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1600&q=80",
+      "description": "Professional cleaning services for homes and businesses.",
+      "overview": "Sparkle Home delivers spotless results with eco-friendly products and trained professionals.",
+      "photos": ["https://images.unsplash.com/photo-1563453392219-159a756e0b3f?w=600&q=80"],
+      "youtubeLinks": [],
+      "website": "https://sparklehome.example.com",
+      "contact": { "phone": "+1-555-0700", "email": "book@sparklehome.example.com", "address": "88 Clean Street, Seattle, WA" },
+      "socialMedia": { "instagram": "https://instagram.com/sparklehome" },
+      "termsAndConditions": "Cancellations require 24-hour notice. Recurring service discounts available.",
+      "additionalDetails": "Same-day booking in select areas.",
+      "vendorId": "vendor-7"
+    },
+    {
+      "id": "brand-powerpro",
+      "name": "PowerPro",
+      "logo": "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=200&q=80",
+      "coverBanner": "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1600&q=80",
+      "description": "Licensed electrical services and power solutions for residential and commercial clients.",
+      "overview": "PowerPro electricians bring safety-certified expertise to every job, big or small.",
+      "photos": ["https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80"],
+      "youtubeLinks": [],
+      "website": "https://powerpro.example.com",
+      "contact": { "phone": "+1-555-0800", "email": "power@powerpro.example.com", "address": "300 Volt Avenue, Miami, FL" },
+      "socialMedia": {},
+      "termsAndConditions": "All electrical work complies with local codes. Warranty on labor: 1 year.",
+      "additionalDetails": "24/7 emergency service available.",
+      "vendorId": "vendor-8"
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+.brands-section {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding: var(--spacing-3xl) var(--spacing-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.brands-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(37, 99, 235, 0.06), transparent);
+  pointer-events: none;
+}
+
+.brands-section__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+}
+
+.brands-section__badge {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-primary);
+  background: rgba(37, 99, 235, 0.1);
+  padding: 0.375rem 0.875rem;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--spacing-md);
+}
+
+.brands-section__title {
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  font-weight: 800;
+  margin: 0 0 var(--spacing-sm);
+  letter-spacing: -0.03em;
+}
+
+.brands-section__subtitle {
+  font-size: 1rem;
+  color: var(--color-textMuted);
+  margin: 0 0 var(--spacing-2xl);
+  line-height: 1.6;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.brand-carousel {
+  overflow: hidden;
+  width: 100%;
+}
+
+.brand-carousel__track-wrap {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.brand-carousel__track {
+  display: flex;
+  gap: var(--spacing-xl);
+  width: max-content;
+  will-change: transform;
+  padding: var(--spacing-sm) 0;
+  animation: brandScroll var(--scroll-duration, 40s) linear infinite;
+}
+
+.brand-carousel__track--paused {
+  animation-play-state: paused;
+}
+
+@keyframes brandScroll {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+.brand-carousel__scroll {
+  display: flex;
+  gap: var(--spacing-lg);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--spacing-sm) var(--spacing-md);
+  scroll-behavior: smooth;
+}
+
+.brand-carousel__scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.brand-carousel__scroll .brand-carousel__card {
+  scroll-snap-align: center;
+}
+
+.brand-carousel__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  background: var(--color-surface);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  flex-shrink: 0;
+  min-width: 160px;
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
+  transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 350ms ease, border-color 350ms ease;
+  font-family: var(--font-primary);
+}
+
+.brand-carousel__card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(37, 99, 235, 0.12);
+  border-color: rgba(37, 99, 235, 0.2);
+}
+
+.brand-carousel__logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm);
+  background: var(--color-background);
+  border-radius: var(--radius-lg);
+}
+
+.brand-carousel__logo {
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  transition: transform 350ms ease;
+}
+
+.brand-carousel__card:hover .brand-carousel__logo {
+  transform: scale(1.05);
+}
+
+.brand-carousel__name {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.brand-carousel__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+@media (max-width: 576px) {
+  .brands-section {
+    padding: var(--spacing-2xl) var(--spacing-sm);
+  }
+
+  .brand-carousel__card {
+    min-width: 140px;
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+}

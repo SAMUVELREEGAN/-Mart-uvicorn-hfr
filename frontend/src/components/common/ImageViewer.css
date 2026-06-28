@@ -1,0 +1,19 @@
+.image-viewer {
+  cursor: zoom-in;
+  transition: opacity var(--transition-fast);
+}
+
+.image-viewer:hover { opacity: 0.9; }
+
+.image-viewer__modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-viewer__full {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+}
