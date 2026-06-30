@@ -5,18 +5,50 @@ import { Icon } from '../../utils/iconResolver';
 import { useAuth } from '../../contexts/AuthContext';
 import Button from '../../components/common/Button';
 import Card from '../../components/common/Card';
+import Modal from '../../components/modal/Modal';
 import './BusinessTypeSelect.css';
 
 export default function BusinessTypeSelect() {
   const [selected, setSelected] = useState(null);
-  const { setBusinessType } = useAuth();
+  const [accountModalOpen, setAccountModalOpen] = useState(false);
+  const { setBusinessType, isAuthenticated, isVendor, user, logout, enableVendorFromUser } = useAuth();
   const navigate = useNavigate();
   const config = sidebarConfig.businessTypes;
+  const onboarding = sidebarConfig.onboarding;
+  const dialog = onboarding.accountDialog;
+  const routes = onboarding.routes;
+
+  const goToDashboard = () => {
+    navigate(routes.dashboard);
+  };
 
   const handleContinue = () => {
     if (!selected) return;
     setBusinessType(selected);
-    navigate('/vendor/register');
+
+    if (isVendor) {
+      goToDashboard();
+      return;
+    }
+
+    if (isAuthenticated && user) {
+      setAccountModalOpen(true);
+      return;
+    }
+
+    navigate(routes.auth);
+  };
+
+  const handleAccountContinue = () => {
+    enableVendorFromUser(user);
+    setAccountModalOpen(false);
+    goToDashboard();
+  };
+
+  const handleLoginAnother = () => {
+    logout();
+    setAccountModalOpen(false);
+    navigate(routes.auth);
   };
 
   return (
@@ -65,6 +97,41 @@ export default function BusinessTypeSelect() {
           onClick={handleContinue}
         />
       </div>
+
+      <Modal
+        isOpen={accountModalOpen}
+        onClose={() => setAccountModalOpen(false)}
+        title={dialog.title}
+        size="sm"
+      >
+        {user && (
+          <div className="business-type__account">
+            <div className="business-type__account-user">
+              <Icon name="FaUserCircle" className="business-type__account-avatar" />
+              <div>
+                <strong>{user.name || user.email}</strong>
+                <span>{user.email}</span>
+              </div>
+            </div>
+            <div className="business-type__account-actions">
+              <Button
+                label={dialog.continueButton.label}
+                icon={dialog.continueButton.icon}
+                variant="primary"
+                fullWidth
+                onClick={handleAccountContinue}
+              />
+              <Button
+                label={dialog.switchAccountButton.label}
+                icon={dialog.switchAccountButton.icon}
+                variant="outline"
+                fullWidth
+                onClick={handleLoginAnother}
+              />
+            </div>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 }

@@ -1,0 +1,85 @@
+{
+  "user": {
+    "title": "My Dashboard",
+    "subtitle": "Manage your account, orders, and activity",
+    "routes": {
+      "home": "/dashboard"
+    },
+    "sections": [
+      { "id": "profile", "title": "User Profile", "description": "View and edit your personal information", "icon": "FaUserCircle", "path": "/profile", "color": "#2563eb" },
+      { "id": "recent-orders", "title": "Recent Orders", "description": "See your latest product orders", "icon": "FaShoppingBag", "path": "/orders", "color": "#7c3aed" },
+      { "id": "order-history", "title": "Order History", "description": "Browse your complete order history", "icon": "FaHistory", "path": "/orders", "color": "#4f46e5" },
+      { "id": "cart", "title": "Shopping Cart", "description": "Items ready for checkout", "icon": "FaShoppingCart", "path": "/search?type=products", "color": "#f59e0b" },
+      { "id": "bookings", "title": "Service Bookings", "description": "Manage your scheduled services", "icon": "FaCalendarCheck", "path": "/bookings", "color": "#10b981" },
+      { "id": "wishlist", "title": "Wishlist", "description": "Products and services you saved", "icon": "FaHeart", "path": "/wishlist", "color": "#ec4899" },
+      { "id": "saved-products", "title": "Saved Products", "description": "Quick access to saved items", "icon": "FaBox", "path": "/wishlist", "color": "#2563eb" },
+      { "id": "saved-services", "title": "Saved Services", "description": "Services you bookmarked", "icon": "FaConciergeBell", "path": "/wishlist", "color": "#7c3aed" },
+      { "id": "payments", "title": "Payment History", "description": "View past transactions and receipts", "icon": "FaCreditCard", "path": "/dashboard/payments", "color": "#0891b2" },
+      { "id": "activity", "title": "Recent Activity", "description": "Your latest actions on MartPlace", "icon": "FaBell", "path": "/dashboard/activity", "color": "#64748b" },
+      { "id": "notifications", "title": "Notifications", "description": "Alerts, offers, and updates", "icon": "FaBell", "path": "/dashboard/notifications", "color": "#d97706" },
+      { "id": "settings", "title": "Account Settings", "description": "Preferences and security", "icon": "FaCog", "path": "/profile", "color": "#475569" },
+      { "id": "addresses", "title": "Address Management", "description": "Delivery and billing addresses", "icon": "FaMapMarkerAlt", "path": "/dashboard/addresses", "color": "#059669" },
+      { "id": "support", "title": "Support", "description": "Get help from our support team", "icon": "FaHeadset", "path": "/contact", "color": "#2563eb" },
+      { "id": "logout", "title": "Logout", "description": "Sign out of your account", "icon": "FaSignOutAlt", "path": null, "action": "logout", "color": "#dc2626" }
+    ]
+  },
+  "vendor": {
+    "welcome": "Welcome",
+    "subtitle": "Manage your business and account from one place",
+    "brand": { "label": "Vendor Panel", "icon": "FaStore" },
+    "sidebarNav": [
+      { "label": "Dashboard", "path": "/vendor/dashboard", "icon": "FaTachometerAlt", "showFor": ["product", "service", "both"] },
+      { "label": "Products", "path": "/vendor/products", "icon": "FaBox", "showFor": ["product", "both"] },
+      { "label": "Services", "path": "/vendor/services", "icon": "FaConciergeBell", "showFor": ["service", "both"] },
+      { "label": "Brands", "path": "/vendor/brands", "icon": "FaCertificate", "showFor": ["product", "service", "both"] },
+      { "label": "Reviews", "path": "/vendor/reviews", "icon": "FaStar", "showFor": ["product", "service", "both"] },
+      { "label": "Profile", "path": "/vendor/profile", "icon": "FaUser", "showFor": ["product", "service", "both"] }
+    ],
+    "profileSection": {
+      "title": "Profile",
+      "items": [
+        { "id": "vendor-profile", "title": "Vendor Profile", "description": "Business profile and contact details", "icon": "FaStore", "path": "/vendor/profile", "color": "#2563eb" },
+        { "id": "business-type", "title": "Business Type", "description": "Your selected selling model", "icon": "FaTags", "path": "/vendor/profile", "color": "#7c3aed", "infoKey": "businessType" },
+        { "id": "account-details", "title": "Account Details", "description": "Login and account information", "icon": "FaUserCircle", "path": "/vendor/profile", "color": "#10b981" }
+      ]
+    },
+    "userFeaturesSection": {
+      "title": "Account & Shopping",
+      "items": [
+        { "id": "user-dashboard", "title": "User Dashboard", "description": "Access your buyer account features", "icon": "FaThLarge", "path": "/dashboard", "color": "#2563eb" },
+        { "id": "orders", "title": "Orders", "description": "Your product orders", "icon": "FaShoppingBag", "path": "/orders", "color": "#7c3aed" },
+        { "id": "wishlist", "title": "Wishlist", "description": "Saved products and services", "icon": "FaHeart", "path": "/wishlist", "color": "#ec4899" },
+        { "id": "cart", "title": "Cart", "description": "Shopping cart items", "icon": "FaShoppingCart", "path": "/search?type=products", "color": "#f59e0b" },
+        { "id": "bookings", "title": "Service Bookings", "description": "Your service appointments", "icon": "FaCalendarCheck", "path": "/bookings", "color": "#10b981" },
+        { "id": "payments", "title": "Payment History", "description": "Transaction history", "icon": "FaCreditCard", "path": "/dashboard/payments", "color": "#0891b2" },
+        { "id": "notifications", "title": "Notifications", "description": "Alerts and updates", "icon": "FaBell", "path": "/dashboard/notifications", "color": "#d97706" },
+        { "id": "settings", "title": "Account Settings", "description": "Preferences and security", "icon": "FaCog", "path": "/profile", "color": "#475569" }
+      ]
+    },
+    "vendorFeaturesSection": {
+      "title": "Business Management",
+      "items": [
+        { "id": "overview", "title": "Dashboard Overview", "description": "Business snapshot and stats", "icon": "FaTachometerAlt", "path": "/vendor/dashboard", "color": "#2563eb", "showFor": ["product", "service", "both"] },
+        { "id": "add-product", "title": "Add New Product", "description": "List a new product for sale", "icon": "FaPlusCircle", "path": "/vendor/products", "color": "#2563eb", "showFor": ["product", "both"] },
+        { "id": "product-list", "title": "Product List", "description": "Manage your product catalog", "icon": "FaBox", "path": "/vendor/products", "color": "#4f46e5", "showFor": ["product", "both"] },
+        { "id": "add-service", "title": "Add New Service", "description": "Offer a new service", "icon": "FaPlusCircle", "path": "/vendor/services", "color": "#7c3aed", "showFor": ["service", "both"] },
+        { "id": "service-list", "title": "Service List", "description": "Manage your service offerings", "icon": "FaConciergeBell", "path": "/vendor/services", "color": "#6d28d9", "showFor": ["service", "both"] },
+        { "id": "brands", "title": "Brand Management", "description": "Create and manage your brands", "icon": "FaCertificate", "path": "/vendor/brands", "color": "#0891b2", "showFor": ["product", "service", "both"] },
+        { "id": "product-reviews", "title": "Product Reviews", "description": "Customer feedback on products", "icon": "FaStar", "path": "/vendor/reviews", "color": "#f59e0b", "showFor": ["product", "both"] },
+        { "id": "service-reviews", "title": "Service Reviews", "description": "Customer feedback on services", "icon": "FaStarHalfAlt", "path": "/vendor/reviews", "color": "#d97706", "showFor": ["service", "both"] },
+        { "id": "enquiries", "title": "Customer Enquiries", "description": "Messages from customers", "icon": "FaEnvelope", "path": "/vendor/dashboard", "color": "#10b981", "showFor": ["product", "service", "both"] },
+        { "id": "analytics", "title": "Analytics", "description": "Performance insights and trends", "icon": "FaChartLine", "path": "/vendor/dashboard", "color": "#2563eb", "showFor": ["product", "service", "both"] },
+        { "id": "vendor-settings", "title": "Vendor Settings", "description": "Business preferences", "icon": "FaCog", "path": "/vendor/profile", "color": "#64748b", "showFor": ["product", "service", "both"] }
+      ]
+    },
+    "overviewSection": {
+      "productSection": { "title": "Your Products", "icon": "FaBox" },
+      "serviceSection": { "title": "Your Services", "icon": "FaConciergeBell" }
+    },
+    "businessTypeLabels": {
+      "product": "Product Business",
+      "service": "Service Business",
+      "both": "Product & Service Business"
+    }
+  }
+}

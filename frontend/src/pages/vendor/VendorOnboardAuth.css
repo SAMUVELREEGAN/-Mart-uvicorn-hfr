@@ -1,0 +1,21 @@
+.vendor-onboard-auth__card {
+  max-width: 520px;
+}
+
+.vendor-onboard-auth__card .tabs {
+  margin-top: var(--spacing-lg);
+}
+
+.vendor-onboard-auth__card .tabs__list {
+  margin-bottom: var(--spacing-lg);
+}
+
+@media (max-width: 576px) {
+  .vendor-onboard-auth {
+    padding: var(--spacing-lg) var(--mobile-pageGutter, 1rem);
+  }
+
+  .vendor-onboard-auth__card {
+    padding: var(--spacing-xl);
+  }
+}

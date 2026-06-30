@@ -2,7 +2,7 @@
   "auth": {
     "login": { "title": "Welcome Back", "subtitle": "Sign in to your account", "footerText": "Don't have an account?", "footerLink": { "label": "Sign Up", "path": "/signup" } },
     "signup": { "title": "Create Account", "subtitle": "Join our marketplace today", "footerText": "Already have an account?", "footerLink": { "label": "Login", "path": "/login" } },
-    "vendorLogin": { "title": "Vendor Login", "subtitle": "Access your business dashboard", "footerText": "New vendor?", "footerLink": { "label": "Register your business", "path": "/start-business" } }
+    "vendorLogin": { "title": "Vendor Login", "subtitle": "Access your business dashboard", "footerText": "New vendor?", "footerLink": { "label": "Start your business", "path": "/start-business" } }
   },
   "userLogin": [
     { "key": "email", "label": "Email Address", "type": "email", "placeholder": "Enter your email", "required": true, "icon": "FaEnvelope" },

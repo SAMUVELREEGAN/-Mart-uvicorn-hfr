@@ -1,0 +1,21 @@
+.user-dashboard {
+  padding: var(--spacing-lg) 0 var(--spacing-2xl);
+}
+
+.user-dashboard__header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.user-dashboard__title {
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  font-weight: 800;
+  margin: 0 0 var(--spacing-xs);
+  letter-spacing: -0.03em;
+}
+
+.user-dashboard__subtitle {
+  font-size: 0.9375rem;
+  color: var(--color-textMuted);
+  margin: 0;
+  line-height: 1.55;
+}

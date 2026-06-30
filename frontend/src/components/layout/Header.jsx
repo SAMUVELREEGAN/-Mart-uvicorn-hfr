@@ -4,7 +4,6 @@ import headerConfig from '../../json/header.json';
 import { Icon } from '../../utils/iconResolver';
 import Search from '../common/Search';
 import Button from '../common/Button';
-import VendorUserPanel from './VendorUserPanel';
 import ProfileMenu from './ProfileMenu';
 import { useAuth } from '../../contexts/AuthContext';
 import { useLocation } from '../../contexts/LocationContext';
@@ -14,14 +13,8 @@ export default function Header() {
   const navigate = useNavigate();
   const { isAuthenticated, isVendor } = useAuth();
   const { locations, selectedLocation, selectLocation } = useLocation();
-  const [vendorPanelOpen, setVendorPanelOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const config = headerConfig;
-
-  useEffect(() => {
-    document.body.style.overflow = vendorPanelOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [vendorPanelOpen]);
 
   useEffect(() => {
     if (!config.layout?.scrollShadow) return undefined;
@@ -88,7 +81,7 @@ export default function Header() {
               <button
                 type="button"
                 className="header__vendor-btn"
-                onClick={() => setVendorPanelOpen(true)}
+                onClick={() => navigate(config.actions.vendor.path)}
               >
                 <Icon name={config.actions.vendor.icon} />
                 <span className="header__vendor-label">{config.actions.vendor.label}</span>
@@ -109,8 +102,6 @@ export default function Header() {
           </div>
         </div>
       </header>
-
-      <VendorUserPanel isOpen={vendorPanelOpen} onClose={() => setVendorPanelOpen(false)} />
     </>
   );
 }

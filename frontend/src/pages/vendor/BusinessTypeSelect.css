@@ -82,6 +82,39 @@
   justify-content: center;
 }
 
+.business-type__account-user {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  background: var(--color-background);
+  border-radius: var(--radius-lg);
+}
+
+.business-type__account-user strong {
+  display: block;
+  font-size: 0.9375rem;
+}
+
+.business-type__account-user span {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--color-textMuted);
+}
+
+.business-type__account-avatar {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.business-type__account-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
 @media (max-width: 576px) {
   .business-type__options { grid-template-columns: 1fr; }
 }

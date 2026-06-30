@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import formsConfig from '../../json/forms.json';
+import dashboardsConfig from '../../json/dashboards.json';
 import FormBuilder from '../../components/forms/FormBuilder';
 import { useAuth } from '../../contexts/AuthContext';
 import { saveCredentials } from '../../utils/credentials';
@@ -9,11 +10,12 @@ export default function Login() {
   const { loginUser } = useAuth();
   const navigate = useNavigate();
   const authConfig = formsConfig.auth.login;
+  const dashboardHome = dashboardsConfig.user.routes.home;
 
   const handleSubmit = (values) => {
     loginUser(values.email, values.password);
     saveCredentials(values.email, values.password);
-    navigate('/');
+    navigate(dashboardHome);
   };
 
   return (

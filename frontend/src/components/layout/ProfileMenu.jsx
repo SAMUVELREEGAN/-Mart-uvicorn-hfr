@@ -37,12 +37,7 @@ export default function ProfileMenu() {
     navigate(item.path);
   };
 
-  const menuItems = isVendor
-    ? [
-        { label: headerConfig.actions.dashboard.label, path: headerConfig.actions.dashboard.path, icon: headerConfig.actions.dashboard.icon },
-        { label: headerConfig.actions.logout.label, action: 'logout', icon: headerConfig.actions.logout.icon, dividerBefore: true },
-      ]
-    : config.items;
+  const menuItems = isVendor ? config.vendorItems : config.items;
 
   return (
     <div className="profile-menu" ref={ref}>

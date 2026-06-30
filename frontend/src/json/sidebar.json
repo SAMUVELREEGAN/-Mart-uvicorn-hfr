@@ -15,9 +15,31 @@
     "options": [
       { "id": "product", "title": "Product Business", "description": "Sell physical or digital products to customers", "icon": "FaBox", "color": "#2563eb" },
       { "id": "service", "title": "Service Business", "description": "Offer professional services and get booked", "icon": "FaConciergeBell", "color": "#7c3aed" },
-      { "id": "both", "title": "Both", "description": "Sell products and offer services on one account", "icon": "FaStore", "color": "#10b981" }
+      { "id": "both", "title": "Both (Product & Service)", "description": "Sell products and offer services on one account", "icon": "FaStore", "color": "#10b981" }
     ],
     "continueButton": { "label": "Continue", "icon": "FaArrowRight" }
+  },
+  "onboarding": {
+    "accountDialog": {
+      "title": "Continue with your current account?",
+      "continueButton": { "label": "Continue", "icon": "FaArrowRight" },
+      "switchAccountButton": { "label": "Login with Another Account", "icon": "FaSignInAlt" }
+    },
+    "auth": {
+      "title": "Sign in to Continue",
+      "subtitle": "Log in or create an account to open your vendor dashboard",
+      "tabs": [
+        { "key": "login", "label": "Login" },
+        { "key": "signup", "label": "Sign Up" }
+      ],
+      "redirectAfterAuth": "/vendor/dashboard"
+    },
+    "routes": {
+      "landing": "/start-business",
+      "businessType": "/vendor/get-started",
+      "auth": "/vendor/auth",
+      "dashboard": "/vendor/dashboard"
+    }
   },
   "vendorNav": [
     { "label": "Dashboard", "path": "/vendor/dashboard", "icon": "FaTachometerAlt", "showFor": ["product", "service", "both"] },

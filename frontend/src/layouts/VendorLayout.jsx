@@ -1,13 +1,14 @@
 import { Outlet, NavLink } from 'react-router-dom';
-import sidebarConfig from '../json/sidebar.json';
+import dashboardsConfig from '../json/dashboards.json';
 import { Icon } from '../utils/iconResolver';
 import { useAuth } from '../contexts/AuthContext';
 import './VendorLayout.css';
 
 export default function VendorLayout() {
   const { businessType } = useAuth();
+  const config = dashboardsConfig.vendor;
 
-  const filteredNav = sidebarConfig.vendorNav.filter(
+  const filteredNav = config.sidebarNav.filter(
     (item) => !item.showFor || item.showFor.includes(businessType)
   );
 
@@ -15,8 +16,8 @@ export default function VendorLayout() {
     <div className="vendor-layout">
       <aside className="vendor-layout__sidebar">
         <div className="vendor-layout__brand">
-          <Icon name="FaStore" />
-          <span>Vendor Panel</span>
+          <Icon name={config.brand.icon} />
+          <span>{config.brand.label}</span>
         </div>
         <nav className="vendor-layout__nav">
           {filteredNav.map((item) => (

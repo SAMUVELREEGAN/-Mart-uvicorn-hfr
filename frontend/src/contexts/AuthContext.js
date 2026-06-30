@@ -54,6 +54,23 @@ export function AuthProvider({ children }) {
     return newVendor;
   }, [setVendor, pendingBusinessType]);
 
+  const enableVendorFromUser = useCallback((userData) => {
+    const source = userData || user;
+    if (!source) return null;
+    const newVendor = {
+      id: vendor?.id || `vendor-${source.id}`,
+      userId: source.id,
+      email: source.email,
+      ownerName: source.name,
+      phone: source.phone,
+      businessName: source.name || source.email?.split('@')[0] || 'My Business',
+      role: 'vendor',
+      businessType: pendingBusinessType || vendor?.businessType || 'both',
+    };
+    setVendor(newVendor);
+    return newVendor;
+  }, [user, vendor, pendingBusinessType, setVendor]);
+
   const logout = useCallback(() => {
     setUser(null);
     setVendor(null);
@@ -67,7 +84,7 @@ export function AuthProvider({ children }) {
     <AuthContext.Provider value={{
       user, vendor, currentUser, isAuthenticated, isVendor,
       businessType, setBusinessType, pendingBusinessType,
-      loginUser, signupUser, loginVendor, registerVendor, logout,
+      loginUser, signupUser, loginVendor, registerVendor, enableVendorFromUser, logout,
     }}>
       {children}
     </AuthContext.Provider>

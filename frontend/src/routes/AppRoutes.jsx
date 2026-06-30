@@ -12,13 +12,15 @@ import ServiceDetails from '../pages/user/ServiceDetails';
 import Search from '../pages/user/Search';
 import Category from '../pages/user/Category';
 import Profile from '../pages/user/Profile';
+import UserDashboard from '../pages/user/UserDashboard';
+import DashboardPlaceholder from '../pages/user/DashboardPlaceholder';
 import Wishlist from '../pages/user/Wishlist';
 import Orders from '../pages/user/Orders';
 
 import VendorLanding from '../pages/vendor/VendorLanding';
 import BusinessTypeSelect from '../pages/vendor/BusinessTypeSelect';
+import VendorOnboardAuth from '../pages/vendor/VendorOnboardAuth';
 import VendorLogin from '../pages/vendor/VendorLogin';
-import VendorRegister from '../pages/vendor/VendorRegister';
 import Dashboard from '../pages/vendor/Dashboard';
 import VendorProducts from '../pages/vendor/Products';
 import VendorServices from '../pages/vendor/Services';
@@ -43,13 +45,18 @@ export default function AppRoutes() {
         <Route path="brand/:id" element={<Brand />} />
         <Route path="categories" element={<Search />} />
         <Route path="profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+        <Route path="dashboard" element={<ProtectedRoute><UserDashboard /></ProtectedRoute>} />
+        <Route path="dashboard/payments" element={<ProtectedRoute><DashboardPlaceholder sectionId="payments" /></ProtectedRoute>} />
+        <Route path="dashboard/activity" element={<ProtectedRoute><DashboardPlaceholder sectionId="activity" /></ProtectedRoute>} />
+        <Route path="dashboard/notifications" element={<ProtectedRoute><DashboardPlaceholder sectionId="notifications" /></ProtectedRoute>} />
+        <Route path="dashboard/addresses" element={<ProtectedRoute><DashboardPlaceholder sectionId="addresses" /></ProtectedRoute>} />
         <Route path="wishlist" element={<ProtectedRoute><Wishlist /></ProtectedRoute>} />
         <Route path="orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
         <Route path="bookings" element={<ProtectedRoute><div className="page-placeholder"><h1>Bookings</h1><p>Your service bookings will appear here.</p></div></ProtectedRoute>} />
         <Route path="start-business" element={<VendorLanding />} />
         <Route path="vendor/get-started" element={<BusinessTypeSelect />} />
+        <Route path="vendor/auth" element={<VendorOnboardAuth />} />
         <Route path="vendor/login" element={<VendorLogin />} />
-        <Route path="vendor/register" element={<VendorRegister />} />
         <Route path="contact" element={<div className="page-placeholder"><h1>Contact Us</h1><p>Get in touch with our support team.</p></div>} />
         <Route path="privacy" element={<div className="page-placeholder"><h1>Privacy Policy</h1><p>Your privacy matters to us.</p></div>} />
         <Route path="terms" element={<div className="page-placeholder"><h1>Terms of Service</h1><p>Please read our terms carefully.</p></div>} />
