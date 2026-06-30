@@ -3,12 +3,18 @@ import { Icon } from '../../utils/iconResolver';
 import categoriesData from '../../json/categories.json';
 import './CategoryItem.css';
 
-export default function CategoryItem({ category, onClick, to, type = 'product' }) {
-  const color = category.color || categoriesData.moreColor;
+export default function CategoryItem({ category, onClick, to, type = 'product', active = false }) {
+  const iconsConfig = categoriesData.categoryIcons || {};
+  const themeColor = iconsConfig.themeColor || '#2563eb';
   const isMore = category.id === 'more';
   const iconType = isMore ? 'more' : type;
-  const styleConfig = categoriesData.categoryIcons?.[iconType] || categoriesData.categoryIcons?.product || {};
+  const styleConfig = iconsConfig[iconType] || iconsConfig.product || {};
   const shape = styleConfig.shape || (type === 'service' ? 'circle' : 'box');
+  const color = isMore ? categoriesData.moreColor : themeColor;
+
+  const borderColor = iconsConfig.borderColor || '#94a3b8';
+  const borderWidth = iconsConfig.borderWidth || '1.5px';
+  const containerBackground = iconsConfig.containerBackground || '#ffffff';
 
   const content = (
     <>
@@ -16,6 +22,8 @@ export default function CategoryItem({ category, onClick, to, type = 'product' }
         className={`category-item__icon-wrap category-item__icon-wrap--${shape}`}
         style={{
           '--cat-color': color,
+          '--cat-border-color': isMore ? undefined : borderColor,
+          '--cat-border-width': isMore ? undefined : borderWidth,
           '--cat-radius': styleConfig.borderRadius || (shape === 'circle' ? '50%' : '14px'),
           '--cat-size': styleConfig.containerSize || '72px',
           '--cat-size-mobile': styleConfig.mobileContainerSize || styleConfig.containerSize || '68px',
@@ -26,7 +34,7 @@ export default function CategoryItem({ category, onClick, to, type = 'product' }
           '--cat-min-width-mobile': styleConfig.mobileMinWidth || '88px',
           '--cat-name-max': styleConfig.nameMaxWidth || '88px',
           '--cat-name-max-mobile': styleConfig.mobileNameMaxWidth || '92px',
-          background: `linear-gradient(145deg, ${color}18, ${color}06)`,
+          background: isMore ? undefined : containerBackground,
           color,
         }}
       >
@@ -40,6 +48,7 @@ export default function CategoryItem({ category, onClick, to, type = 'product' }
     'category-item',
     `category-item--${shape}`,
     isMore ? 'category-item--more' : '',
+    active ? 'category-item--active' : '',
   ].filter(Boolean).join(' ');
 
   if (onClick) {

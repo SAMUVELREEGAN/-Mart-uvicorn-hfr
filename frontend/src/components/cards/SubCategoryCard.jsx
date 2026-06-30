@@ -3,9 +3,11 @@ import categoriesData from '../../json/categories.json';
 import './SubCategoryCard.css';
 
 export default function SubCategoryCard({ subcategory, active, onClick, categoryType = 'product' }) {
-  const color = subcategory.color || '#2563eb';
-  const styleConfig = categoriesData.categoryIcons?.[categoryType] || categoriesData.categoryIcons?.product || {};
+  const iconsConfig = categoriesData.categoryIcons || {};
+  const themeColor = iconsConfig.themeColor || '#2563eb';
+  const styleConfig = iconsConfig[categoryType] || iconsConfig.product || {};
   const shape = styleConfig.shape || (categoryType === 'service' ? 'circle' : 'box');
+  const color = themeColor;
 
   return (
     <button

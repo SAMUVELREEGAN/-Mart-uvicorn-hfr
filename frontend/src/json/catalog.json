@@ -1,0 +1,105 @@
+{
+  "pageSize": 12,
+  "products": {
+    "title": "Products",
+    "searchPlaceholder": "Search products...",
+    "searchIcon": "FaSearch",
+    "searchButtonIcon": "FaSearch",
+    "categoriesTitle": "Product Categories",
+    "subcategoriesTitle": "Subcategories",
+    "resultsTitle": "Products",
+    "allLabel": "All",
+    "allIcon": "FaThLarge",
+    "filterButton": {
+      "label": "Filter",
+      "icon": "FaSlidersH"
+    },
+    "sortButton": {
+      "label": "Sort",
+      "icon": "FaSortAmountDown"
+    },
+    "filterPanel": {
+      "title": "Filter Products",
+      "applyLabel": "Apply Filters",
+      "clearLabel": "Clear All",
+      "ratingLabel": "Minimum Rating",
+      "priceLabel": "Price Range",
+      "ratingOptions": [
+        { "value": "", "label": "Any Rating" },
+        { "value": "3", "label": "3+ Stars" },
+        { "value": "4", "label": "4+ Stars" },
+        { "value": "4.5", "label": "4.5+ Stars" }
+      ],
+      "priceOptions": [
+        { "value": "", "label": "Any Price" },
+        { "value": "under50", "label": "Under $50" },
+        { "value": "50to100", "label": "$50 – $100" },
+        { "value": "over100", "label": "Over $100" }
+      ]
+    },
+    "sortOptions": [
+      { "value": "relevance", "label": "Relevance" },
+      { "value": "name-asc", "label": "Name (A–Z)" },
+      { "value": "name-desc", "label": "Name (Z–A)" },
+      { "value": "price-asc", "label": "Price (Low to High)" },
+      { "value": "price-desc", "label": "Price (High to Low)" },
+      { "value": "rating-desc", "label": "Top Rated" },
+      { "value": "newest", "label": "Newest" }
+    ],
+    "sortPanel": {
+      "title": "Sort Products"
+    }
+  },
+  "services": {
+    "title": "Services",
+    "searchPlaceholder": "Search services...",
+    "searchIcon": "FaSearch",
+    "searchButtonIcon": "FaSearch",
+    "categoriesTitle": "Service Categories",
+    "subcategoriesTitle": "Subcategories",
+    "resultsTitle": "Services",
+    "allLabel": "All",
+    "allIcon": "FaThLarge",
+    "filterButton": {
+      "label": "Filter",
+      "icon": "FaSlidersH"
+    },
+    "sortButton": {
+      "label": "Sort",
+      "icon": "FaSortAmountDown"
+    },
+    "filterPanel": {
+      "title": "Filter Services",
+      "applyLabel": "Apply Filters",
+      "clearLabel": "Clear All",
+      "ratingLabel": "Minimum Rating",
+      "ratingOptions": [
+        { "value": "", "label": "Any Rating" },
+        { "value": "3", "label": "3+ Stars" },
+        { "value": "4", "label": "4+ Stars" },
+        { "value": "4.5", "label": "4.5+ Stars" }
+      ]
+    },
+    "sortOptions": [
+      { "value": "relevance", "label": "Relevance" },
+      { "value": "name-asc", "label": "Name (A–Z)" },
+      { "value": "name-desc", "label": "Name (Z–A)" },
+      { "value": "rating-desc", "label": "Top Rated" },
+      { "value": "newest", "label": "Newest" }
+    ],
+    "sortPanel": {
+      "title": "Sort Services"
+    }
+  },
+  "categoriesPage": {
+    "title": "Categories",
+    "productTab": { "key": "product", "label": "Products", "icon": "FaBox" },
+    "serviceTab": { "key": "service", "label": "Services", "icon": "FaConciergeBell" },
+    "mainPanelTitle": "Main Categories",
+    "subPanelTitle": "Subcategories",
+    "emptySubcategories": "No subcategories available for this category.",
+    "viewAllLabel": "View All",
+    "viewAllIcon": "FaArrowRight",
+    "browseLabel": "Browse"
+  }
+}

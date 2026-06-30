@@ -12,7 +12,11 @@
     "label": "Deliver to",
     "icon": "FaLocationDot",
     "placeholder": "Select location",
-    "iconSize": "1.125rem"
+    "iconSize": "1.125rem",
+    "modal": {
+      "title": "Deliver to",
+      "size": "xl"
+    }
   },
   "actions": {
     "vendor": {
@@ -66,6 +70,15 @@
       { "label": "Vendor Dashboard", "path": "/vendor/dashboard", "icon": "FaTachometerAlt" },
       { "label": "My Dashboard", "path": "/dashboard", "icon": "FaThLarge" },
       { "label": "Logout", "action": "logout", "icon": "FaSignOutAlt", "dividerBefore": true }
+    ]
+  },
+  "bottomNavigation": {
+    "items": [
+      { "label": "Home", "path": "/", "icon": "FaHome", "match": "exact" },
+      { "label": "Products", "path": "/products", "icon": "FaBox" },
+      { "label": "Services", "path": "/services", "icon": "FaConciergeBell" },
+      { "label": "Categories", "path": "/categories", "icon": "FaThLarge" },
+      { "label": "Profile", "path": "/profile", "icon": "FaUser", "authRequired": true, "guestPath": "/login" }
     ]
   }
 }

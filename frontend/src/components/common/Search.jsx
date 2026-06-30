@@ -1,9 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Icon } from '../../utils/iconResolver';
 import './Search.css';
 
-export default function Search({ placeholder, icon = 'FaSearch', buttonIcon, onSearch, defaultValue = '' }) {
-  const [query, setQuery] = useState(defaultValue);
+export default function Search({
+  placeholder,
+  icon = 'FaSearch',
+  buttonIcon,
+  onSearch,
+  onChange,
+  defaultValue = '',
+  value,
+}) {
+  const [internalQuery, setInternalQuery] = useState(defaultValue);
+  const isControlled = value !== undefined;
+  const query = isControlled ? value : internalQuery;
+
+  useEffect(() => {
+    if (!isControlled) setInternalQuery(defaultValue);
+  }, [defaultValue, isControlled]);
+
+  const updateQuery = (next) => {
+    if (!isControlled) setInternalQuery(next);
+    onChange?.(next);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,7 +37,7 @@ export default function Search({ placeholder, icon = 'FaSearch', buttonIcon, onS
         className="search__input"
         placeholder={placeholder}
         value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => updateQuery(e.target.value)}
       />
       <button type="submit" className="search__btn" aria-label="Search">
         <Icon name={buttonIcon || icon} />

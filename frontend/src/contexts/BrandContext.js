@@ -23,7 +23,11 @@ export function BrandProvider({ children }) {
 
   const getBrand = useCallback((id) => brands.find((b) => b.id === id), [brands]);
 
-  const getCarouselBrands = useCallback(() => brands.map(({ id, name, logo }) => ({ id, name, logo })), [brands]);
+  const getCarouselBrands = useCallback(() => brands.map((b) => ({
+    id: b.id,
+    name: b.name,
+    logo: b.logoPng || `https://placehold.co/120x120/ffffff/2563eb/png?text=${encodeURIComponent((b.name || 'B').split(' ')[0])}`,
+  })), [brands]);
 
   const getVendorBrands = useCallback(() => {
     if (!vendor) return [];

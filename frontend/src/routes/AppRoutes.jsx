@@ -9,6 +9,9 @@ import Login from '../pages/user/Login';
 import Signup from '../pages/user/Signup';
 import ProductDetails from '../pages/user/ProductDetails';
 import ServiceDetails from '../pages/user/ServiceDetails';
+import Products from '../pages/user/Products';
+import Services from '../pages/user/Services';
+import Categories from '../pages/user/Categories';
 import Search from '../pages/user/Search';
 import Category from '../pages/user/Category';
 import Profile from '../pages/user/Profile';
@@ -39,11 +42,13 @@ export default function AppRoutes() {
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
         <Route path="products/:id" element={<ProductDetails />} />
+        <Route path="products" element={<Products />} />
         <Route path="services/:id" element={<ServiceDetails />} />
+        <Route path="services" element={<Services />} />
         <Route path="search" element={<Search />} />
         <Route path="category/:id" element={<Category />} />
         <Route path="brand/:id" element={<Brand />} />
-        <Route path="categories" element={<Search />} />
+        <Route path="categories" element={<Categories />} />
         <Route path="profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
         <Route path="dashboard" element={<ProtectedRoute><UserDashboard /></ProtectedRoute>} />
         <Route path="dashboard/payments" element={<ProtectedRoute><DashboardPlaceholder sectionId="payments" /></ProtectedRoute>} />

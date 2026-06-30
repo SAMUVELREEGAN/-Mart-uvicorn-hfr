@@ -12,3 +12,9 @@
   padding: var(--spacing-lg) var(--spacing-md);
   overflow-x: clip;
 }
+
+@media (max-width: 991px) {
+  .main-layout__content {
+    padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+  }
+}

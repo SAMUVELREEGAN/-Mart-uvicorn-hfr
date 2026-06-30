@@ -1,4 +1,9 @@
 {
+  "carousel": {
+    "logoSize": 96,
+    "showName": false,
+    "pngOnly": true
+  },
   "page": {
     "sections": {
       "gallery": { "title": "Brand Gallery", "subtitle": "Photos and videos from our brand" },

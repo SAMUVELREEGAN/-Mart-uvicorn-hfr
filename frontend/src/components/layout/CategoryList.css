@@ -23,7 +23,7 @@
 .category-sidebar__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-md);
+  gap: var(--category-grid-gap, var(--spacing-md));
 }
 
 @media (max-width: 480px) {
@@ -33,7 +33,7 @@
 @media (max-width: 768px) {
   .card-carousel__grid--categories {
     justify-content: center;
-    gap: var(--spacing-md) var(--spacing-lg);
+    gap: var(--category-grid-gap-mobile, var(--category-grid-gap, var(--spacing-md)));
     padding: var(--spacing-xs) 0;
   }
 }

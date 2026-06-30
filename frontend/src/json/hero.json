@@ -8,28 +8,25 @@
   "backgroundImage": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1600&q=80",
   "sections": {
     "exploreCategories": { "title": "Explore Categories", "subtitle": "Browse top categories tailored for you" },
-    "popularCategories": { "title": "Popular Categories", "subtitle": "Most shopped categories this week" },
     "productCategories": { "title": "Product Categories", "subtitle": "Shop by category" },
-    "trendingProducts": { "title": "Trending Products", "subtitle": "Hot picks everyone is buying" },
-    "featuredProducts": { "title": "Featured Products", "subtitle": "Hand-picked deals near you" },
-    "serviceCategories": { "title": "Service Categories", "subtitle": "Find trusted professionals" },
-    "featuredServices": { "title": "Featured Services", "subtitle": "Top-rated professionals near you" },
-    "popularServices": { "title": "Popular Services", "subtitle": "Top-rated services in your area" },
+    "recentProducts": { "title": "Recent Products", "subtitle": "Fresh picks updated for you" },
+    "latestProducts": { "title": "Latest Products", "subtitle": "Newest arrivals in your area" },
+    "hero": { "title": "Discover Products & Services Near You", "subtitle": "Shop from trusted vendors or book professional services in your area" },
     "brands": { "title": "Trusted Brands", "subtitle": "Shop from leading brands on MartPlace" },
+    "realEstateConsultants": { "title": "Real Estate Consultants", "subtitle": "Connect with trusted property experts near you" },
+    "serviceCategories": { "title": "Service Categories", "subtitle": "Find trusted professionals" },
+    "nearServices": { "title": "Near Services", "subtitle": "Services available in your selected location" },
+    "recentServices": { "title": "Recent Services", "subtitle": "Recently listed services near you" },
+    "popularServices": { "title": "Popular Services", "subtitle": "Top-rated services in your area" },
     "whyChooseUs": { "title": "Why Choose Us", "subtitle": "The marketplace built for you" },
-    "customerReviews": { "title": "Customer Reviews", "subtitle": "What our community says" },
-    "businessSolutions": { "title": "Business Solutions", "subtitle": "Tools to grow your business" },
-    "topVendors": { "title": "Top Vendors", "subtitle": "Highly rated sellers and providers" },
-    "recentProducts": { "title": "Recently Added Products", "subtitle": "Fresh listings just for you" },
+    "recentlyAddedProducts": { "title": "Recently Added Products", "subtitle": "Fresh listings just for you" },
     "recommendedServices": { "title": "Recommended Services", "subtitle": "Services picked based on your area" },
-    "marketplaceStats": { "title": "Marketplace at a Glance", "subtitle": "Trusted by millions nationwide" },
-    "appDeals": { "title": "Get Exclusive App-Only Deals", "subtitle": "Download the MartPlace app for special offers, faster checkout, and personalized recommendations." },
-    "faq": { "title": "Frequently Asked Questions", "subtitle": "Quick answers to common questions" },
-    "newsletter": { "title": "Stay in the Loop", "subtitle": "Get deals, updates, and marketplace news in your inbox" }
+    "appDeals": { "title": "Get Exclusive App-Only Deals", "subtitle": "Download the MartPlace app for special offers" },
+    "faq": { "title": "Frequently Asked Questions", "subtitle": "Quick answers to common questions" }
   },
   "homeLayout": {
     "sectionSpacing": "2xl",
-    "fullWidthSections": ["exploreCategories", "hero", "whyChooseUs", "appDeals"],
+    "fullWidthSections": ["hero", "appDeals"],
     "bands": {
       "default": { "background": "transparent", "padding": "lg" },
       "tinted": { "background": "#f1f5f9", "padding": "2xl" },
@@ -38,19 +35,39 @@
     "sectionOrder": [
       "exploreCategories",
       "productCategories",
-      "trendingProducts",
-      "featuredProducts",
+      "recentProducts",
+      "latestProducts",
       "hero",
       "brands",
+      "realEstateConsultants",
       "serviceCategories",
+      "nearServices",
+      "recentServices",
       "popularServices",
       "whyChooseUs",
-      "recentProducts",
+      "recentlyAddedProducts",
       "recommendedServices",
       "appDeals",
-      "faq",
-      "newsletter"
-    ]
+      "faq"
+    ],
+    "sectionConfig": {
+      "exploreCategories": { "band": "default", "fullWidth": false },
+      "productCategories": { "band": "subtle", "viewAll": "/search?type=products" },
+      "recentProducts": { "band": "default", "viewAll": "/search?type=products" },
+      "latestProducts": { "band": "tinted", "viewAll": "/search?type=products" },
+      "hero": { "band": "default", "fullWidth": true },
+      "brands": { "band": "default", "fullWidth": false },
+      "realEstateConsultants": { "band": "subtle", "viewAll": "/search?type=services" },
+      "serviceCategories": { "band": "subtle", "viewAll": "/search?type=services" },
+      "nearServices": { "band": "default", "viewAll": "/search?type=services" },
+      "recentServices": { "band": "tinted", "viewAll": "/search?type=services" },
+      "popularServices": { "band": "default", "viewAll": "/search?type=services" },
+      "whyChooseUs": { "band": "tinted", "fullWidth": false },
+      "recentlyAddedProducts": { "band": "default", "viewAll": "/search?type=products" },
+      "recommendedServices": { "band": "subtle", "viewAll": "/search?type=services" },
+      "appDeals": { "band": "default", "fullWidth": true },
+      "faq": { "band": "tinted", "fullWidth": false }
+    }
   },
   "homeContent": {
     "brands": {
@@ -73,18 +90,20 @@
     "appDeals": {
       "badge": "App Exclusive",
       "heading": "Get Exclusive App-Only Deals",
-      "description": "Download the MartPlace app for special offers, faster checkout, and personalized recommendations.",
-      "features": ["Exclusive discounts", "Faster checkout", "Order tracking"],
+      "description": "Download the MartPlace app for special offers, faster checkout, and personalized recommendations tailored to your area.",
+      "features": ["Exclusive discounts up to 40%", "One-tap faster checkout", "Real-time order tracking"],
       "button": { "label": "Download App", "icon": "FaDownload", "path": "#" },
+      "secondaryButton": { "label": "Learn More", "icon": "FaInfoCircle", "path": "#" },
+      "ctaNote": "Free on iOS & Android",
       "qrImage": "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://martplace.app",
       "qrLabel": "Scan to download",
       "illustration": "https://images.unsplash.com/photo-1512941937669-90a1ba58a7e9?w=400&q=80",
-      "background": "linear-gradient(135deg, #0f172a 0%, #1e3a8a 45%, #312e81 100%)",
+      "background": "linear-gradient(135deg, #0f172a 0%, #1e3a8a 42%, #312e81 100%)",
       "accentColor": "#60a5fa",
       "layout": {
-        "phoneWidth": "240px",
-        "qrSize": "136px",
-        "contentMaxWidth": "520px"
+        "phoneWidth": "220px",
+        "qrSize": "128px",
+        "contentMaxWidth": "540px"
       }
     },
     "whyChooseUs": {
@@ -93,6 +112,16 @@
         { "id": "wcu-2", "title": "Local First", "description": "Find products and services right in your neighborhood.", "icon": "FaMapMarkerAlt", "color": "#10b981" },
         { "id": "wcu-3", "title": "Best Prices", "description": "Compare deals and save with competitive marketplace pricing.", "icon": "FaTags", "color": "#f59e0b" },
         { "id": "wcu-4", "title": "Easy Returns", "description": "Hassle-free returns and dedicated customer support.", "icon": "FaUndo", "color": "#7c3aed" }
+      ]
+    },
+    "realEstateConsultants": {
+      "contactButton": { "label": "Contact", "icon": "FaPhone" },
+      "experienceSuffix": "experience",
+      "items": [
+        { "id": "re-1", "name": "Sarah Mitchell", "company": "Skyline Realty", "experience": "12 years", "rating": 4.9, "reviewCount": 86, "city": "New York, NY", "locationId": "nyc", "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80", "phone": "+1-555-0301" },
+        { "id": "re-2", "name": "James Carter", "company": "Urban Nest Properties", "experience": "9 years", "rating": 4.7, "reviewCount": 62, "city": "Los Angeles, CA", "locationId": "la", "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80", "phone": "+1-555-0302" },
+        { "id": "re-3", "name": "Priya Sharma", "company": "Harbor Homes", "experience": "15 years", "rating": 4.8, "reviewCount": 104, "city": "Chicago, IL", "locationId": "chicago", "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80", "phone": "+1-555-0303" },
+        { "id": "re-4", "name": "Michael Brooks", "company": "Lone Star Estates", "experience": "11 years", "rating": 4.6, "reviewCount": 48, "city": "Houston, TX", "locationId": "houston", "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80", "phone": "+1-555-0304" }
       ]
     },
     "customerReviews": {

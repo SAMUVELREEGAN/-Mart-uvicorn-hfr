@@ -1,24 +1,31 @@
 .brands-section {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  padding: var(--spacing-3xl) var(--spacing-md);
+  padding: clamp(1.75rem, 4vw, 2.75rem) 0;
   position: relative;
+}
+
+.brands-section__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 3vw, 2.5rem) var(--desktop-pageGutter, 1.5rem);
+  position: relative;
+  text-align: center;
+  border-radius: var(--radius-xl);
   overflow: hidden;
 }
 
-.brands-section::before {
-  content: '';
+.brands-section__glow {
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(37, 99, 235, 0.06), transparent);
   pointer-events: none;
 }
 
-.brands-section__inner {
-  max-width: 1280px;
-  margin: 0 auto;
+.brands-section__badge,
+.brands-section__title,
+.brands-section__subtitle,
+.brands-section .brand-carousel {
   position: relative;
-  text-align: center;
+  z-index: 1;
 }
 
 .brands-section__badge {
@@ -113,6 +120,27 @@
   box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
   transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 350ms ease, border-color 350ms ease;
   font-family: var(--font-primary);
+}
+
+.brand-carousel__card--logo-only {
+  padding: var(--spacing-md) var(--spacing-lg);
+  min-width: auto;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.brand-carousel__card--logo-only:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: none;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.brand-carousel__card--logo-only .brand-carousel__logo-wrap {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-sm);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
 }
 
 .brand-carousel__card:hover {

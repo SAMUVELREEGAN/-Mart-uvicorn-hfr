@@ -138,10 +138,16 @@
 }
 
 .category-page__grid--services {
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-lg);
+  grid-auto-rows: 1fr;
 }
 
 @media (max-width: 576px) {
-  .category-page__grid--products { grid-template-columns: 1fr; }
+  .category-page__grid--products,
+  .category-page__grid--services {
+    grid-template-columns: 1fr;
+  }
+
   .category-page__banner { min-height: 240px; }
 }

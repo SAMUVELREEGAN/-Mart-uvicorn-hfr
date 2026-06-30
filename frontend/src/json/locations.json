@@ -1,19 +1,42 @@
 {
+  "map": {
+    "defaultZoom": 12,
+    "bboxPadding": 0.08,
+    "embedBase": "https://www.openstreetmap.org/export/embed.html",
+    "tileAttribution": "© OpenStreetMap contributors",
+    "currentLocationButton": { "label": "Use My Location", "icon": "FaCrosshairs" },
+    "searchPlaceholder": "Search for a city...",
+    "searchIcon": "FaSearch",
+    "manualSelectLabel": "Or select a city below",
+    "confirmButton": { "label": "Confirm Location", "icon": "FaCheck" }
+  },
+  "variants": {
+    "home": {
+      "showPickerLabel": false,
+      "showSearch": false
+    },
+    "modal": {
+      "showPickerLabel": true,
+      "pickerLabel": "Select on the map or choose from the list",
+      "showSearch": true,
+      "searchPlaceholder": "Search for a city..."
+    }
+  },
   "locations": [
-    { "id": "nyc", "name": "New York, NY", "icon": "FaMapMarkerAlt" },
-    { "id": "la", "name": "Los Angeles, CA", "icon": "FaMapMarkerAlt" },
-    { "id": "chicago", "name": "Chicago, IL", "icon": "FaMapMarkerAlt" },
-    { "id": "houston", "name": "Houston, TX", "icon": "FaMapMarkerAlt" },
-    { "id": "phoenix", "name": "Phoenix, AZ", "icon": "FaMapMarkerAlt" },
-    { "id": "philadelphia", "name": "Philadelphia, PA", "icon": "FaMapMarkerAlt" },
-    { "id": "san-antonio", "name": "San Antonio, TX", "icon": "FaMapMarkerAlt" },
-    { "id": "san-diego", "name": "San Diego, CA", "icon": "FaMapMarkerAlt" },
-    { "id": "dallas", "name": "Dallas, TX", "icon": "FaMapMarkerAlt" },
-    { "id": "austin", "name": "Austin, TX", "icon": "FaMapMarkerAlt" }
+    { "id": "nyc", "name": "New York, NY", "icon": "FaMapMarkerAlt", "lat": 40.7128, "lng": -74.006 },
+    { "id": "la", "name": "Los Angeles, CA", "icon": "FaMapMarkerAlt", "lat": 34.0522, "lng": -118.2437 },
+    { "id": "chicago", "name": "Chicago, IL", "icon": "FaMapMarkerAlt", "lat": 41.8781, "lng": -87.6298 },
+    { "id": "houston", "name": "Houston, TX", "icon": "FaMapMarkerAlt", "lat": 29.7604, "lng": -95.3698 },
+    { "id": "phoenix", "name": "Phoenix, AZ", "icon": "FaMapMarkerAlt", "lat": 33.4484, "lng": -112.074 },
+    { "id": "philadelphia", "name": "Philadelphia, PA", "icon": "FaMapMarkerAlt", "lat": 39.9526, "lng": -75.1652 },
+    { "id": "san-antonio", "name": "San Antonio, TX", "icon": "FaMapMarkerAlt", "lat": 29.4241, "lng": -98.4936 },
+    { "id": "san-diego", "name": "San Diego, CA", "icon": "FaMapMarkerAlt", "lat": 32.7157, "lng": -117.1611 },
+    { "id": "dallas", "name": "Dallas, TX", "icon": "FaMapMarkerAlt", "lat": 32.7767, "lng": -96.797 },
+    { "id": "austin", "name": "Austin, TX", "icon": "FaMapMarkerAlt", "lat": 30.2672, "lng": -97.7431 }
   ],
   "selectLocation": {
     "title": "Select Your Location",
-    "subtitle": "Choose your city to see relevant products and services",
+    "subtitle": "Choose your city on the map to see relevant products and services",
     "icon": "FaMapMarkerAlt"
   }
 }

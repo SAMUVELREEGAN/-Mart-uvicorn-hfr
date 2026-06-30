@@ -1,0 +1,197 @@
+.location-map {
+  width: 100%;
+}
+
+.location-map__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.location-map__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0 0 var(--spacing-xs);
+}
+
+.location-map__subtitle {
+  font-size: 0.875rem;
+  color: var(--color-textMuted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.location-map__body {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--spacing-lg);
+  align-items: stretch;
+}
+
+.location-map__frame-wrap {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  min-height: 280px;
+  background: var(--color-background);
+}
+
+.location-map__frame {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  border: 0;
+  display: block;
+}
+
+.location-map__picker-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-textMuted);
+  margin: 0 0 var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.location-map__chips {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.location-map__chip {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 200ms ease, background 200ms ease, box-shadow 200ms ease;
+}
+
+.location-map__chip:hover {
+  border-color: var(--color-primary);
+  background: rgba(37, 99, 235, 0.04);
+}
+
+.location-map__chip--active {
+  border-color: var(--color-primary);
+  background: rgba(37, 99, 235, 0.08);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  color: var(--color-primary);
+}
+
+.location-map__search {
+  position: relative;
+  margin-bottom: var(--spacing-md);
+}
+
+.location-map__search-icon {
+  position: absolute;
+  left: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-textMuted);
+  font-size: 0.875rem;
+  pointer-events: none;
+}
+
+.location-map__search-input {
+  width: 100%;
+  padding: 0.75rem 0.875rem 0.75rem 2.5rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.location-map__search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.location-map__pins {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.location-map__pin {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  color: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 200ms ease, background 200ms ease, color 200ms ease;
+}
+
+.location-map__pin:hover {
+  transform: translate(-50%, -100%) scale(1.1);
+}
+
+.location-map__pin--active {
+  background: var(--color-primary);
+  color: #fff;
+  transform: translate(-50%, -100%) scale(1.15);
+}
+
+.location-map__footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.location-map--modal .location-map__frame-wrap {
+  min-height: 320px;
+}
+
+.location-map--modal .location-map__frame {
+  min-height: 320px;
+}
+
+@media (max-width: 768px) {
+  .location-map__body {
+    grid-template-columns: 1fr;
+  }
+
+  .location-map__chips {
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-height: none;
+  }
+
+  .location-map__chip {
+    flex: 1 1 calc(50% - var(--spacing-sm));
+    min-width: 140px;
+  }
+}

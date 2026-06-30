@@ -72,6 +72,8 @@
   cursor: pointer;
   position: relative;
   min-width: 140px;
+  font-family: var(--font-primary);
+  text-align: left;
 }
 
 .header__location:hover {
@@ -120,13 +122,9 @@
   line-height: 1.3;
 }
 
-.header__location-select {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  cursor: pointer;
-  width: 100%;
-  height: 100%;
+.header__location:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 /* Search */
@@ -144,33 +142,149 @@
 }
 
 .header__vendor-btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: var(--radius-full);
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(79, 70, 229, 0.1));
-  color: var(--color-primary);
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: 0.375rem 0.75rem;
+  min-height: 2.125rem;
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  background: #1e40af;
+  color: #fff;
   font-family: var(--font-primary);
   font-size: 0.8125rem;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
-  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: 0 2px 10px rgba(30, 58, 138, 0.28);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), background var(--transition-normal);
+}
+
+.header__vendor-btn::before {
+  content: '';
+  position: absolute;
+  inset: -140%;
+  background: linear-gradient(
+    125deg,
+    transparent 6%,
+    rgba(255, 255, 255, 0.03) 18%,
+    rgba(255, 255, 255, 0.22) 34%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0.22) 66%,
+    rgba(255, 255, 255, 0.03) 82%,
+    transparent 94%
+  );
+  transform: translateX(-180%) translateY(-180%);
+  animation: vendorBtnShine 9s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.header__vendor-btn > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes vendorBtnShine {
+  0% {
+    transform: translateX(-180%) translateY(-180%);
+  }
+  100% {
+    transform: translateX(180%) translateY(180%);
+  }
 }
 
 .header__vendor-btn:hover {
+  background: #1e3a8a;
   transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.18);
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.14), rgba(79, 70, 229, 0.14));
+  box-shadow: 0 4px 14px rgba(30, 58, 138, 0.32);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header__vendor-btn::before {
+    animation: none;
+  }
 }
 
 .header__vendor-label--short {
   display: none;
 }
 
-@media (max-width: 991px) {
+/* Mobile header — logo left, Start Your Business right only */
+@media (max-width: 768px) {
+  .header__inner {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.625rem var(--mobile-pageGutter, 1.25rem);
+    gap: var(--spacing-sm);
+  }
+
+  .header__location,
+  .header__search {
+    display: none;
+  }
+
+  .header__logo {
+    order: unset;
+    flex-shrink: 1;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .header__logo-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1rem;
+  }
+
+  .header__logo-mark {
+    width: 1.875rem;
+    height: 1.875rem;
+    font-size: 0.9375rem;
+    flex-shrink: 0;
+  }
+
+  .header__actions {
+    order: unset;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .header__actions .btn,
+  .header__actions .profile-menu {
+    display: none;
+  }
+
+  .header__vendor-label {
+    display: inline;
+  }
+
+  .header__vendor-label--short {
+    display: none;
+  }
+
+  .header__vendor-btn {
+    flex-shrink: 0;
+    padding: 0.375rem 0.625rem;
+    min-height: 2.125rem;
+    font-size: 0.75rem;
+    width: max-content;
+    max-width: none;
+    overflow: visible;
+  }
+
+  .header__vendor-btn svg {
+    display: none;
+  }
+}
+
+@media (max-width: 991px) and (min-width: 769px) {
   .header__inner {
     flex-wrap: wrap;
     padding: 0.5rem var(--spacing-md);
@@ -221,10 +335,28 @@
 
 @media (max-width: 480px) {
   .header__logo-text {
-    font-size: 1rem;
+    font-size: 0.9375rem;
   }
 
   .header__inner {
-    padding: 0.5rem var(--spacing-sm);
+    padding: 0.625rem var(--mobile-pageGutter, 1rem);
+    gap: 0.375rem;
+  }
+
+  .header__vendor-btn {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.6875rem;
+    letter-spacing: -0.01em;
+  }
+}
+
+@media (max-width: 360px) {
+  .header__logo-text {
+    display: none;
+  }
+
+  .header__vendor-btn {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.625rem;
   }
 }

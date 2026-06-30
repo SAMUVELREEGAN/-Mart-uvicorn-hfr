@@ -17,30 +17,59 @@ import './Category.css';
 export default function Category() {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
-  const type = searchParams.get('type') || 'product';
+  const typeParam = searchParams.get('type') || 'product';
+  const [activeChildCategory, setActiveChildCategory] = useState(null);
   const [activeSubcategory, setActiveSubcategory] = useState(null);
   const loading = useSimulatedLoading();
-  const { getCategoryById, getSubcategories, categoryPage } = useCategories();
+  const {
+    getCategoryById,
+    getSubcategories,
+    resolveCategoryView,
+    getCategoriesByIds,
+    categoryPage,
+  } = useCategories();
   const { products } = useProducts();
   const { services } = useServices();
-  const category = getCategoryById(id);
 
-  const isService = type === 'service';
+  const category = getCategoryById(id);
+  const view = resolveCategoryView(id, typeParam);
+  const isService = view.itemType === 'service';
+
+  const childCategories = getCategoriesByIds(view.categoryIds, view.itemType);
+  const showChildCategories = view.isAggregate && childCategories.length > 0;
+
+  const effectiveCategoryId = activeChildCategory
+    || (view.categoryIds.length === 1 ? view.categoryIds[0] : null);
+
+  const subcategories = effectiveCategoryId ? getSubcategories(effectiveCategoryId) : [];
+
   const categoryName = category?.name || category?.title || id;
   const description = category?.description
     || (isService ? categoryPage.defaultServiceDescription : categoryPage.defaultProductDescription);
   const bannerImage = category?.bannerImage || category?.image || categoryPage.defaultBanner;
-  const subcategories = getSubcategories(id);
 
   const allItems = useMemo(() => {
-    if (isService) return services.filter((s) => s.category === id);
-    return products.filter((p) => p.category === id);
-  }, [isService, id, products, services]);
+    const pool = isService ? services : products;
+    const filterIds = activeChildCategory
+      ? [activeChildCategory]
+      : view.categoryIds;
+    return pool.filter((item) => filterIds.includes(item.category));
+  }, [isService, activeChildCategory, view.categoryIds, products, services]);
 
   const items = useMemo(() => {
     if (!activeSubcategory) return allItems;
     return allItems.filter((item) => item.subcategory === activeSubcategory);
   }, [allItems, activeSubcategory]);
+
+  const handleChildCategory = (childId) => {
+    setActiveChildCategory(childId);
+    setActiveSubcategory(null);
+  };
+
+  const handleShowAllChildren = () => {
+    setActiveChildCategory(null);
+    setActiveSubcategory(null);
+  };
 
   if (loading) {
     return (
@@ -74,13 +103,36 @@ export default function Category() {
         </div>
       </section>
 
+      {showChildCategories && (
+        <section className="category-page__subcategories">
+          <h2 className="category-page__section-title">{categoryPage.childCategoriesTitle}</h2>
+          <CardCarousel configKey="subcategories" variant="subcategories" className="category-page__sub-list">
+            <SubCategoryCard
+              subcategory={{ id: 'all', name: categoryPage.allLabel, icon: categoryPage.allIcon, color: category?.color || '#2563eb' }}
+              categoryType={view.itemType}
+              active={!activeChildCategory}
+              onClick={handleShowAllChildren}
+            />
+            {childCategories.map((child) => (
+              <SubCategoryCard
+                key={child.id}
+                subcategory={child}
+                categoryType={view.itemType}
+                active={activeChildCategory === child.id}
+                onClick={() => handleChildCategory(child.id)}
+              />
+            ))}
+          </CardCarousel>
+        </section>
+      )}
+
       {subcategories.length > 0 && (
         <section className="category-page__subcategories">
           <h2 className="category-page__section-title">{categoryPage.subcategoriesTitle}</h2>
           <CardCarousel configKey="subcategories" variant="subcategories" className="category-page__sub-list">
             <SubCategoryCard
-              subcategory={{ id: 'all', name: 'All', icon: 'FaThLarge', color: category?.color || '#2563eb' }}
-              categoryType={type}
+              subcategory={{ id: 'all', name: categoryPage.allLabel, icon: categoryPage.allIcon, color: category?.color || '#2563eb' }}
+              categoryType={view.itemType}
               active={!activeSubcategory}
               onClick={() => setActiveSubcategory(null)}
             />
@@ -88,7 +140,7 @@ export default function Category() {
               <SubCategoryCard
                 key={sub.id}
                 subcategory={sub}
-                categoryType={type}
+                categoryType={view.itemType}
                 active={activeSubcategory === sub.id}
                 onClick={() => setActiveSubcategory(sub.id)}
               />

@@ -1,12 +1,53 @@
 {
   "categoryPage": {
     "relatedTitle": "Related Categories",
+    "childCategoriesTitle": "Browse Categories",
     "subcategoriesTitle": "Sub Categories",
     "productsTitle": "Products in this Category",
     "servicesTitle": "Services in this Category",
+    "allLabel": "All",
+    "allIcon": "FaThLarge",
     "defaultProductDescription": "Browse the best products in this category from trusted local vendors.",
     "defaultServiceDescription": "Find professional services in this category from verified providers near you.",
     "defaultBanner": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80"
+  },
+  "highlightCategoryMap": {
+    "b2b": {
+      "itemType": "product",
+      "useAllProductCategories": true
+    },
+    "repair-services": {
+      "itemType": "service",
+      "categoryIds": ["plumbing", "electrical", "cleaning", "carpentry", "painting", "gardening", "moving"]
+    },
+    "home-services": {
+      "itemType": "service",
+      "categoryIds": ["cleaning", "plumbing", "electrical", "carpentry", "painting", "gardening", "moving"]
+    },
+    "real-estate": {
+      "itemType": "service",
+      "categoryIds": []
+    },
+    "doctors": {
+      "itemType": "service",
+      "categoryIds": []
+    },
+    "wedding": {
+      "itemType": "service",
+      "categoryIds": []
+    },
+    "education": {
+      "itemType": "service",
+      "categoryIds": ["tutoring"]
+    },
+    "electronics": {
+      "itemType": "product",
+      "categoryIds": ["electronics"]
+    },
+    "beauty": {
+      "itemType": "product",
+      "categoryIds": []
+    }
   },
   "subcategories": {
     "electronics": [
@@ -102,44 +143,70 @@
     "expandedFlex": 2.2,
     "collapsedFlex": 0.85,
     "desktopHeight": 360,
-    "mobileHeight": 200
+    "mobileHeight": 200,
+    "mobileCardGap": "2rem",
+    "mobileCardWidth": "172px",
+    "mobileScrollGutter": "1.5rem",
+    "maxHighlights": null,
+    "visibleCount": {
+      "desktop": 4,
+      "tablet": 2
+    },
+    "navigation": {
+      "prevLabel": "Previous categories",
+      "nextLabel": "Next categories",
+      "prevIcon": "FaChevronLeft",
+      "nextIcon": "FaChevronRight",
+      "dotLabel": "Category group"
+    },
+    "productCategories": {
+      "enabled": false
+    }
   },
   "categoryIcons": {
+    "themeColor": "#2563eb",
+    "borderColor": "#94a3b8",
+    "borderWidth": "1.5px",
+    "containerBackground": "#ffffff",
+    "gridGap": "1.5rem",
+    "mobileGridGap": "1.25rem",
+    "containerSize": "80px",
+    "iconSize": "1.625rem",
     "product": {
       "shape": "box",
       "borderRadius": "14px",
-      "containerSize": "72px",
-      "iconSize": "1.5rem",
-      "minWidth": "96px",
-      "nameMaxWidth": "88px",
-      "mobileContainerSize": "68px",
-      "mobileIconScale": "1.15",
-      "mobileMinWidth": "88px",
-      "mobileNameMaxWidth": "92px"
+      "containerSize": "80px",
+      "iconSize": "1.625rem",
+      "minWidth": "100px",
+      "nameMaxWidth": "92px",
+      "mobileContainerSize": "72px",
+      "mobileIconScale": "1.12",
+      "mobileMinWidth": "92px",
+      "mobileNameMaxWidth": "96px"
     },
     "service": {
       "shape": "circle",
       "borderRadius": "50%",
-      "containerSize": "72px",
-      "iconSize": "1.4375rem",
-      "minWidth": "96px",
-      "nameMaxWidth": "88px",
-      "mobileContainerSize": "68px",
-      "mobileIconScale": "1.12",
-      "mobileMinWidth": "88px",
-      "mobileNameMaxWidth": "92px"
+      "containerSize": "80px",
+      "iconSize": "1.5rem",
+      "minWidth": "100px",
+      "nameMaxWidth": "92px",
+      "mobileContainerSize": "72px",
+      "mobileIconScale": "1.1",
+      "mobileMinWidth": "92px",
+      "mobileNameMaxWidth": "96px"
     },
     "more": {
       "shape": "box",
       "borderRadius": "14px",
-      "containerSize": "72px",
-      "iconSize": "1.4375rem",
-      "minWidth": "96px",
-      "nameMaxWidth": "88px",
-      "mobileContainerSize": "68px",
+      "containerSize": "80px",
+      "iconSize": "1.5rem",
+      "minWidth": "100px",
+      "nameMaxWidth": "92px",
+      "mobileContainerSize": "72px",
       "mobileIconScale": "1.1",
-      "mobileMinWidth": "88px",
-      "mobileNameMaxWidth": "92px"
+      "mobileMinWidth": "92px",
+      "mobileNameMaxWidth": "96px"
     }
   },
   "highlightCategories": [
@@ -152,7 +219,7 @@
       "color": "#2563eb",
       "image": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80",
       "bannerImage": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80",
-      "path": "/category/b2b"
+      "path": "/category/b2b?type=product"
     },
     {
       "id": "repair-services",
@@ -163,7 +230,7 @@
       "color": "#1d4ed8",
       "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80",
       "bannerImage": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80",
-      "path": "/category/repair-services"
+      "path": "/category/repair-services?type=service"
     },
     {
       "id": "real-estate",
@@ -174,7 +241,7 @@
       "color": "#7c3aed",
       "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80",
       "bannerImage": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80",
-      "path": "/category/real-estate"
+      "path": "/category/real-estate?type=service"
     },
     {
       "id": "doctors",
@@ -185,7 +252,7 @@
       "color": "#059669",
       "image": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80",
       "bannerImage": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1200&q=80",
-      "path": "/category/doctors"
+      "path": "/category/doctors?type=service"
     },
     {
       "id": "wedding",
@@ -196,7 +263,7 @@
       "color": "#db2777",
       "image": "https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80",
       "bannerImage": "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80",
-      "path": "/category/wedding"
+      "path": "/category/wedding?type=service"
     },
     {
       "id": "education",
@@ -207,7 +274,7 @@
       "color": "#0891b2",
       "image": "https://images.unsplash.com/photo-1503676260728-1c00da280a25?w=600&q=80",
       "bannerImage": "https://images.unsplash.com/photo-1503676260728-1c00da280a25?w=1200&q=80",
-      "path": "/category/education"
+      "path": "/category/education?type=service"
     },
     {
       "id": "electronics",
@@ -218,7 +285,7 @@
       "color": "#4f46e5",
       "image": "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=600&q=80",
       "bannerImage": "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=1200&q=80",
-      "path": "/category/electronics"
+      "path": "/category/electronics?type=product"
     },
     {
       "id": "beauty",
@@ -229,7 +296,7 @@
       "color": "#ec4899",
       "image": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80",
       "bannerImage": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&q=80",
-      "path": "/category/beauty"
+      "path": "/category/beauty?type=product"
     },
     {
       "id": "home-services",
@@ -240,7 +307,7 @@
       "color": "#d97706",
       "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80",
       "bannerImage": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80",
-      "path": "/category/home-services"
+      "path": "/category/home-services?type=service"
     }
   ],
   "productCategories": [

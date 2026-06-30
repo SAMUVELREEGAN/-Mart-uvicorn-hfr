@@ -1,22 +1,38 @@
 {
   "productCard": {
-    "layout": "horizontal",
-    "fields": ["name", "price", "rating", "vendor", "location", "description"],
+    "layout": "vertical",
+    "fields": ["name", "price", "rating"],
     "pricePrefix": "$",
-    "descriptionMaxLength": 100,
-    "mobile": {
-      "imageWidth": "112px",
-      "layout": "horizontal"
-    }
+    "imageAspectRatio": "1 / 1",
+    "compact": true
   },
   "serviceCard": {
-    "layout": "vertical",
-    "fields": ["name", "rating", "vendor", "city", "description"],
-    "descriptionMaxLength": 120
+    "layout": "horizontal",
+    "fields": ["name", "rating", "category", "city", "price", "description"],
+    "descriptionMaxLength": 90,
+    "imageWidth": "224px",
+    "imageWidthMobile": "136px",
+    "imageAspectRatio": "4 / 3",
+    "pricePrefix": "$",
+    "categoryIcon": "FaTag",
+    "locationIcon": "FaMapMarkerAlt",
+    "actions": {
+      "primary": { "label": "View Details", "icon": "FaArrowRight" },
+      "secondary": { "label": "Book Now", "icon": "FaCalendarCheck" }
+    },
+    "grid": {
+      "desktopColumns": 2,
+      "tabletColumns": 2,
+      "mobileColumns": 1
+    }
   },
   "highlightCard": {
     "layout": "overlay",
     "fields": ["title"]
+  },
+  "consultantCard": {
+    "layout": "profile",
+    "fields": ["image", "name", "company", "experience", "rating", "city", "contact"]
   },
   "categoryItem": {
     "layout": "icon-label",
@@ -32,12 +48,7 @@
       "autoScroll": false
     },
     "services": {
-      "carousel": true,
-      "responsiveOnly": true,
-      "breakpoint": 992,
-      "snap": true,
-      "hideScrollbar": true,
-      "autoScroll": false
+      "carousel": false
     },
     "brands": {
       "carousel": true,
@@ -56,6 +67,13 @@
       "snap": true,
       "hideScrollbar": true,
       "mobileReducedSize": true
+    },
+    "consultants": {
+      "carousel": true,
+      "responsiveOnly": true,
+      "breakpoint": 992,
+      "snap": true,
+      "hideScrollbar": true
     },
     "categories": {
       "carousel": false
@@ -92,5 +110,11 @@
   "errorState": {
     "default": { "icon": "FaExclamationTriangle", "title": "Something went wrong", "message": "Please try again later" },
     "notFound": { "icon": "FaSearch", "title": "Page Not Found", "message": "The page you're looking for doesn't exist" }
+  },
+  "searchPage": {
+    "relatedServicesTitle": "Related Services",
+    "closePanelAriaLabel": "Close services panel",
+    "closePanelIcon": "FaTimes",
+    "servicesPanelMaxItems": 4
   }
 }

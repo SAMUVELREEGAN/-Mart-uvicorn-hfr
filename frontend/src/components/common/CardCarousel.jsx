@@ -6,12 +6,16 @@ export default function CardCarousel({
   children,
   variant = 'products',
   className = '',
+  style,
 }) {
   const { isCarousel, config } = useCarouselMode(configKey);
 
   if (!isCarousel) {
     return (
-      <div className={`card-carousel__grid card-carousel__grid--${variant} ${className}`}>
+      <div
+        className={`card-carousel__grid card-carousel__grid--${variant} ${className}`}
+        style={style}
+      >
         {children}
       </div>
     );
@@ -20,6 +24,7 @@ export default function CardCarousel({
   return (
     <div
       className={`card-carousel card-carousel--${variant} ${config.hideScrollbar ? 'card-carousel--hide-scrollbar' : ''} ${config.snap ? 'card-carousel--snap' : ''} ${className}`}
+      style={style}
     >
       {children}
     </div>

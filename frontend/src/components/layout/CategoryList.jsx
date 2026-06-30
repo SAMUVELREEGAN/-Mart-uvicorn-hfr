@@ -5,6 +5,7 @@ import CategoryItem from '../cards/CategoryItem';
 import CardCarousel from '../common/CardCarousel';
 import Sidebar from '../common/Sidebar';
 import sidebarConfig from '../../json/sidebar.json';
+import categoriesData from '../../json/categories.json';
 import { Icon } from '../../utils/iconResolver';
 import './CategoryList.css';
 
@@ -12,6 +13,11 @@ export default function CategoryList({ categories, type = 'product' }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { moreLabel, moreIcon, moreColor, productCategories, serviceCategories } = useCategories();
   const navigate = useNavigate();
+  const iconsConfig = categoriesData.categoryIcons || {};
+  const gapStyle = {
+    '--category-grid-gap': iconsConfig.gridGap || '1.5rem',
+    '--category-grid-gap-mobile': iconsConfig.mobileGridGap || '1.25rem',
+  };
 
   const handleCategoryClick = (cat) => {
     navigate(`/category/${cat.id}?type=${type}`);
@@ -19,7 +25,7 @@ export default function CategoryList({ categories, type = 'product' }) {
 
   return (
     <>
-      <CardCarousel configKey="categories" variant="categories">
+      <CardCarousel configKey="categories" variant="categories" style={gapStyle}>
         {categories.map((cat) => (
           <CategoryItem
             key={cat.id}
@@ -45,7 +51,7 @@ export default function CategoryList({ categories, type = 'product' }) {
             <Icon name={sidebarConfig.productSection.icon} />
             {sidebarConfig.productSection.title}
           </h3>
-          <div className="category-sidebar__grid">
+          <div className="category-sidebar__grid" style={gapStyle}>
             {productCategories.map((cat) => (
               <CategoryItem
                 key={cat.id}
@@ -59,7 +65,7 @@ export default function CategoryList({ categories, type = 'product' }) {
             <Icon name={sidebarConfig.serviceSection.icon} />
             {sidebarConfig.serviceSection.title}
           </h3>
-          <div className="category-sidebar__grid">
+          <div className="category-sidebar__grid" style={gapStyle}>
             {serviceCategories.map((cat) => (
               <CategoryItem
                 key={cat.id}

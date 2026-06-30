@@ -13,8 +13,10 @@ import CategoryList from '../../components/layout/CategoryList';
 import HomeSection from '../../components/layout/HomeSection';
 import ProductCard from '../../components/cards/ProductCard';
 import ServiceCard from '../../components/cards/ServiceCard';
+import ConsultantCard from '../../components/cards/ConsultantCard';
 import { BrandsSection } from '../../components/common/BrandCarousel';
 import CardCarousel from '../../components/common/CardCarousel';
+import LocationMap from '../../components/common/LocationMap';
 import AppPromo from '../../components/common/AppPromo';
 import FAQAccordion from '../../components/common/FAQAccordion';
 import Button from '../../components/common/Button';
@@ -35,6 +37,10 @@ function WhyChooseItem({ item }) {
   );
 }
 
+function filterByLocation(items, locationId) {
+  return locationId ? items.filter((item) => item.locationId === locationId) : items;
+}
+
 export default function Home() {
   const loading = useSimulatedLoading();
   const { highlightCategories, productCategories, serviceCategories } = useCategories();
@@ -42,35 +48,211 @@ export default function Home() {
   const { services } = useServices();
   const { selectedLocation } = useLocation();
   const sections = heroConfig.sections;
+  const layout = heroConfig.homeLayout;
   const { getCarouselBrands } = useBrands();
   const carouselBrands = getCarouselBrands();
-
   const content = heroConfig.homeContent;
-
   const locationId = selectedLocation?.id;
 
-  const featuredProducts = useMemo(
-    () => (locationId ? products.filter((p) => p.locationId === locationId) : products).slice(0, 4),
+  const recentProducts = useMemo(
+    () => filterByLocation(products, locationId).slice(0, 4),
     [products, locationId]
   );
-  const trendingProducts = useMemo(
-    () => [...(locationId ? products.filter((p) => p.locationId === locationId) : products)]
+  const latestProducts = useMemo(
+    () => [...filterByLocation(products, locationId)]
       .sort((a, b) => b.reviewCount - a.reviewCount).slice(0, 4),
     [products, locationId]
   );
-  const recentProducts = useMemo(
-    () => [...(locationId ? products.filter((p) => p.locationId === locationId) : products)].reverse().slice(0, 4),
+  const recentlyAddedProducts = useMemo(
+    () => [...filterByLocation(products, locationId)].reverse().slice(0, 4),
     [products, locationId]
   );
-  const popularServices = useMemo(
-    () => (locationId ? services.filter((s) => s.locationId === locationId) : services).slice(0, 4),
+  const nearServices = useMemo(
+    () => filterByLocation(services, locationId).slice(0, 4),
     [services, locationId]
   );
-  const recommendedServices = useMemo(
-    () => [...(locationId ? services.filter((s) => s.locationId === locationId) : services)]
+  const recentServices = useMemo(
+    () => [...filterByLocation(services, locationId)].reverse().slice(0, 4),
+    [services, locationId]
+  );
+  const popularServices = useMemo(
+    () => [...filterByLocation(services, locationId)]
       .sort((a, b) => b.rating - a.rating).slice(0, 4),
     [services, locationId]
   );
+  const recommendedServices = useMemo(
+    () => [...filterByLocation(services, locationId)]
+      .sort((a, b) => b.reviewCount - a.reviewCount).slice(0, 4),
+    [services, locationId]
+  );
+  const consultants = useMemo(() => {
+    const items = content.realEstateConsultants?.items || [];
+    return locationId ? items.filter((c) => c.locationId === locationId) : items;
+  }, [content.realEstateConsultants, locationId]);
+
+  const sectionConfig = (key) => layout.sectionConfig?.[key] || {};
+
+  const renderSection = (key) => {
+    const meta = sections[key];
+    const cfg = sectionConfig(key);
+    if (!meta) return null;
+
+    switch (key) {
+      case 'exploreCategories':
+        return (
+          <HomeSection key={key} band={cfg.band} fullWidth={cfg.fullWidth}>
+            <ExploreCategories
+              categories={highlightCategories}
+              title={meta.title}
+              subtitle={meta.subtitle}
+            />
+          </HomeSection>
+        );
+      case 'productCategories':
+        return (
+          <HomeSection key={key} title={meta.title} subtitle={meta.subtitle} viewAllPath={cfg.viewAll} band={cfg.band}>
+            <CategoryList categories={productCategories} type="product" />
+          </HomeSection>
+        );
+      case 'recentProducts':
+        return (
+          <HomeSection key={key} title={meta.title} subtitle={meta.subtitle} viewAllPath={cfg.viewAll} band={cfg.band}>
+            <CardCarousel configKey="products" variant="products">
+              {recentProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </CardCarousel>
+          </HomeSection>
+        );
+      case 'latestProducts':
+        return (
+          <HomeSection key={key} title={meta.title} subtitle={meta.subtitle} viewAllPath={cfg.viewAll} band={cfg.band}>
+            <CardCarousel configKey="products" variant="products">
+              {latestProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </CardCarousel>
+          </HomeSection>
+        );
+      case 'hero':
+        return (
+          <HomeSection key={key} band={cfg.band} fullWidth={cfg.fullWidth}>
+            <section className="home__hero-block">
+              <div className="home__hero-copy">
+                <h1 className="home__hero-title">{heroConfig.title}</h1>
+                <p className="home__hero-subtitle">{heroConfig.subtitle}</p>
+                <div className="home__hero-actions">
+                  <Link to={heroConfig.cta.primary.path}>
+                    <Button label={heroConfig.cta.primary.label} icon={heroConfig.cta.primary.icon} variant="primary" size="lg" />
+                  </Link>
+                  <Link to={heroConfig.cta.secondary.path}>
+                    <Button label={heroConfig.cta.secondary.label} icon={heroConfig.cta.secondary.icon} variant="outline" size="lg" />
+                  </Link>
+                </div>
+              </div>
+              <LocationMap />
+            </section>
+          </HomeSection>
+        );
+      case 'brands':
+        return (
+          <div key={key} className="home__brands-wrap">
+            <BrandsSection
+              title={meta.title}
+              subtitle={meta.subtitle}
+              brands={carouselBrands}
+              sectionConfig={{ ...content.brands.section, showName: false }}
+            />
+          </div>
+        );
+      case 'realEstateConsultants':
+        return (
+          <HomeSection key={key} title={meta.title} subtitle={meta.subtitle} viewAllPath={cfg.viewAll} band={cfg.band}>
+            <CardCarousel configKey="consultants" variant="consultants">
+              {consultants.map((consultant) => (
+                <ConsultantCard key={consultant.id} consultant={consultant} />
+              ))}
+            </CardCarousel>
+          </HomeSection>
+        );
+      case 'serviceCategories':
+        return (
+          <HomeSection key={key} title={meta.title} subtitle={meta.subtitle} viewAllPath={cfg.viewAll} band={cfg.band}>
+            <CategoryList categories={serviceCategories} type="service" />
+          </HomeSection>
+        );
+      case 'nearServices':
+        return (
+          <HomeSection key={key} title={meta.title} subtitle={meta.subtitle} viewAllPath={cfg.viewAll} band={cfg.band}>
+            <CardCarousel configKey="services" variant="services">
+              {nearServices.map((service) => (
+                <ServiceCard key={service.id} service={service} />
+              ))}
+            </CardCarousel>
+          </HomeSection>
+        );
+      case 'recentServices':
+        return (
+          <HomeSection key={key} title={meta.title} subtitle={meta.subtitle} viewAllPath={cfg.viewAll} band={cfg.band}>
+            <CardCarousel configKey="services" variant="services">
+              {recentServices.map((service) => (
+                <ServiceCard key={service.id} service={service} />
+              ))}
+            </CardCarousel>
+          </HomeSection>
+        );
+      case 'popularServices':
+        return (
+          <HomeSection key={key} title={meta.title} subtitle={meta.subtitle} viewAllPath={cfg.viewAll} band={cfg.band}>
+            <CardCarousel configKey="services" variant="services">
+              {popularServices.map((service) => (
+                <ServiceCard key={service.id} service={service} />
+              ))}
+            </CardCarousel>
+          </HomeSection>
+        );
+      case 'whyChooseUs':
+        return (
+          <HomeSection key={key} title={meta.title} subtitle={meta.subtitle} band={cfg.band} fullWidth={cfg.fullWidth}>
+            <div className="home-why-grid">
+              {content.whyChooseUs.items.map((item) => (
+                <WhyChooseItem key={item.id} item={item} />
+              ))}
+            </div>
+          </HomeSection>
+        );
+      case 'recentlyAddedProducts':
+        return (
+          <HomeSection key={key} title={meta.title} subtitle={meta.subtitle} viewAllPath={cfg.viewAll} band={cfg.band}>
+            <CardCarousel configKey="products" variant="products">
+              {recentlyAddedProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </CardCarousel>
+          </HomeSection>
+        );
+      case 'recommendedServices':
+        return (
+          <HomeSection key={key} title={meta.title} subtitle={meta.subtitle} viewAllPath={cfg.viewAll} band={cfg.band}>
+            <CardCarousel configKey="services" variant="services">
+              {recommendedServices.map((service) => (
+                <ServiceCard key={service.id} service={service} />
+              ))}
+            </CardCarousel>
+          </HomeSection>
+        );
+      case 'appDeals':
+        return <AppPromo key={key} content={content.appDeals} />;
+      case 'faq':
+        return (
+          <HomeSection key={key} title={meta.title} subtitle={meta.subtitle} band={cfg.band} fullWidth={cfg.fullWidth}>
+            <FAQAccordion items={content.faq.items} config={content.faq} />
+          </HomeSection>
+        );
+      default:
+        return null;
+    }
+  };
 
   if (loading) {
     return (
@@ -91,151 +273,7 @@ export default function Home() {
 
   return (
     <div className="home">
-      <HomeSection band="default" fullWidth>
-        <ExploreCategories
-          categories={highlightCategories}
-          title={sections.exploreCategories.title}
-          subtitle={sections.exploreCategories.subtitle}
-        />
-      </HomeSection>
-
-      <HomeSection
-        title={sections.productCategories.title}
-        subtitle={sections.productCategories.subtitle}
-        viewAllPath="/search?type=products"
-        band="subtle"
-      >
-        <CategoryList categories={productCategories} type="product" />
-      </HomeSection>
-
-      <HomeSection
-        title={sections.trendingProducts.title}
-        subtitle={sections.trendingProducts.subtitle}
-        viewAllPath="/search?type=products"
-      >
-        <CardCarousel configKey="products" variant="products">
-          {trendingProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </CardCarousel>
-      </HomeSection>
-
-      <HomeSection
-        title={sections.featuredProducts.title}
-        subtitle={sections.featuredProducts.subtitle}
-        viewAllPath="/search?type=products"
-        band="tinted"
-      >
-        <CardCarousel configKey="products" variant="products">
-          {featuredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </CardCarousel>
-      </HomeSection>
-
-      <section className="home__hero" style={{ backgroundImage: `url(${heroConfig.backgroundImage})` }}>
-        <div className="home__hero-content">
-          <h1 className="home__hero-title">{heroConfig.title}</h1>
-          <p className="home__hero-subtitle">{heroConfig.subtitle}</p>
-          <div className="home__hero-actions">
-            <Link to={heroConfig.cta.primary.path}>
-              <Button label={heroConfig.cta.primary.label} icon={heroConfig.cta.primary.icon} variant="primary" size="lg" />
-            </Link>
-            <Link to={heroConfig.cta.secondary.path}>
-              <Button label={heroConfig.cta.secondary.label} icon={heroConfig.cta.secondary.icon} variant="outline" size="lg" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <BrandsSection
-        title={sections.brands.title}
-        subtitle={sections.brands.subtitle}
-        brands={carouselBrands}
-        sectionConfig={content.brands.section}
-      />
-
-      <HomeSection
-        title={sections.serviceCategories.title}
-        subtitle={sections.serviceCategories.subtitle}
-        viewAllPath="/search?type=services"
-        band="subtle"
-      >
-        <CategoryList categories={serviceCategories} type="service" />
-      </HomeSection>
-
-      <HomeSection
-        title={sections.popularServices.title}
-        subtitle={sections.popularServices.subtitle}
-        viewAllPath="/search?type=services"
-      >
-        <CardCarousel configKey="services" variant="services">
-          {popularServices.map((service) => (
-            <ServiceCard key={service.id} service={service} />
-          ))}
-        </CardCarousel>
-      </HomeSection>
-
-      <HomeSection title={sections.whyChooseUs.title} subtitle={sections.whyChooseUs.subtitle} band="tinted" fullWidth>
-        <div className="home-why-grid">
-          {content.whyChooseUs.items.map((item) => (
-            <WhyChooseItem key={item.id} item={item} />
-          ))}
-        </div>
-      </HomeSection>
-
-      <HomeSection
-        title={sections.recentProducts.title}
-        subtitle={sections.recentProducts.subtitle}
-        viewAllPath="/search?type=products"
-      >
-        <CardCarousel configKey="products" variant="products">
-          {recentProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </CardCarousel>
-      </HomeSection>
-
-      <HomeSection
-        title={sections.recommendedServices.title}
-        subtitle={sections.recommendedServices.subtitle}
-        viewAllPath="/search?type=services"
-        band="subtle"
-      >
-        <CardCarousel configKey="services" variant="services">
-          {recommendedServices.map((service) => (
-            <ServiceCard key={service.id} service={service} />
-          ))}
-        </CardCarousel>
-      </HomeSection>
-
-      <AppPromo content={content.appDeals} />
-
-      <HomeSection title={sections.faq.title} subtitle={sections.faq.subtitle} band="tinted">
-        <FAQAccordion items={content.faq.items} config={content.faq} />
-      </HomeSection>
-
-      <section className="home-newsletter">
-        <div className="home-newsletter__inner">
-          <h2 className="home-newsletter__title">{sections.newsletter.title}</h2>
-          <p className="home-newsletter__subtitle">{sections.newsletter.subtitle}</p>
-          <form className="home-newsletter__form" onSubmit={(e) => e.preventDefault()}>
-            <input
-              type="email"
-              className="home-newsletter__input"
-              placeholder={content.newsletter.placeholder}
-              aria-label="Email address"
-            />
-            <Button
-              label={content.newsletter.button.label}
-              icon={content.newsletter.button.icon}
-              variant="primary"
-              type="submit"
-            />
-          </form>
-          <p className="home-newsletter__privacy">{content.newsletter.privacyNote}</p>
-        </div>
-      </section>
+      {layout.sectionOrder.map((key) => renderSection(key))}
     </div>
   );
 }

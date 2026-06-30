@@ -4,6 +4,7 @@ import headerConfig from '../../json/header.json';
 import { Icon } from '../../utils/iconResolver';
 import Search from '../common/Search';
 import Button from '../common/Button';
+import LocationPickerModal from '../common/LocationPickerModal';
 import ProfileMenu from './ProfileMenu';
 import { useAuth } from '../../contexts/AuthContext';
 import { useLocation } from '../../contexts/LocationContext';
@@ -12,8 +13,9 @@ import './Header.css';
 export default function Header() {
   const navigate = useNavigate();
   const { isAuthenticated, isVendor } = useAuth();
-  const { locations, selectedLocation, selectLocation } = useLocation();
+  const { selectedLocation } = useLocation();
   const [scrolled, setScrolled] = useState(false);
+  const [locationModalOpen, setLocationModalOpen] = useState(false);
   const config = headerConfig;
 
   useEffect(() => {
@@ -26,11 +28,6 @@ export default function Header() {
 
   const handleSearch = (query) => {
     if (query.trim()) navigate(`/search?q=${encodeURIComponent(query)}`);
-  };
-
-  const handleLocationChange = (e) => {
-    const loc = locations.find((l) => l.id === e.target.value);
-    if (loc) selectLocation(loc);
   };
 
   const selectedName = selectedLocation?.name || config.location.placeholder;
@@ -46,26 +43,20 @@ export default function Header() {
             <span className="header__logo-text">{config.logo.text}</span>
           </Link>
 
-          <div className="header__location">
+          <button
+            type="button"
+            className="header__location"
+            onClick={() => setLocationModalOpen(true)}
+            aria-label={`${config.location.label}: ${selectedName}`}
+          >
             <div className="header__location-icon" aria-hidden="true">
               <Icon name={config.location.icon} />
             </div>
             <div className="header__location-body">
               <span className="header__location-label">{config.location.label}</span>
-              <select
-                className="header__location-select"
-                value={selectedLocation?.id || ''}
-                onChange={handleLocationChange}
-                aria-label={config.location.placeholder}
-              >
-                <option value="">{config.location.placeholder}</option>
-                {locations.map((loc) => (
-                  <option key={loc.id} value={loc.id}>{loc.name}</option>
-                ))}
-              </select>
               <span className="header__location-value">{selectedName}</span>
             </div>
-          </div>
+          </button>
 
           <div className="header__search">
             <Search
@@ -102,6 +93,11 @@ export default function Header() {
           </div>
         </div>
       </header>
+
+      <LocationPickerModal
+        isOpen={locationModalOpen}
+        onClose={() => setLocationModalOpen(false)}
+      />
     </>
   );
 }
