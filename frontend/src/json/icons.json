@@ -55,9 +55,8 @@
       "autoScroll": true,
       "infinite": true,
       "pauseOnHover": true,
-      "speed": 28,
+      "speed": 24,
       "hideScrollbar": true,
-      "touchScroll": true,
       "logoSize": 88
     },
     "highlights": {
