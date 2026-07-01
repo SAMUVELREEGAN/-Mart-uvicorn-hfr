@@ -179,7 +179,7 @@
     transparent 94%
   );
   transform: translateX(-180%) translateY(-180%);
-  animation: vendorBtnShine 9s ease-in-out infinite;
+  animation: vendorBtnShine 6.5s linear infinite;
   pointer-events: none;
   z-index: 0;
 }
@@ -190,10 +190,10 @@
 }
 
 @keyframes vendorBtnShine {
-  0% {
+  from {
     transform: translateX(-180%) translateY(-180%);
   }
-  100% {
+  to {
     transform: translateX(180%) translateY(180%);
   }
 }

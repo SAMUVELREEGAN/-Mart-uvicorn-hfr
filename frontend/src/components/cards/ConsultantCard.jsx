@@ -10,25 +10,45 @@ export default function ConsultantCard({ consultant, config }) {
 
   return (
     <Card hoverable className="consultant-card">
-      <div className="consultant-card__image-wrap">
-        <img src={consultant.image} alt={consultant.name} className="consultant-card__image" loading="lazy" />
-      </div>
-      <div className="consultant-card__body">
-        <h3 className="consultant-card__name">{consultant.name}</h3>
-        <p className="consultant-card__company">{consultant.company}</p>
+      <div className="consultant-card__media">
+        <img
+          src={consultant.image}
+          alt={consultant.name}
+          className="consultant-card__image"
+          loading="lazy"
+        />
+        <div className="consultant-card__media-overlay" aria-hidden="true" />
         {consultant.rating > 0 && (
-          <Rating value={consultant.rating} reviewCount={consultant.reviewCount} size="sm" />
+          <div className="consultant-card__rating-badge">
+            <Icon name="FaStar" />
+            <span>{consultant.rating.toFixed(1)}</span>
+          </div>
         )}
-        <div className="consultant-card__meta">
-          <p className="consultant-card__experience">
-            <Icon name="FaBriefcase" />
-            <span>{consultant.experience} {cardConfig.experienceSuffix}</span>
-          </p>
-          <p className="consultant-card__city">
-            <Icon name="FaMapMarkerAlt" />
-            <span>{consultant.city}</span>
-          </p>
+      </div>
+
+      <div className="consultant-card__body">
+        <div className="consultant-card__header">
+          <h3 className="consultant-card__name">{consultant.name}</h3>
+          <p className="consultant-card__company">{consultant.company}</p>
         </div>
+
+        {consultant.rating > 0 && (
+          <div className="consultant-card__rating-row">
+            <Rating value={consultant.rating} reviewCount={consultant.reviewCount} size="sm" />
+          </div>
+        )}
+
+        <div className="consultant-card__meta">
+          <span className="consultant-card__pill">
+            <Icon name="FaBriefcase" />
+            {consultant.experience} {cardConfig.experienceSuffix}
+          </span>
+          <span className="consultant-card__pill">
+            <Icon name="FaMapMarkerAlt" />
+            {consultant.city}
+          </span>
+        </div>
+
         <a href={`tel:${consultant.phone}`} className="consultant-card__cta">
           <Button
             label={cardConfig.contactButton.label}

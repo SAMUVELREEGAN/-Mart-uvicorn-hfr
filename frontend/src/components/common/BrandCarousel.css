@@ -66,15 +66,18 @@
 .brand-carousel__track-wrap {
   overflow: hidden;
   mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
 }
 
 .brand-carousel__track {
   display: flex;
   gap: var(--spacing-xl);
   width: max-content;
-  will-change: transform;
   padding: var(--spacing-sm) 0;
-  animation: brandScroll var(--scroll-duration, 40s) linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  animation: brandScroll var(--scroll-duration, 32s) linear infinite;
 }
 
 .brand-carousel__track--paused {
@@ -82,50 +85,21 @@
 }
 
 @keyframes brandScroll {
-  0% { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(-50%, 0, 0); }
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 
-.brand-carousel__scroll--marquee {
-  display: flex;
-  gap: var(--spacing-xl);
-  overflow-x: auto;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-x: contain;
-  touch-action: pan-x;
-  scroll-behavior: auto;
-  padding: var(--spacing-sm) var(--spacing-md);
-  will-change: scroll-position;
-}
-
-.brand-carousel__scroll--marquee::-webkit-scrollbar {
-  display: none;
-}
-
-.brand-carousel--marquee {
-  overflow: hidden;
-  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
-}
-
-.brand-carousel__scroll {
-  display: flex;
-  gap: var(--spacing-lg);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-  padding: var(--spacing-sm) var(--spacing-md);
-  scroll-behavior: smooth;
-}
-
-.brand-carousel__scroll::-webkit-scrollbar {
-  display: none;
-}
-
-.brand-carousel__scroll .brand-carousel__card {
-  scroll-snap-align: center;
+@media (prefers-reduced-motion: reduce) {
+  .brand-carousel__track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
 }
 
 .brand-carousel__card {
@@ -204,21 +178,13 @@
   gap: var(--spacing-lg);
 }
 
-@media (max-width: 768px) {
-  .brand-carousel__scroll--marquee {
-    gap: var(--spacing-lg);
-    padding: var(--spacing-sm) var(--spacing-sm);
-  }
-
-  .brand-carousel--marquee {
-    mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
-  }
-}
-
 @media (max-width: 576px) {
   .brands-section {
     padding: var(--spacing-2xl) var(--spacing-sm);
+  }
+
+  .brand-carousel__track {
+    gap: var(--spacing-lg);
   }
 
   .brand-carousel__card {
