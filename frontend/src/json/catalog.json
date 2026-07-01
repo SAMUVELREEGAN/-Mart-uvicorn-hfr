@@ -101,5 +101,26 @@
     "viewAllLabel": "View All",
     "viewAllIcon": "FaArrowRight",
     "browseLabel": "Browse"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "subtotalLabel": "Subtotal",
+    "removeLabel": "Remove item",
+    "columns": {
+      "product": "Product",
+      "price": "Price",
+      "quantity": "Quantity",
+      "total": "Total"
+    },
+    "continueShopping": {
+      "label": "Continue Shopping",
+      "icon": "FaArrowLeft",
+      "path": "/products"
+    },
+    "checkout": {
+      "label": "Checkout",
+      "icon": "FaCreditCard",
+      "path": "/orders"
+    }
   }
 }

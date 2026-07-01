@@ -1,8 +1,10 @@
 import { useCmsContent } from '../../contexts';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useProducts } from '../../contexts/ProductContext';
 import { useReviews } from '../../contexts/ReviewContext';
+import { useAuth } from '../../contexts/AuthContext';
+import { useCart } from '../../contexts/CartContext';
 import { useSimulatedLoading } from '../../hooks/useHelpers';
 import { formatPrice } from '../../utils/helpers';
 import { resolveMediaUrl } from '../../utils/mediaUrl';
@@ -22,8 +24,13 @@ export default function ProductDetails() {
   const buttonsConfig = useCmsContent('buttons');
   const cardConfig = useCmsContent('icons');
   const { id } = useParams();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('description');
+  const [addingToCart, setAddingToCart] = useState(false);
+  const [cartAdded, setCartAdded] = useState(false);
   const loading = useSimulatedLoading();
+  const { user } = useAuth();
+  const { addToCart } = useCart();
   const { getProduct } = useProducts();
   const { getReviewsForTarget, addReview } = useReviews();
   const product = getProduct(id);
@@ -39,6 +46,21 @@ export default function ProductDetails() {
 
   const handleReview = (values) => {
     addReview(id, 'product', values);
+  };
+
+  const handleAddToCart = async () => {
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+    setAddingToCart(true);
+    try {
+      await addToCart(product.id, 1);
+      setCartAdded(true);
+      setTimeout(() => setCartAdded(false), 2000);
+    } finally {
+      setAddingToCart(false);
+    }
   };
 
   const tabs = [
@@ -98,6 +120,14 @@ export default function ProductDetails() {
           </div>
           <div className="details__actions">
             <Button label={buttonsConfig.buy.label} icon={buttonsConfig.buy.icon} variant="primary" size="lg" />
+            <Button
+              label={cartAdded ? 'Added!' : buttonsConfig.addToCart.label}
+              icon={cartAdded ? buttonsConfig.success.icon : buttonsConfig.addToCart.icon}
+              variant={cartAdded ? 'success' : buttonsConfig.addToCart.variant}
+              size="lg"
+              onClick={handleAddToCart}
+              disabled={addingToCart}
+            />
             <Button label={buttonsConfig.contact.label} icon={buttonsConfig.contact.icon} variant="secondary" />
           </div>
           <div className="details__contact">

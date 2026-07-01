@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import api, { getData } from '../services/api';
 import { setCmsValidations } from '../utils/cmsRegistry';
-import { cmsFallbacks, getCmsFallback } from '../cms/fallbacks';
+import { cmsFallbacks, getCmsFallback, deepMergeCms } from '../cms/fallbacks';
 
 const CmsContext = createContext(null);
 
@@ -22,7 +22,9 @@ export function CmsProvider({ children }) {
         const apiContent = data.content || {};
         const merged = { ...cmsFallbacks };
         Object.keys(apiContent).forEach((key) => {
-          if (hasContent(apiContent[key])) merged[key] = apiContent[key];
+          if (hasContent(apiContent[key])) {
+            merged[key] = deepMergeCms(cmsFallbacks[key] || {}, apiContent[key]);
+          }
         });
         setContent(merged);
         setSettings(data.settings || {});

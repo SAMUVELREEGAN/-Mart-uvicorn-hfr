@@ -19,6 +19,7 @@ import UserDashboard from '../pages/user/UserDashboard';
 import DashboardPlaceholder from '../pages/user/DashboardPlaceholder';
 import Wishlist from '../pages/user/Wishlist';
 import Orders from '../pages/user/Orders';
+import Cart from '../pages/user/Cart';
 
 import VendorLanding from '../pages/vendor/VendorLanding';
 import BusinessTypeSelect from '../pages/vendor/BusinessTypeSelect';
@@ -96,6 +97,7 @@ export default function AppRoutes() {
         <Route path="dashboard/notifications" element={<ProtectedRoute><DashboardPlaceholder sectionId="notifications" /></ProtectedRoute>} />
         <Route path="dashboard/addresses" element={<ProtectedRoute><DashboardPlaceholder sectionId="addresses" /></ProtectedRoute>} />
         <Route path="wishlist" element={<ProtectedRoute><Wishlist /></ProtectedRoute>} />
+        <Route path="cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
         <Route path="orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
         <Route path="bookings" element={<ProtectedRoute><CmsPage pageKey="bookings" /></ProtectedRoute>} />
         <Route path="start-business" element={<VendorLanding />} />

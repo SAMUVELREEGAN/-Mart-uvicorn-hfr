@@ -30,6 +30,11 @@
       "icon": "FaUser",
       "path": "/login"
     },
+    "cart": {
+      "label": "Cart",
+      "icon": "FaShoppingCart",
+      "path": "/cart"
+    },
     "profile": {
       "label": "Profile",
       "icon": "FaUserCircle",
@@ -62,6 +67,7 @@
       { "label": "My Dashboard", "path": "/dashboard", "icon": "FaThLarge" },
       { "label": "My Profile", "path": "/profile", "icon": "FaUserCircle" },
       { "label": "Orders", "path": "/orders", "icon": "FaShoppingBag" },
+      { "label": "Cart", "path": "/cart", "icon": "FaShoppingCart" },
       { "label": "Bookings", "path": "/bookings", "icon": "FaCalendarCheck" },
       { "label": "Wishlist", "path": "/wishlist", "icon": "FaHeart" },
       { "label": "Logout", "action": "logout", "icon": "FaSignOutAlt", "dividerBefore": true }

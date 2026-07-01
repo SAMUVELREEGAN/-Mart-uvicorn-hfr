@@ -105,6 +105,7 @@
     "reviews": { "icon": "FaCommentSlash", "title": "No Reviews Yet", "message": "Be the first to leave a review" },
     "orders": { "icon": "FaShoppingBag", "title": "No Orders Yet", "message": "Your order history will appear here" },
     "wishlist": { "icon": "FaHeart", "title": "Wishlist Empty", "message": "Save items you love to your wishlist" },
+    "cart": { "icon": "FaShoppingCart", "title": "Your Cart is Empty", "message": "Browse products and add items to your cart" },
     "brands": { "icon": "FaStore", "title": "No Items for This Brand", "message": "This brand has no listed products or services yet" }
   },
   "errorState": {

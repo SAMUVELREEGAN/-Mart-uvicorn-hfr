@@ -10,12 +10,14 @@ import { ReviewProvider } from './ReviewContext';
 import { ThemeProvider } from './ThemeContext';
 import { AdminProvider } from './AdminContext';
 import { VendorConfigProvider } from './VendorConfigContext';
+import { CartProvider } from './CartContext';
 
 export function AppProviders({ children }) {
   return (
     <CmsProvider>
       <ThemeProvider>
         <AuthProvider>
+          <CartProvider>
           <VendorConfigProvider>
           <AdminProvider>
             <BrandProvider>
@@ -35,6 +37,7 @@ export function AppProviders({ children }) {
             </BrandProvider>
           </AdminProvider>
           </VendorConfigProvider>
+          </CartProvider>
         </AuthProvider>
       </ThemeProvider>
     </CmsProvider>
@@ -53,3 +56,4 @@ export { useReviews } from './ReviewContext';
 export { useTheme } from './ThemeContext';
 export { useAdmin } from './AdminContext';
 export { useVendorConfig } from './VendorConfigContext';
+export { useCart } from './CartContext';

@@ -15,6 +15,7 @@
   "add": { "label": "Add New", "variant": "primary", "icon": "FaPlus" },
   "search": { "label": "Search", "variant": "primary", "icon": "FaSearch", "type": "submit" },
   "buy": { "label": "Buy Now", "variant": "primary", "icon": "FaShoppingCart" },
+  "addToCart": { "label": "Add to Cart", "variant": "outline", "icon": "FaCartPlus" },
   "book": { "label": "Book Service", "variant": "primary", "icon": "FaCalendarCheck" },
   "contact": { "label": "Contact Provider", "variant": "secondary", "icon": "FaPhone" },
   "submitReview": { "label": "Submit Review", "variant": "primary", "icon": "FaStar", "type": "submit" },

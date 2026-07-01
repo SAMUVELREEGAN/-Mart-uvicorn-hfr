@@ -47,3 +47,24 @@ export const cmsFallbacks = {
 export function getCmsFallback(key) {
   return cmsFallbacks[key] || {};
 }
+
+function isPlainObject(value) {
+  return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+/** Merge API CMS content over local fallbacks so new keys stay available. */
+export function deepMergeCms(base, override) {
+  if (!isPlainObject(base)) return override ?? base;
+  if (!isPlainObject(override)) return base;
+  const result = { ...base };
+  Object.keys(override).forEach((key) => {
+    const baseVal = base[key];
+    const overrideVal = override[key];
+    if (isPlainObject(baseVal) && isPlainObject(overrideVal)) {
+      result[key] = deepMergeCms(baseVal, overrideVal);
+    } else if (overrideVal !== undefined) {
+      result[key] = overrideVal;
+    }
+  });
+  return result;
+}
