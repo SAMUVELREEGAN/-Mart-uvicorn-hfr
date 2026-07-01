@@ -11,6 +11,11 @@ const highlightCategorySchema = new mongoose.Schema({
   subcategorySlugs: [{ type: String }],
   sortOrder: { type: Number, default: 0 },
   status: { type: String, enum: ['active', 'inactive'], default: 'active' },
+  detailsPageTemplate: {
+    type: String,
+    enum: ['template1', 'template2', 'template3', 'template4', 'template5'],
+    default: 'template1',
+  },
 }, { timestamps: true });
 
 highlightCategorySchema.set('toJSON', {

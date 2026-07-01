@@ -9,6 +9,8 @@ import AdminMultiSelect from '../components/AdminMultiSelect';
 import SkeletonTable from '../components/SkeletonTable';
 import '../styles/admin.css';
 
+import { CATEGORY_DETAILS_TEMPLATE_OPTIONS } from '../../components/categoryDetails/categoryDetailsTemplates';
+
 const emptyForm = () => ({
   title: '',
   mappingType: 'product',
@@ -17,6 +19,7 @@ const emptyForm = () => ({
   image: '',
   subtitle: '',
   status: 'active',
+  detailsPageTemplate: 'template1',
 });
 
 export default function HighlightCategoriesPage() {
@@ -122,6 +125,7 @@ export default function HighlightCategoriesPage() {
       image: item.image || '',
       subtitle: item.subtitle || '',
       status: item.status || 'active',
+      detailsPageTemplate: item.detailsPageTemplate || 'template1',
     });
     setCurrent(item);
     setMode('form');
@@ -195,6 +199,19 @@ export default function HighlightCategoriesPage() {
               <div className="adm-field adm-field--full">
                 <label className="adm-field__label" htmlFor="subtitle">Subtitle</label>
                 <input id="subtitle" className="adm-input" value={form.subtitle} onChange={(e) => setForm({ ...form, subtitle: e.target.value })} />
+              </div>
+              <div className="adm-field adm-field--full">
+                <label className="adm-field__label" htmlFor="detailsPageTemplate">Details Page Template</label>
+                <select
+                  id="detailsPageTemplate"
+                  className="adm-select"
+                  value={form.detailsPageTemplate}
+                  onChange={(e) => setForm({ ...form, detailsPageTemplate: e.target.value })}
+                >
+                  {CATEGORY_DETAILS_TEMPLATE_OPTIONS.map((opt) => (
+                    <option key={opt.value} value={opt.value}>{opt.label}</option>
+                  ))}
+                </select>
               </div>
               <div className="adm-field adm-field--full">
                 <label className="adm-field__label">Card Image</label>
@@ -276,13 +293,14 @@ export default function HighlightCategoriesPage() {
         </select>
       </div>
 
-      {loading ? <SkeletonTable rows={5} cols={6} /> : (
+      {loading ? <SkeletonTable rows={5} cols={7} /> : (
         <div className="adm-table-wrap">
           <table className="adm-table">
             <thead>
               <tr>
                 <th>Title</th>
                 <th>Type</th>
+                <th>Template</th>
                 <th>Categories</th>
                 <th>Sub Categories</th>
                 <th>Status</th>
@@ -294,6 +312,11 @@ export default function HighlightCategoriesPage() {
                 <tr key={item.id}>
                   <td>{item.title}</td>
                   <td>{item.mappingType}</td>
+                  <td>
+                    {CATEGORY_DETAILS_TEMPLATE_OPTIONS.find((o) => o.value === (item.detailsPageTemplate || 'template1'))?.label
+                      || item.detailsPageTemplate
+                      || 'Template 1 (Default)'}
+                  </td>
                   <td>{(item.categorySlugs || []).join(', ') || '—'}</td>
                   <td>{(item.subcategorySlugs || []).join(', ') || '—'}</td>
                   <td><span className={`status-badge status-badge--${item.status}`}>{item.status}</span></td>

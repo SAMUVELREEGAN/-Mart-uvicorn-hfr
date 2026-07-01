@@ -130,6 +130,7 @@ exports.getFullTree = asyncHandler(async (req, res) => {
       itemType: h.mappingType,
       categoryIds: h.categorySlugs || [],
       subcategoryIds: h.subcategorySlugs || [],
+      detailsPageTemplate: h.detailsPageTemplate || 'template1',
     };
   });
 
@@ -137,6 +138,7 @@ exports.getFullTree = asyncHandler(async (req, res) => {
     ...h.toJSON(),
     id: h.slug,
     name: h.title,
+    detailsPageTemplate: h.detailsPageTemplate || 'template1',
     path: `/category/${h.slug}?type=${h.mappingType === 'both' ? 'both' : h.mappingType === 'service' ? 'service' : 'product'}`,
   }));
 

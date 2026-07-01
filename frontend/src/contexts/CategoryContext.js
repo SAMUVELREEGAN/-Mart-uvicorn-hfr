@@ -67,6 +67,14 @@ export function CategoryProvider({ children }) {
 
   const getHighlightMapping = (id) => highlightCategoryMap[id] || null;
 
+  const getHighlightDetailsTemplate = (id) => {
+    const highlight = highlightCategories.find((c) => c.id === id || c.slug === id);
+    if (highlight?.detailsPageTemplate) return highlight.detailsPageTemplate;
+    const mapping = highlightCategoryMap[id];
+    if (mapping?.detailsPageTemplate) return mapping.detailsPageTemplate;
+    return 'template1';
+  };
+
   const resolveCategoryView = (id, typeParam = 'product') => {
     const mapping = getHighlightMapping(id);
     const inProduct = productCategories.some((c) => c.id === id);
@@ -103,6 +111,7 @@ export function CategoryProvider({ children }) {
     highlightCategories, productCategories, serviceCategories, categoryPage,
     subcategoriesMap, highlightCategoryMap, moreLabel, moreIcon, moreColor,
     getCategoryById, getRelatedCategories, getSubcategories, getHighlightMapping,
+    getHighlightDetailsTemplate,
     resolveCategoryView, getCategoriesByIds, refreshCategories,
     allProductCategories: productCategories,
     allServiceCategories: serviceCategories,

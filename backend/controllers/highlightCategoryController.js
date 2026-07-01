@@ -32,6 +32,7 @@ exports.create = asyncHandler(async (req, res) => {
     subcategorySlugs: req.body.subcategorySlugs || [],
     sortOrder: req.body.sortOrder || 0,
     status: req.body.status || 'active',
+    detailsPageTemplate: req.body.detailsPageTemplate || 'template1',
   });
   return success(res, item.toJSON(), 'Created', 201);
 });
