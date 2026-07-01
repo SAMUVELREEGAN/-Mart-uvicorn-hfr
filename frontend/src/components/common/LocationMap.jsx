@@ -1,5 +1,5 @@
+import { useCmsContent } from '../../contexts';
 import { useMemo, useState } from 'react';
-import locationsData from '../../json/locations.json';
 import { useLocation } from '../../contexts/LocationContext';
 import { Icon } from '../../utils/iconResolver';
 import Button from '../common/Button';
@@ -49,6 +49,7 @@ export default function LocationMap({
   onDraftChange,
   onConfirm,
 }) {
+  const locationsData = useCmsContent('locations');
   const { locations, selectedLocation, selectLocation, selectConfig } = useLocation();
   const mapConfig = locationsData.map;
   const variantConfig = locationsData.variants?.[variant] || {};

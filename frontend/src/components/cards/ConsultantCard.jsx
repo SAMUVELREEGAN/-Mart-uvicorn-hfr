@@ -1,4 +1,4 @@
-import heroConfig from '../../json/hero.json';
+import { useCmsContent } from '../../contexts';
 import { Icon } from '../../utils/iconResolver';
 import Rating from '../common/Rating';
 import Button from '../common/Button';
@@ -6,7 +6,8 @@ import Card from '../common/Card';
 import './ConsultantCard.css';
 
 export default function ConsultantCard({ consultant, config }) {
-  const cardConfig = config || heroConfig.homeContent.realEstateConsultants;
+  const heroConfig = useCmsContent('hero');
+  const cardConfig = config || heroConfig.homeContent?.realEstateConsultants || {};
 
   return (
     <Card hoverable className="consultant-card">

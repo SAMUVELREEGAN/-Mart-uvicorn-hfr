@@ -23,6 +23,8 @@ import Orders from '../pages/user/Orders';
 import VendorLanding from '../pages/vendor/VendorLanding';
 import BusinessTypeSelect from '../pages/vendor/BusinessTypeSelect';
 import VendorOnboardAuth from '../pages/vendor/VendorOnboardAuth';
+import VendorRegistration from '../pages/vendor/VendorRegistration';
+import VendorPendingApproval from '../pages/vendor/VendorPendingApproval';
 import VendorLogin from '../pages/vendor/VendorLogin';
 import Dashboard from '../pages/vendor/Dashboard';
 import VendorProducts from '../pages/vendor/Products';
@@ -31,12 +33,50 @@ import VendorReviews from '../pages/vendor/Reviews';
 import VendorBrands from '../pages/vendor/Brands';
 import VendorProfile from '../pages/vendor/Profile';
 
+import CmsPage from '../pages/user/CmsPage';
 import ErrorState from '../components/common/ErrorState';
-import cardConfig from '../json/icons.json';
+import { useCmsContent } from '../contexts/CmsContext';
+
+import AdminLayout from '../layouts/AdminLayout';
+import { AdminProtectedRoute } from './AdminProtectedRoute';
+import AdminLogin from '../admin/pages/Login';
+import AdminDashboard from '../admin/pages/Dashboard';
+import AdminProfile from '../admin/pages/Profile';
+import HighlightCategoriesPage from '../admin/pages/HighlightCategoriesPage';
+import TypedCategoriesPage from '../admin/pages/TypedCategoriesPage';
+import SubcategoriesPage from '../admin/pages/SubcategoriesPage';
+import VendorConfigPage from '../admin/pages/VendorConfigPage';
+import VendorApplicationsPage from '../admin/pages/VendorApplicationsPage';
+import AdminModuleRouter from '../admin/pages/ModuleRouter';
+
+function NotFoundPage() {
+  const cardConfig = useCmsContent('icons');
+  return <ErrorState config={cardConfig.errorState?.notFound || { title: 'Not Found', message: 'Page not found' }} />;
+}
 
 export default function AppRoutes() {
   return (
     <Routes>
+      <Route path="admin/login" element={<AdminLogin />} />
+      <Route
+        path="admin"
+        element={(
+          <AdminProtectedRoute>
+            <AdminLayout />
+          </AdminProtectedRoute>
+        )}
+      >
+        <Route index element={<AdminDashboard />} />
+        <Route path="profile" element={<AdminProfile />} />
+        <Route path="highlight-categories" element={<HighlightCategoriesPage />} />
+        <Route path="product-categories" element={<TypedCategoriesPage categoryType="product" title="Product Categories" />} />
+        <Route path="service-categories" element={<TypedCategoriesPage categoryType="service" title="Service Categories" />} />
+        <Route path="subcategories" element={<SubcategoriesPage />} />
+        <Route path="vendor-config" element={<VendorConfigPage />} />
+        <Route path="vendor-applications" element={<VendorApplicationsPage />} />
+        <Route path=":moduleKey" element={<AdminModuleRouter />} />
+      </Route>
+
       <Route element={<MainLayout />}>
         <Route index element={<Home />} />
         <Route path="login" element={<Login />} />
@@ -57,19 +97,21 @@ export default function AppRoutes() {
         <Route path="dashboard/addresses" element={<ProtectedRoute><DashboardPlaceholder sectionId="addresses" /></ProtectedRoute>} />
         <Route path="wishlist" element={<ProtectedRoute><Wishlist /></ProtectedRoute>} />
         <Route path="orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
-        <Route path="bookings" element={<ProtectedRoute><div className="page-placeholder"><h1>Bookings</h1><p>Your service bookings will appear here.</p></div></ProtectedRoute>} />
+        <Route path="bookings" element={<ProtectedRoute><CmsPage pageKey="bookings" /></ProtectedRoute>} />
         <Route path="start-business" element={<VendorLanding />} />
         <Route path="vendor/get-started" element={<BusinessTypeSelect />} />
         <Route path="vendor/auth" element={<VendorOnboardAuth />} />
         <Route path="vendor/login" element={<VendorLogin />} />
-        <Route path="contact" element={<div className="page-placeholder"><h1>Contact Us</h1><p>Get in touch with our support team.</p></div>} />
-        <Route path="privacy" element={<div className="page-placeholder"><h1>Privacy Policy</h1><p>Your privacy matters to us.</p></div>} />
-        <Route path="terms" element={<div className="page-placeholder"><h1>Terms of Service</h1><p>Please read our terms carefully.</p></div>} />
-        <Route path="vendors" element={<div className="page-placeholder"><h1>Vendors</h1><p>Browse all registered vendors.</p></div>} />
-        <Route path="*" element={<ErrorState config={cardConfig.errorState.notFound} />} />
+        <Route path="vendor/registration" element={<ProtectedRoute requireVendor><VendorRegistration /></ProtectedRoute>} />
+        <Route path="vendor/pending-approval" element={<ProtectedRoute requireVendor><VendorPendingApproval /></ProtectedRoute>} />
+        <Route path="contact" element={<CmsPage pageKey="contact" />} />
+        <Route path="privacy" element={<CmsPage pageKey="privacy" />} />
+        <Route path="terms" element={<CmsPage pageKey="terms" />} />
+        <Route path="vendors" element={<CmsPage pageKey="vendors" />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
 
-      <Route path="vendor" element={<ProtectedRoute requireVendor><VendorLayout /></ProtectedRoute>}>
+      <Route path="vendor" element={<ProtectedRoute requireVendor requireApproved><VendorLayout /></ProtectedRoute>}>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="products" element={<VendorProducts />} />
         <Route path="services" element={<VendorServices />} />

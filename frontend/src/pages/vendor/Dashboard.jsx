@@ -1,5 +1,5 @@
+import { useCmsContent } from '../../contexts';
 import { useNavigate } from 'react-router-dom';
-import dashboardsConfig from '../../json/dashboards.json';
 import { useAuth } from '../../contexts/AuthContext';
 import { useVendor } from '../../contexts/VendorContext';
 import { Icon } from '../../utils/iconResolver';
@@ -14,6 +14,7 @@ function filterByBusinessType(items, businessType) {
 }
 
 export default function Dashboard() {
+  const dashboardsConfig = useCmsContent('dashboards');
   const { vendor, stats } = useVendor();
   const { businessType } = useAuth();
   const navigate = useNavigate();

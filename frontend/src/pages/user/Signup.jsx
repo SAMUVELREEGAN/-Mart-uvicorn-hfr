@@ -1,19 +1,24 @@
+import { useCmsContent } from '../../contexts';
 import { Link, useNavigate } from 'react-router-dom';
-import formsConfig from '../../json/forms.json';
-import dashboardsConfig from '../../json/dashboards.json';
 import FormBuilder from '../../components/forms/FormBuilder';
 import { useAuth } from '../../contexts/AuthContext';
 import './Auth.css';
 
 export default function Signup() {
+  const formsConfig = useCmsContent('forms');
+  const dashboardsConfig = useCmsContent('dashboards');
   const { signupUser } = useAuth();
   const navigate = useNavigate();
   const authConfig = formsConfig.auth.signup;
   const dashboardHome = dashboardsConfig.user.routes.home;
 
-  const handleSubmit = (values) => {
-    signupUser(values);
-    navigate(dashboardHome);
+  const handleSubmit = async (values) => {
+    try {
+      await signupUser(values);
+      navigate(dashboardHome);
+    } catch (err) {
+      alert(err.response?.data?.message || 'Signup failed');
+    }
   };
 
   return (

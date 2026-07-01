@@ -1,17 +1,24 @@
+import { useCmsContent } from '../../contexts';
 import { Link, useNavigate } from 'react-router-dom';
-import formsConfig from '../../json/forms.json';
 import FormBuilder from '../../components/forms/FormBuilder';
 import { useAuth } from '../../contexts/AuthContext';
+import { getVendorPostAuthPath } from '../../utils/vendorRedirect';
 import '../user/Auth.css';
 
 export default function VendorLogin() {
+  const formsConfig = useCmsContent('forms');
   const { loginVendor } = useAuth();
-  const navigate = useNavigate();
   const authConfig = formsConfig.auth.vendorLogin;
 
-  const handleSubmit = (values) => {
-    loginVendor(values.email, values.password);
-    navigate('/vendor/dashboard');
+  const navigate = useNavigate();
+
+  const handleSubmit = async (values) => {
+    try {
+      const v = await loginVendor(values.email, values.password);
+      navigate(getVendorPostAuthPath(v));
+    } catch (err) {
+      alert(err.response?.data?.message || 'Login failed');
+    }
   };
 
   return (

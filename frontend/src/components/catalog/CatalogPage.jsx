@@ -1,7 +1,6 @@
+import { useCmsContent } from '../../contexts';
 import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import catalogData from '../../json/catalog.json';
-import cardConfig from '../../json/icons.json';
 import { useCategories } from '../../contexts/CategoryContext';
 import { useLocation } from '../../contexts/LocationContext';
 import { useCatalogListing } from '../../hooks/useCatalogListing';
@@ -21,6 +20,8 @@ import CatalogSortPanel from './CatalogSortPanel';
 import './CatalogPage.css';
 
 export default function CatalogPage({ itemType = 'product' }) {
+  const cardConfig = useCmsContent('icons');
+  const catalogData = useCmsContent('catalog');
   const configKey = itemType === 'service' ? 'services' : 'products';
   const config = catalogData[configKey];
   const pageSize = catalogData.pageSize || 12;

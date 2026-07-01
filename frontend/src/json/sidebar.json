@@ -32,12 +32,13 @@
         { "key": "login", "label": "Login" },
         { "key": "signup", "label": "Sign Up" }
       ],
-      "redirectAfterAuth": "/vendor/dashboard"
+      "redirectAfterAuth": "/vendor/registration"
     },
     "routes": {
       "landing": "/start-business",
       "businessType": "/vendor/get-started",
       "auth": "/vendor/auth",
+      "registration": "/vendor/registration",
       "dashboard": "/vendor/dashboard"
     }
   },

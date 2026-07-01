@@ -1,3 +1,4 @@
+import { useCmsContent } from '../../contexts';
 import { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useProducts } from '../../contexts/ProductContext';
@@ -10,12 +11,12 @@ import Pagination from '../../components/common/Pagination';
 import EmptyState from '../../components/common/EmptyState';
 import { SkeletonCard } from '../../components/skeleton/Skeleton';
 import { Icon } from '../../utils/iconResolver';
-import cardConfig from '../../json/icons.json';
 import './Search.css';
 
 const PAGE_SIZE = 6;
 
 export default function Search() {
+  const cardConfig = useCmsContent('icons');
   const [searchParams] = useSearchParams();
   const query = searchParams.get('q') || '';
   const type = searchParams.get('type') || 'products';

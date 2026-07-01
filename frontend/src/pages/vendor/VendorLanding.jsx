@@ -1,13 +1,13 @@
+import { useCmsContent } from '../../contexts';
 import { Link } from 'react-router-dom';
-import heroConfig from '../../json/hero.json';
 import { Icon } from '../../utils/iconResolver';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import Button from '../../components/common/Button';
 import FAQAccordion from '../../components/common/FAQAccordion';
 import './VendorLanding.css';
 
-function Reveal({ sectionKey, children, className = '' }) {
-  const enabled = heroConfig.vendorLanding.animations?.enabledSections?.includes(sectionKey);
+function Reveal({ sectionKey, children, className = '', animations }) {
+  const enabled = animations?.enabledSections?.includes(sectionKey);
   const { ref, visible } = useScrollReveal(0.08);
   return (
     <div ref={enabled ? ref : undefined} className={`${className} ${enabled ? 'vlp-reveal' : ''} ${visible ? 'vlp-reveal--in' : ''}`}>
@@ -27,13 +27,14 @@ function SectionHead({ eyebrow, title, subtitle, light = false }) {
 }
 
 export default function VendorLanding() {
-  const c = heroConfig.vendorLanding;
-  const whyJoinItems = [...c.whySellWithUs.items, ...c.whyOfferServices.items];
+  const heroConfig = useCmsContent('hero');
+  const c = heroConfig.vendorLanding || {};
+  const whyJoinItems = [...(c.whySellWithUs?.items || []), ...(c.whyOfferServices?.items || [])];
 
   return (
     <div className="vlp">
       {/* Hero Banner */}
-      <Reveal sectionKey="hero">
+      <Reveal sectionKey="hero" animations={c.animations}>
         <section className="vlp-hero">
           <div className="vlp-hero__wrap">
             <div className="vlp-hero__copy">
@@ -98,7 +99,7 @@ export default function VendorLanding() {
       <section className="vlp-band vlp-band--dark">
         <div className="vlp-container">
           <SectionHead light title={c.howItWorks.title} subtitle={c.howItWorks.subtitle} eyebrow="Vendor Journey" />
-          <Reveal sectionKey="journey">
+          <Reveal sectionKey="journey" animations={c.animations}>
             <div className="vlp-timeline">
               {c.howItWorks.steps.map((step, i) => (
                 <div key={step.id} className="vlp-timeline__step">
@@ -120,7 +121,7 @@ export default function VendorLanding() {
       <section className="vlp-band">
         <div className="vlp-container">
           <SectionHead title={c.platformFeatures.title} subtitle={c.platformFeatures.subtitle} eyebrow="Features" />
-          <Reveal sectionKey="features">
+          <Reveal sectionKey="features" animations={c.animations}>
             <div className="vlp-features">
               {c.platformFeatures.items.map((item) => (
                 <div key={item.id} className="vlp-feature" style={{ '--c': item.color }}>
@@ -140,7 +141,7 @@ export default function VendorLanding() {
       <section className="vlp-band vlp-band--gradient">
         <div className="vlp-container">
           <SectionHead light title={c.statistics.title} subtitle={c.statistics.subtitle} />
-          <Reveal sectionKey="statistics">
+          <Reveal sectionKey="statistics" animations={c.animations}>
             <div className="vlp-stats">
               {c.statistics.items.map((item) => (
                 <div key={item.id} className="vlp-stat">
@@ -175,7 +176,7 @@ export default function VendorLanding() {
       <section className="vlp-band">
         <div className="vlp-container vlp-container--narrow">
           <SectionHead title={c.faq.title} subtitle={c.faq.subtitle} eyebrow="FAQ" />
-          <Reveal sectionKey="faq">
+          <Reveal sectionKey="faq" animations={c.animations}>
             <FAQAccordion
               items={c.faq.items}
               config={c.faq}
@@ -185,7 +186,7 @@ export default function VendorLanding() {
       </section>
 
       {/* Final CTA */}
-      <Reveal sectionKey="cta">
+      <Reveal sectionKey="cta" animations={c.animations}>
         <section className="vlp-cta">
           <div className="vlp-cta__inner">
             <h2>{c.cta.title}</h2>

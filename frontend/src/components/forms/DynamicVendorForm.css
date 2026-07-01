@@ -1,0 +1,21 @@
+.dynamic-vendor-form__section {
+  margin-bottom: var(--spacing-xl);
+}
+
+.dynamic-vendor-form__section-title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  margin: 0 0 var(--spacing-xs);
+}
+
+.dynamic-vendor-form__section-desc {
+  font-size: 0.875rem;
+  color: var(--color-textMuted);
+  margin: 0 0 var(--spacing-md);
+}
+
+.dynamic-vendor-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}

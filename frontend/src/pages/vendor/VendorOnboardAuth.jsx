@@ -1,21 +1,23 @@
+import { useCmsContent } from '../../contexts';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import sidebarConfig from '../../json/sidebar.json';
-import formsConfig from '../../json/forms.json';
 import FormBuilder from '../../components/forms/FormBuilder';
 import Tabs from '../../components/common/Tabs';
 import { useAuth } from '../../contexts/AuthContext';
 import { saveCredentials } from '../../utils/credentials';
+import { getVendorPostAuthPath } from '../../utils/vendorRedirect';
 import '../user/Auth.css';
 import './VendorOnboardAuth.css';
 
 export default function VendorOnboardAuth() {
+  const formsConfig = useCmsContent('forms');
+  const sidebarConfig = useCmsContent('sidebar');
   const [activeTab, setActiveTab] = useState('login');
-  const { loginUser, signupUser, enableVendorFromUser, isVendor, pendingBusinessType, user } = useAuth();
+  const { loginUser, signupUser, enableVendorFromUser, isVendor, vendor, pendingBusinessType, user } = useAuth();
   const navigate = useNavigate();
   const onboarding = sidebarConfig.onboarding;
   const authConfig = onboarding.auth;
-  const redirectTo = authConfig.redirectAfterAuth || onboarding.routes.dashboard;
+  const redirectTo = authConfig.redirectAfterAuth || onboarding.routes.registration || '/vendor/registration';
 
   useEffect(() => {
     if (!pendingBusinessType) {
@@ -23,29 +25,33 @@ export default function VendorOnboardAuth() {
       return;
     }
     if (isVendor) {
-      navigate(redirectTo, { replace: true });
+      navigate(getVendorPostAuthPath(vendor), { replace: true });
       return;
     }
     if (user) {
-      enableVendorFromUser(user);
-      navigate(redirectTo, { replace: true });
+      enableVendorFromUser()
+        .then((v) => navigate(getVendorPostAuthPath(v), { replace: true }))
+        .catch((err) => {
+          console.error(err);
+          alert(err.response?.data?.message || 'Failed to enable vendor account');
+        });
     }
-  }, [pendingBusinessType, isVendor, user, navigate, redirectTo, onboarding.routes, enableVendorFromUser]);
+  }, [pendingBusinessType, isVendor, vendor, user, navigate, redirectTo, onboarding.routes, enableVendorFromUser]);
 
-  const completeOnboarding = (account) => {
-    enableVendorFromUser(account);
-    navigate(redirectTo);
+  const completeOnboarding = async (account) => {
+    const v = await enableVendorFromUser(account);
+    navigate(getVendorPostAuthPath(v));
   };
 
-  const handleLogin = (values) => {
-    const account = loginUser(values.email, values.password);
+  const handleLogin = async (values) => {
+    const account = await loginUser(values.email, values.password);
     saveCredentials(values.email, values.password);
-    completeOnboarding(account);
+    await completeOnboarding(account);
   };
 
-  const handleSignup = (values) => {
-    const account = signupUser(values);
-    completeOnboarding(account);
+  const handleSignup = async (values) => {
+    const account = await signupUser(values);
+    await completeOnboarding(account);
   };
 
   if (!pendingBusinessType || isVendor) {

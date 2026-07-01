@@ -1,7 +1,8 @@
-import headerConfig from '../../json/header.json';
+import { useCmsContent } from '../../contexts';
 import './AnimatedVendorLabel.css';
 
 export default function AnimatedVendorLabel({ className = '' }) {
+  const headerConfig = useCmsContent('header');
   const vendor = headerConfig.actions.vendor;
   const anim = vendor.animation;
 

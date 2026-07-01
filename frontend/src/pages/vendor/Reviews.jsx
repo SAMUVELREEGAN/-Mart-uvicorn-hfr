@@ -1,12 +1,13 @@
+import { useCmsContent } from '../../contexts';
 import { useVendor } from '../../contexts/VendorContext';
 import { useReviews } from '../../contexts/ReviewContext';
 import Rating from '../../components/common/Rating';
 import Card from '../../components/common/Card';
 import EmptyState from '../../components/common/EmptyState';
-import cardConfig from '../../json/icons.json';
 import './VendorPages.css';
 
 export default function VendorReviews() {
+  const cardConfig = useCmsContent('icons');
   const { vendor } = useVendor();
   const { getVendorReviews } = useReviews();
   const reviews = getVendorReviews(vendor?.id);

@@ -1,0 +1,224 @@
+.vendor-registration {
+  min-height: calc(100vh - 120px);
+  padding: var(--spacing-xl) var(--spacing-md);
+  display: flex;
+  justify-content: center;
+}
+
+.vendor-registration__card {
+  width: 100%;
+  max-width: 720px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.vendor-registration__loading {
+  text-align: center;
+  color: var(--color-textMuted);
+  padding: var(--spacing-2xl);
+}
+
+.vendor-registration__progress {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin: 0 0 var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.vendor-registration__title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0 0 var(--spacing-xs);
+}
+
+.vendor-registration__subtitle {
+  color: var(--color-textMuted);
+  margin: 0 0 var(--spacing-lg);
+}
+
+.vendor-registration__steps {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
+}
+
+.vendor-registration__step-dot {
+  flex: 1;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--color-border);
+  transition: background 0.2s;
+}
+
+.vendor-registration__step-dot--active {
+  background: var(--color-primary);
+}
+
+.vendor-registration__step-dot--current {
+  opacity: 1;
+}
+
+.vendor-registration__body {
+  margin-bottom: var(--spacing-xl);
+}
+
+.vendor-registration__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.vendor-registration__terms-content {
+  max-height: 280px;
+  overflow-y: auto;
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  line-height: 1.6;
+  font-size: 0.9375rem;
+  margin-bottom: var(--spacing-md);
+  white-space: pre-wrap;
+}
+
+.vendor-registration__terms-title {
+  font-size: 1.125rem;
+  margin: 0 0 var(--spacing-md);
+}
+
+.vendor-registration__terms-hint {
+  font-size: 0.8125rem;
+  color: var(--color-textMuted);
+  margin: 0 0 var(--spacing-sm);
+}
+
+.vendor-registration__terms-check {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.vendor-registration__plans-label {
+  margin: 0 0 var(--spacing-md);
+  font-weight: 600;
+}
+
+.vendor-registration__plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.vendor-registration__plan {
+  text-align: left;
+  padding: var(--spacing-lg);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.vendor-registration__plan:hover {
+  border-color: var(--color-primary);
+}
+
+.vendor-registration__plan--selected {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.vendor-registration__plan--highlighted {
+  border-color: var(--color-primary);
+}
+
+.vendor-registration__plan h3 {
+  margin: 0 0 var(--spacing-xs);
+  font-size: 1.125rem;
+}
+
+.vendor-registration__plan-price {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin: 0 0 var(--spacing-sm);
+}
+
+.vendor-registration__plan-desc {
+  font-size: 0.875rem;
+  color: var(--color-textMuted);
+  margin: 0 0 var(--spacing-md);
+}
+
+.vendor-registration__plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.8125rem;
+}
+
+.vendor-registration__plan-features li {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+}
+
+.vendor-registration__plan-features-title {
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm) !important;
+}
+
+.vendor-pending {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+}
+
+.vendor-pending__card {
+  max-width: 480px;
+  text-align: center;
+  padding: var(--spacing-2xl);
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+}
+
+.vendor-pending__icon {
+  font-size: 3rem;
+  color: var(--color-warning, #f59e0b);
+  margin-bottom: var(--spacing-md);
+}
+
+.vendor-pending__title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0 0 var(--spacing-sm);
+}
+
+.vendor-pending__message {
+  color: var(--color-textMuted);
+  line-height: 1.6;
+  margin: 0 0 var(--spacing-md);
+}
+
+.vendor-pending__status {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-md);
+  background: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}

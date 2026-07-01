@@ -1,80 +1,110 @@
-import { createContext, useContext, useCallback } from 'react';
-import { useLocalStorage } from '../hooks/useHelpers';
-import { generateId } from '../utils/helpers';
+import { createContext, useContext, useCallback, useState, useEffect } from 'react';
+import api, { getData } from '../services/api';
 
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useLocalStorage('mart_user', null);
-  const [vendor, setVendor] = useLocalStorage('mart_vendor', null);
-  const [pendingBusinessType, setPendingBusinessType] = useLocalStorage('mart_business_type', null);
+  const [user, setUser] = useState(null);
+  const [vendor, setVendor] = useState(null);
+  const [pendingBusinessType, setPendingBusinessType] = useState(
+    () => localStorage.getItem('mart_business_type') || null
+  );
+  const [loading, setLoading] = useState(true);
 
   const businessType = vendor?.businessType || pendingBusinessType || 'both';
 
   const setBusinessType = useCallback((type) => {
     setPendingBusinessType(type);
-    if (vendor) {
-      setVendor({ ...vendor, businessType: type });
+    localStorage.setItem('mart_business_type', type);
+    if (vendor) setVendor({ ...vendor, businessType: type });
+  }, [vendor]);
+
+  useEffect(() => {
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      setLoading(false);
+      return;
     }
-  }, [vendor, setVendor, setPendingBusinessType]);
+    api.get('/auth/me')
+      .then((res) => {
+        const data = getData(res);
+        if (data?.role === 'vendor') {
+          setVendor(data);
+        } else {
+          setUser(data);
+          if (data?.linkedVendor) setVendor(data.linkedVendor);
+        }
+      })
+      .catch(() => localStorage.removeItem('access_token'))
+      .finally(() => setLoading(false));
+  }, []);
 
-  const loginUser = useCallback((email, password) => {
-    const newUser = { id: generateId('user'), email, role: 'user', name: email.split('@')[0] };
-    setUser(newUser);
-    return newUser;
-  }, [setUser]);
-
-  const signupUser = useCallback((data) => {
-    const newUser = { id: generateId('user'), ...data, role: 'user' };
-    setUser(newUser);
-    return newUser;
-  }, [setUser]);
-
-  const loginVendor = useCallback((email, password) => {
-    const existing = vendor?.email === email ? vendor : null;
-    const newVendor = existing || {
-      id: generateId('vendor'),
-      email,
-      role: 'vendor',
-      businessName: email.split('@')[0],
-      businessType: pendingBusinessType || 'both',
-    };
-    setVendor(newVendor);
-    return newVendor;
-  }, [vendor, setVendor, pendingBusinessType]);
-
-  const registerVendor = useCallback((data) => {
-    const newVendor = {
-      id: generateId('vendor'),
-      ...data,
-      role: 'vendor',
-      businessType: pendingBusinessType || 'both',
-    };
-    setVendor(newVendor);
-    return newVendor;
-  }, [setVendor, pendingBusinessType]);
-
-  const enableVendorFromUser = useCallback((userData) => {
-    const source = userData || user;
-    if (!source) return null;
-    const newVendor = {
-      id: vendor?.id || `vendor-${source.id}`,
-      userId: source.id,
-      email: source.email,
-      ownerName: source.name,
-      phone: source.phone,
-      businessName: source.name || source.email?.split('@')[0] || 'My Business',
-      role: 'vendor',
-      businessType: pendingBusinessType || vendor?.businessType || 'both',
-    };
-    setVendor(newVendor);
-    return newVendor;
-  }, [user, vendor, pendingBusinessType, setVendor]);
-
-  const logout = useCallback(() => {
-    setUser(null);
+  const loginUser = useCallback(async (email, password) => {
+    const res = await api.post('/auth/login', { email, password });
+    const data = getData(res);
+    localStorage.setItem('access_token', data.accessToken);
+    setUser(data.user);
     setVendor(null);
-  }, [setUser, setVendor]);
+    return data.user;
+  }, []);
+
+  const signupUser = useCallback(async (formData) => {
+    const res = await api.post('/auth/register', formData);
+    const data = getData(res);
+    localStorage.setItem('access_token', data.accessToken);
+    setUser(data.user);
+    return data.user;
+  }, []);
+
+  const loginVendor = useCallback(async (email, password) => {
+    const res = await api.post('/auth/vendor/login', { email, password });
+    const data = getData(res);
+    localStorage.setItem('access_token', data.accessToken);
+    setVendor(data.user);
+    setUser(null);
+    return data.user;
+  }, []);
+
+  const registerVendor = useCallback(async (formData) => {
+    const res = await api.post('/auth/vendor/register', {
+      ...formData,
+      businessType: pendingBusinessType || 'both',
+    });
+    const data = getData(res);
+    localStorage.setItem('access_token', data.accessToken);
+    setVendor(data.user);
+    return data.user;
+  }, [pendingBusinessType]);
+
+  const enableVendorFromUser = useCallback(async () => {
+    const res = await api.post('/auth/vendor/enable', {
+      businessType: pendingBusinessType || 'both',
+    });
+    const data = getData(res);
+    setVendor(data);
+    return data;
+  }, [pendingBusinessType]);
+
+  const refreshVendor = useCallback(async () => {
+    const res = await api.get('/vendor/registration');
+    const data = getData(res);
+    if (data) setVendor(data);
+    return data;
+  }, []);
+
+  const setVendorState = useCallback((next) => {
+    setVendor(next);
+  }, []);
+
+  const logout = useCallback(async () => {
+    try {
+      await api.post('/auth/logout');
+    } finally {
+      localStorage.removeItem('access_token');
+      setUser(null);
+      setVendor(null);
+    }
+  }, []);
 
   const isAuthenticated = !!(user || vendor);
   const currentUser = user || vendor;
@@ -82,9 +112,10 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider value={{
-      user, vendor, currentUser, isAuthenticated, isVendor,
+      user, vendor, currentUser, isAuthenticated, isVendor, loading,
       businessType, setBusinessType, pendingBusinessType,
-      loginUser, signupUser, loginVendor, registerVendor, enableVendorFromUser, logout,
+      loginUser, signupUser, loginVendor, registerVendor, enableVendorFromUser,
+      refreshVendor, setVendor: setVendorState, logout,
     }}>
       {children}
     </AuthContext.Provider>

@@ -1,6 +1,5 @@
+import { useCmsContent } from '../../contexts';
 import { Link, useNavigate } from 'react-router-dom';
-import headerConfig from '../../json/header.json';
-import formsConfig from '../../json/forms.json';
 import { Icon } from '../../utils/iconResolver';
 import { useAuth } from '../../contexts/AuthContext';
 import { getSavedCredentials, saveCredentials } from '../../utils/credentials';
@@ -9,6 +8,8 @@ import Button from '../common/Button';
 import './VendorUserPanel.css';
 
 export default function VendorUserPanel({ isOpen, onClose }) {
+  const headerConfig = useCmsContent('header');
+  const formsConfig = useCmsContent('forms');
   const navigate = useNavigate();
   const { loginUser, isAuthenticated, user } = useAuth();
   const config = headerConfig.vendorPopup;

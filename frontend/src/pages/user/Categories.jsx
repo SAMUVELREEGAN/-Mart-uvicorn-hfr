@@ -1,6 +1,6 @@
+import { useCmsContent } from '../../contexts';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import catalogData from '../../json/catalog.json';
 import { useCategories } from '../../contexts/CategoryContext';
 import { Icon } from '../../utils/iconResolver';
 import CategoryItem from '../../components/cards/CategoryItem';
@@ -9,6 +9,7 @@ import EmptyState from '../../components/common/EmptyState';
 import './Categories.css';
 
 export default function Categories() {
+  const catalogData = useCmsContent('catalog');
   const config = catalogData.categoriesPage;
   const { productCategories, serviceCategories, getSubcategories } = useCategories();
   const navigate = useNavigate();

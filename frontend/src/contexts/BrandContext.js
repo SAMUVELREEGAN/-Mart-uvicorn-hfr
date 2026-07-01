@@ -1,32 +1,34 @@
-import { createContext, useContext, useCallback, useMemo } from 'react';
-import brandsData from '../json/brands.json';
-import { useLocalStorage } from '../hooks/useHelpers';
-import { generateId, parseList } from '../utils/helpers';
+import { createContext, useContext, useCallback, useMemo, useState, useEffect } from 'react';
+import api, { getData } from '../services/api';
+import { resolveMediaUrl } from '../utils/mediaUrl';
+import { useCmsContent } from './CmsContext';
 import { useAuth } from './AuthContext';
 
 const BrandContext = createContext(null);
 
-function normalizeBrand(data) {
-  return {
-    ...data,
-    photos: Array.isArray(data.photos) ? data.photos : parseList(data.photos),
-    youtubeLinks: Array.isArray(data.youtubeLinks) ? data.youtubeLinks : parseList(data.youtubeLinks),
-    socialMedia: typeof data.socialMedia === 'string' ? {} : (data.socialMedia || {}),
-    contact: data.contact || {},
-  };
-}
-
 export function BrandProvider({ children }) {
-  const [brands, setBrands] = useLocalStorage('mart_brands', brandsData.items);
+  const [brands, setBrands] = useState([]);
   const { vendor } = useAuth();
-  const pageConfig = brandsData.page;
+  const brandsData = useCmsContent('brands');
+  const pageConfig = brandsData.page || {};
 
-  const getBrand = useCallback((id) => brands.find((b) => b.id === id), [brands]);
+  useEffect(() => {
+    api.get('/brands').then((res) => {
+      const list = (getData(res) || []).map((b) => ({
+        ...b,
+        logo: resolveMediaUrl(b.logo),
+        coverBanner: resolveMediaUrl(b.coverBanner),
+      }));
+      setBrands(list);
+    }).catch(() => setBrands([]));
+  }, []);
+
+  const getBrand = useCallback((id) => brands.find((b) => b.id === Number(id) || b.id === id), [brands]);
 
   const getCarouselBrands = useCallback(() => brands.map((b) => ({
     id: b.id,
     name: b.name,
-    logo: b.logoPng || `https://placehold.co/120x120/ffffff/2563eb/png?text=${encodeURIComponent((b.name || 'B').split(' ')[0])}`,
+    logo: b.logo,
   })), [brands]);
 
   const getVendorBrands = useCallback(() => {
@@ -34,36 +36,25 @@ export function BrandProvider({ children }) {
     return brands.filter((b) => b.vendorId === vendor.id);
   }, [brands, vendor]);
 
-  const addBrand = useCallback((data) => {
-    const brand = normalizeBrand({
-      id: generateId('brand'),
-      ...data,
-      vendorId: vendor?.id,
-    });
+  const addBrand = useCallback(async (data) => {
+    const res = await api.post('/admin/brands', { ...data, vendorId: vendor?.id });
+    const brand = getData(res);
     setBrands((prev) => [...prev, brand]);
     return brand;
-  }, [vendor, setBrands]);
+  }, [vendor]);
 
-  const updateBrand = useCallback((id, data) => {
-    setBrands((prev) => prev.map((b) => {
-      if (b.id !== id) return b;
-      return normalizeBrand({ ...b, ...data });
-    }));
-  }, [setBrands]);
+  const updateBrand = useCallback(async (id, data) => {
+    await api.put(`/admin/brands/${id}`, data);
+    setBrands((prev) => prev.map((b) => (b.id === Number(id) ? { ...b, ...data } : b)));
+  }, []);
 
-  const deleteBrand = useCallback((id) => {
-    setBrands((prev) => prev.filter((b) => b.id !== id));
-  }, [setBrands]);
+  const deleteBrand = useCallback(async (id) => {
+    await api.delete(`/admin/brands/${id}`);
+    setBrands((prev) => prev.filter((b) => b.id !== Number(id)));
+  }, []);
 
   const value = useMemo(() => ({
-    brands,
-    pageConfig,
-    getBrand,
-    getCarouselBrands,
-    getVendorBrands,
-    addBrand,
-    updateBrand,
-    deleteBrand,
+    brands, pageConfig, getBrand, getCarouselBrands, getVendorBrands, addBrand, updateBrand, deleteBrand,
   }), [brands, pageConfig, getBrand, getCarouselBrands, getVendorBrands, addBrand, updateBrand, deleteBrand]);
 
   return <BrandContext.Provider value={value}>{children}</BrandContext.Provider>;

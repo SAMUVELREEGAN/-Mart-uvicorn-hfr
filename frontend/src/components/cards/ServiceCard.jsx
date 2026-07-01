@@ -1,10 +1,11 @@
+import { useCmsContent } from '../../contexts';
 import { Link } from 'react-router-dom';
 import Rating from '../common/Rating';
 import Card from '../common/Card';
 import { Icon } from '../../utils/iconResolver';
 import { truncateText, formatPrice } from '../../utils/helpers';
+import { resolveMediaUrl } from '../../utils/mediaUrl';
 import { useCategories } from '../../contexts/CategoryContext';
-import cardConfig from '../../json/icons.json';
 import './ServiceCard.css';
 
 function formatCategoryLabel(categoryId) {
@@ -16,6 +17,7 @@ function formatCategoryLabel(categoryId) {
 }
 
 export default function ServiceCard({ service, onClick }) {
+  const cardConfig = useCmsContent('icons');
   const config = cardConfig.serviceCard;
   const { getCategoryById } = useCategories();
   const servicePath = `/services/${service.id}`;
@@ -44,7 +46,7 @@ export default function ServiceCard({ service, onClick }) {
       >
         <Link to={servicePath} className="service-card__media" tabIndex={-1} aria-hidden="true">
           <img
-            src={service.image}
+            src={resolveMediaUrl(service.image)}
             alt=""
             className="service-card__image"
             loading="lazy"

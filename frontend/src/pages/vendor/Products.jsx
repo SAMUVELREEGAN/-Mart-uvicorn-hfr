@@ -1,17 +1,18 @@
+import { useCmsContent } from '../../contexts';
 import { useState } from 'react';
 import { useVendor } from '../../contexts/VendorContext';
 import { useProducts } from '../../contexts/ProductContext';
-import formsConfig from '../../json/forms.json';
-import buttonsConfig from '../../json/buttons.json';
 import Button from '../../components/common/Button';
 import Modal from '../../components/modal/Modal';
 import FormBuilder from '../../components/forms/FormBuilder';
 import ProductCard from '../../components/cards/ProductCard';
 import EmptyState from '../../components/common/EmptyState';
-import cardConfig from '../../json/icons.json';
 import './VendorPages.css';
 
 export default function VendorProducts({ embedded = false }) {
+  const formsConfig = useCmsContent('forms');
+  const buttonsConfig = useCmsContent('buttons');
+  const cardConfig = useCmsContent('icons');
   const { vendorProducts } = useVendor();
   const { addProduct, updateProduct, deleteProduct } = useProducts();
   const [modalOpen, setModalOpen] = useState(false);

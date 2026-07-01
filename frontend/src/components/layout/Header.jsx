@@ -1,6 +1,6 @@
+import { useCmsContent } from '../../contexts';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import headerConfig from '../../json/header.json';
 import { Icon } from '../../utils/iconResolver';
 import Search from '../common/Search';
 import Button from '../common/Button';
@@ -11,6 +11,7 @@ import { useLocation } from '../../contexts/LocationContext';
 import './Header.css';
 
 export default function Header() {
+  const headerConfig = useCmsContent('header');
   const navigate = useNavigate();
   const { isAuthenticated, isVendor } = useAuth();
   const { selectedLocation } = useLocation();

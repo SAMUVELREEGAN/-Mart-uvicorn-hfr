@@ -1,53 +1,43 @@
-import { createContext, useContext, useCallback, useMemo } from 'react';
-import productsData from '../json/products.json';
-import { useLocalStorage } from '../hooks/useHelpers';
-import { generateId, parseList, parseSpecifications } from '../utils/helpers';
+import { createContext, useContext, useCallback, useState, useEffect, useMemo } from 'react';
+import api, { getData } from '../services/api';
 import { useAuth } from './AuthContext';
 
 const ProductContext = createContext(null);
 
 export function ProductProvider({ children }) {
-  const [products, setProducts] = useLocalStorage('mart_products', productsData.items);
+  const [products, setProducts] = useState([]);
   const { vendor } = useAuth();
 
-  const addProduct = useCallback((data) => {
-    const product = {
-      id: generateId('prod'),
-      ...data,
-      price: Number(data.price),
-      gallery: parseList(data.gallery),
-      youtubeLinks: parseList(data.youtubeLinks),
-      specifications: typeof data.specifications === 'string' ? parseSpecifications(data.specifications) : data.specifications,
-      vendorId: vendor?.id,
-      vendorName: vendor?.businessName || vendor?.ownerName,
-      location: vendor?.address || data.location,
-      rating: 0,
-      reviewCount: 0,
-      createdAt: new Date().toISOString(),
-    };
+  const loadProducts = useCallback(async () => {
+    try {
+      const res = await api.get('/products');
+      setProducts(getData(res) || []);
+    } catch {
+      setProducts([]);
+    }
+  }, []);
+
+  useEffect(() => { loadProducts(); }, [loadProducts]);
+
+  const addProduct = useCallback(async (data) => {
+    const res = await api.post('/admin/products', { ...data, vendorId: vendor?.id, vendorName: vendor?.businessName });
+    const product = getData(res);
     setProducts((prev) => [...prev, product]);
     return product;
-  }, [vendor, setProducts]);
+  }, [vendor]);
 
-  const updateProduct = useCallback((id, data) => {
-    setProducts((prev) => prev.map((p) => {
-      if (p.id !== id) return p;
-      return {
-        ...p,
-        ...data,
-        price: data.price !== undefined ? Number(data.price) : p.price,
-        gallery: data.gallery ? parseList(data.gallery) : p.gallery,
-        youtubeLinks: data.youtubeLinks ? parseList(data.youtubeLinks) : p.youtubeLinks,
-        specifications: data.specifications ? (typeof data.specifications === 'string' ? parseSpecifications(data.specifications) : data.specifications) : p.specifications,
-      };
-    }));
-  }, [setProducts]);
+  const updateProduct = useCallback(async (id, data) => {
+    await api.put(`/admin/products/${id}`, data);
+    setProducts((prev) => prev.map((p) => (p.id === Number(id) ? { ...p, ...data, id: p.id } : p)));
+    await loadProducts();
+  }, [loadProducts]);
 
-  const deleteProduct = useCallback((id) => {
-    setProducts((prev) => prev.filter((p) => p.id !== id));
-  }, [setProducts]);
+  const deleteProduct = useCallback(async (id) => {
+    await api.delete(`/admin/products/${id}`);
+    setProducts((prev) => prev.filter((p) => p.id !== Number(id)));
+  }, []);
 
-  const getProduct = useCallback((id) => products.find((p) => p.id === id), [products]);
+  const getProduct = useCallback((id) => products.find((p) => p.id === Number(id) || p.id === id), [products]);
 
   const getVendorProducts = useCallback(() => {
     if (!vendor) return [];
@@ -56,7 +46,7 @@ export function ProductProvider({ children }) {
 
   const searchProducts = useCallback((query, category, locationId) => {
     return products.filter((p) => {
-      const matchesQuery = !query || p.name.toLowerCase().includes(query.toLowerCase()) || p.description.toLowerCase().includes(query.toLowerCase());
+      const matchesQuery = !query || p.name.toLowerCase().includes(query.toLowerCase()) || (p.description || '').toLowerCase().includes(query.toLowerCase());
       const matchesCategory = !category || p.category === category;
       const matchesLocation = !locationId || p.locationId === locationId;
       return matchesQuery && matchesCategory && matchesLocation;
@@ -64,8 +54,8 @@ export function ProductProvider({ children }) {
   }, [products]);
 
   const value = useMemo(() => ({
-    products, addProduct, updateProduct, deleteProduct, getProduct, getVendorProducts, searchProducts,
-  }), [products, addProduct, updateProduct, deleteProduct, getProduct, getVendorProducts, searchProducts]);
+    products, addProduct, updateProduct, deleteProduct, getProduct, getVendorProducts, searchProducts, loadProducts,
+  }), [products, addProduct, updateProduct, deleteProduct, getProduct, getVendorProducts, searchProducts, loadProducts]);
 
   return <ProductContext.Provider value={value}>{children}</ProductContext.Provider>;
 }

@@ -23,8 +23,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--cat-size, 56px);
-  height: var(--cat-size, 56px);
+  width: var(--cat-size, 80px);
+  height: var(--cat-size, 80px);
   border-radius: var(--cat-radius, 14px);
   border: var(--cat-border-width, 1.5px) solid var(--cat-border-color, #94a3b8);
   background: #ffffff;
@@ -47,11 +47,15 @@
 }
 
 .category-item__icon {
-  font-size: var(--cat-icon-size, 1.3125rem);
+  font-size: var(--cat-icon-size, 2.5rem);
+  flex-shrink: 0;
 }
 
-.category-item--circle .category-item__icon {
-  font-size: var(--cat-icon-size-circle, var(--cat-icon-size, 1.25rem));
+.category-item__icon-img {
+  width: min(var(--cat-icon-img-size, 3.25rem), calc(var(--cat-size, 80px) - 14px));
+  height: min(var(--cat-icon-img-size, 3.25rem), calc(var(--cat-size, 80px) - 14px));
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .category-item__name {
@@ -84,6 +88,17 @@
   font-weight: 700;
 }
 
+@media (max-width: 992px) and (min-width: 577px) {
+  .category-item__icon {
+    font-size: var(--cat-icon-size-tablet, 2.375rem);
+  }
+
+  .category-item__icon-img {
+    width: min(var(--cat-icon-img-size-tablet, 3rem), calc(var(--cat-size, 80px) - 14px));
+    height: min(var(--cat-icon-img-size-tablet, 3rem), calc(var(--cat-size, 80px) - 14px));
+  }
+}
+
 @media (max-width: 576px) {
   .category-item {
     min-width: var(--cat-min-width-mobile, 88px);
@@ -91,16 +106,17 @@
   }
 
   .category-item__icon-wrap {
-    width: var(--cat-size-mobile, 68px);
-    height: var(--cat-size-mobile, 68px);
+    width: var(--cat-size-mobile, 72px);
+    height: var(--cat-size-mobile, 72px);
   }
 
   .category-item__icon {
-    font-size: calc(1.3125rem * var(--cat-icon-scale-mobile, 1.15));
+    font-size: var(--cat-icon-size-mobile, 2.25rem);
   }
 
-  .category-item--circle .category-item__icon {
-    font-size: calc(1.25rem * var(--cat-icon-scale-mobile, 1.12));
+  .category-item__icon-img {
+    width: min(var(--cat-icon-img-size-mobile, 2.875rem), calc(var(--cat-size-mobile, 72px) - 12px));
+    height: min(var(--cat-icon-img-size-mobile, 2.875rem), calc(var(--cat-size-mobile, 72px) - 12px));
   }
 
   .category-item__name {

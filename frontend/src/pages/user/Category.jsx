@@ -1,3 +1,4 @@
+import { useCmsContent } from '../../contexts';
 import { useMemo, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useCategories } from '../../contexts/CategoryContext';
@@ -5,16 +6,19 @@ import { useProducts } from '../../contexts/ProductContext';
 import { useServices } from '../../contexts/ServiceContext';
 import { useSimulatedLoading } from '../../hooks/useHelpers';
 import { Icon } from '../../utils/iconResolver';
+import { resolveMediaUrl, isUploadedMedia } from '../../utils/mediaUrl';
 import ProductCard from '../../components/cards/ProductCard';
 import ServiceCard from '../../components/cards/ServiceCard';
-import SubCategoryCard from '../../components/cards/SubCategoryCard';
+import CategoryItem from '../../components/cards/CategoryItem';
 import CardCarousel from '../../components/common/CardCarousel';
 import EmptyState from '../../components/common/EmptyState';
+import HomeSection from '../../components/layout/HomeSection';
 import { SkeletonCard, SkeletonCategoryList } from '../../components/skeleton/Skeleton';
-import cardConfig from '../../json/icons.json';
 import './Category.css';
 
 export default function Category() {
+  const cardConfig = useCmsContent('icons');
+  const categoriesData = useCmsContent('categories');
   const { id } = useParams();
   const [searchParams] = useSearchParams();
   const typeParam = searchParams.get('type') || 'product';
@@ -27,21 +31,42 @@ export default function Category() {
     resolveCategoryView,
     getCategoriesByIds,
     categoryPage,
+    productCategories,
   } = useCategories();
   const { products } = useProducts();
   const { services } = useServices();
 
+  const iconsConfig = categoriesData.categoryIcons || {};
+  const categoryGapStyle = {
+    '--category-grid-gap': iconsConfig.gridGap || '1.5rem',
+    '--category-grid-gap-mobile': iconsConfig.mobileGridGap || '1.25rem',
+  };
+
   const category = getCategoryById(id);
   const view = resolveCategoryView(id, typeParam);
-  const isService = view.itemType === 'service';
+  const isBoth = view.itemType === 'both';
+  const isService = !isBoth && view.itemType === 'service';
 
-  const childCategories = getCategoriesByIds(view.categoryIds, view.itemType);
+  const getCategoryType = (catId) => (
+    productCategories.some((c) => c.id === catId) ? 'product' : 'service'
+  );
+
+  const listCategoryType = isBoth ? 'product' : view.itemType;
+
+  const childCategories = getCategoriesByIds(view.categoryIds, isBoth ? 'both' : view.itemType);
   const showChildCategories = view.isAggregate && childCategories.length > 0;
 
   const effectiveCategoryId = activeChildCategory
     || (view.categoryIds.length === 1 ? view.categoryIds[0] : null);
 
-  const subcategories = effectiveCategoryId ? getSubcategories(effectiveCategoryId) : [];
+  let subcategories = effectiveCategoryId ? getSubcategories(effectiveCategoryId) : [];
+  if (view.subcategoryIds?.length) {
+    subcategories = subcategories.filter((s) => view.subcategoryIds.includes(s.slug || s.id));
+  }
+
+  const subcategoryType = effectiveCategoryId
+    ? getCategoryType(effectiveCategoryId)
+    : listCategoryType;
 
   const categoryName = category?.name || category?.title || id;
   const description = category?.description
@@ -49,17 +74,34 @@ export default function Category() {
   const bannerImage = category?.bannerImage || category?.image || categoryPage.defaultBanner;
 
   const allItems = useMemo(() => {
+    const filterIds = activeChildCategory ? [activeChildCategory] : view.categoryIds;
+    const matchItem = (item) => filterIds.includes(item.category)
+      && (!view.subcategoryIds?.length || !item.subcategory || view.subcategoryIds.includes(item.subcategory));
+
+    if (isBoth) {
+      return [
+        ...products.filter(matchItem),
+        ...services.filter(matchItem),
+      ];
+    }
     const pool = isService ? services : products;
-    const filterIds = activeChildCategory
-      ? [activeChildCategory]
-      : view.categoryIds;
-    return pool.filter((item) => filterIds.includes(item.category));
-  }, [isService, activeChildCategory, view.categoryIds, products, services]);
+    return pool.filter(matchItem);
+  }, [isBoth, isService, activeChildCategory, view.categoryIds, view.subcategoryIds, products, services]);
 
   const items = useMemo(() => {
     if (!activeSubcategory) return allItems;
     return allItems.filter((item) => item.subcategory === activeSubcategory);
   }, [allItems, activeSubcategory]);
+
+  const productItems = useMemo(
+    () => items.filter((item) => products.some((p) => p.id === item.id)),
+    [items, products],
+  );
+
+  const serviceItems = useMemo(
+    () => items.filter((item) => services.some((s) => s.id === item.id)),
+    [items, services],
+  );
 
   const handleChildCategory = (childId) => {
     setActiveChildCategory(childId);
@@ -70,6 +112,20 @@ export default function Category() {
     setActiveChildCategory(null);
     setActiveSubcategory(null);
   };
+
+  const allCategoryItem = {
+    id: 'all',
+    name: categoryPage.allLabel,
+    icon: categoryPage.allIcon,
+    color: category?.color || '#2563eb',
+  };
+
+  const toCategoryShape = (sub) => ({
+    id: sub.slug || sub.id,
+    name: sub.name,
+    icon: sub.icon,
+    color: sub.color || category?.color,
+  });
 
   if (loading) {
     return (
@@ -85,6 +141,22 @@ export default function Category() {
     );
   }
 
+  const renderProductCarousel = (list) => (
+    <CardCarousel configKey="products" variant="products">
+      {list.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))}
+    </CardCarousel>
+  );
+
+  const renderServiceCarousel = (list) => (
+    <CardCarousel configKey="services" variant="services">
+      {list.map((service) => (
+        <ServiceCard key={service.id} service={service} />
+      ))}
+    </CardCarousel>
+  );
+
   return (
     <div className="category-page">
       <section className="category-page__banner" style={{ backgroundImage: `url(${bannerImage})` }}>
@@ -95,7 +167,11 @@ export default function Category() {
               className="category-page__banner-icon"
               style={{ background: `${category.color || '#2563eb'}22`, color: category.color }}
             >
-              <Icon name={category.icon} />
+              {isUploadedMedia(category.icon) ? (
+                <img src={resolveMediaUrl(category.icon)} alt="" className="category-page__banner-icon-img" />
+              ) : (
+                <Icon name={category.icon} />
+              )}
             </div>
           )}
           <h1 className="category-page__title">{categoryName}</h1>
@@ -104,68 +180,78 @@ export default function Category() {
       </section>
 
       {showChildCategories && (
-        <section className="category-page__subcategories">
-          <h2 className="category-page__section-title">{categoryPage.childCategoriesTitle}</h2>
-          <CardCarousel configKey="subcategories" variant="subcategories" className="category-page__sub-list">
-            <SubCategoryCard
-              subcategory={{ id: 'all', name: categoryPage.allLabel, icon: categoryPage.allIcon, color: category?.color || '#2563eb' }}
-              categoryType={view.itemType}
+        <HomeSection title={categoryPage.childCategoriesTitle} band="subtle">
+          <CardCarousel configKey="categories" variant="categories" style={categoryGapStyle}>
+            <CategoryItem
+              category={allCategoryItem}
+              type={listCategoryType}
               active={!activeChildCategory}
               onClick={handleShowAllChildren}
             />
             {childCategories.map((child) => (
-              <SubCategoryCard
+              <CategoryItem
                 key={child.id}
-                subcategory={child}
-                categoryType={view.itemType}
+                category={child}
+                type={isBoth ? getCategoryType(child.id) : view.itemType}
                 active={activeChildCategory === child.id}
                 onClick={() => handleChildCategory(child.id)}
               />
             ))}
           </CardCarousel>
-        </section>
+        </HomeSection>
       )}
 
       {subcategories.length > 0 && (
-        <section className="category-page__subcategories">
-          <h2 className="category-page__section-title">{categoryPage.subcategoriesTitle}</h2>
-          <CardCarousel configKey="subcategories" variant="subcategories" className="category-page__sub-list">
-            <SubCategoryCard
-              subcategory={{ id: 'all', name: categoryPage.allLabel, icon: categoryPage.allIcon, color: category?.color || '#2563eb' }}
-              categoryType={view.itemType}
+        <HomeSection title={categoryPage.subcategoriesTitle} band="default">
+          <CardCarousel configKey="categories" variant="categories" style={categoryGapStyle}>
+            <CategoryItem
+              category={allCategoryItem}
+              type={subcategoryType}
               active={!activeSubcategory}
               onClick={() => setActiveSubcategory(null)}
             />
             {subcategories.map((sub) => (
-              <SubCategoryCard
+              <CategoryItem
                 key={sub.id}
-                subcategory={sub}
-                categoryType={view.itemType}
-                active={activeSubcategory === sub.id}
-                onClick={() => setActiveSubcategory(sub.id)}
+                category={toCategoryShape(sub)}
+                type={subcategoryType}
+                active={activeSubcategory === (sub.slug || sub.id)}
+                onClick={() => setActiveSubcategory(sub.slug || sub.id)}
               />
             ))}
           </CardCarousel>
-        </section>
+        </HomeSection>
       )}
 
-      <section className="category-page__items">
-        <h2 className="category-page__section-title">
-          {isService ? categoryPage.servicesTitle : categoryPage.productsTitle}
-          <span className="category-page__count">({items.length})</span>
-        </h2>
-        {items.length === 0 ? (
-          <EmptyState config={isService ? cardConfig.emptyState.services : cardConfig.emptyState.products} />
-        ) : (
-          <CardCarousel configKey={isService ? 'services' : 'products'} variant={isService ? 'services' : 'products'}>
-            {items.map((item) =>
-              isService
-                ? <ServiceCard key={item.id} service={item} />
-                : <ProductCard key={item.id} product={item} />
+      {isBoth ? (
+        <>
+          <HomeSection title={categoryPage.productsTitle} band="default">
+            {productItems.length === 0 ? (
+              <EmptyState config={cardConfig.emptyState?.products} />
+            ) : (
+              renderProductCarousel(productItems)
             )}
-          </CardCarousel>
-        )}
-      </section>
+          </HomeSection>
+          <HomeSection title={categoryPage.servicesTitle} band="subtle">
+            {serviceItems.length === 0 ? (
+              <EmptyState config={cardConfig.emptyState?.services} />
+            ) : (
+              renderServiceCarousel(serviceItems)
+            )}
+          </HomeSection>
+        </>
+      ) : (
+        <HomeSection
+          title={isService ? categoryPage.servicesTitle : categoryPage.productsTitle}
+          band="default"
+        >
+          {items.length === 0 ? (
+            <EmptyState config={isService ? cardConfig.emptyState?.services : cardConfig.emptyState?.products} />
+          ) : (
+            isService ? renderServiceCarousel(items) : renderProductCarousel(items)
+          )}
+        </HomeSection>
+      )}
     </div>
   );
 }

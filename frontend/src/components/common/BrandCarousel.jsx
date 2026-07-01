@@ -1,11 +1,11 @@
+import { useCmsContent } from '../../contexts';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import heroConfig from '../../json/hero.json';
-import brandsData from '../../json/brands.json';
 import { useCarouselMode } from '../../hooks/useCarousel';
 import './BrandCarousel.css';
 
 export default function BrandCarousel({ brands, onBrandClick, sectionConfig = {} }) {
+  const brandsData = useCmsContent('brands');
   const { config } = useCarouselMode('brands');
   const [paused, setPaused] = useState(false);
   const navigate = useNavigate();
@@ -70,7 +70,8 @@ export default function BrandCarousel({ brands, onBrandClick, sectionConfig = {}
 }
 
 export function BrandsSection({ title, subtitle, brands, sectionConfig }) {
-  const bg = sectionConfig?.background || heroConfig.homeContent.brands.section?.background;
+  const heroConfig = useCmsContent('hero');
+  const bg = sectionConfig?.background || heroConfig.homeContent?.brands?.section?.background;
 
   return (
     <section className="brands-section">

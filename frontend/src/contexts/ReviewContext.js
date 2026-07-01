@@ -1,5 +1,4 @@
 import { createContext, useContext, useCallback, useMemo } from 'react';
-import reviewsData from '../json/reviews.json';
 import { useLocalStorage } from '../hooks/useHelpers';
 import { generateId, getAverageRating } from '../utils/helpers';
 import { useAuth } from './AuthContext';
@@ -9,7 +8,7 @@ import { useServices } from './ServiceContext';
 const ReviewContext = createContext(null);
 
 export function ReviewProvider({ children }) {
-  const [reviews, setReviews] = useLocalStorage('mart_reviews', reviewsData.items);
+  const [reviews, setReviews] = useLocalStorage('mart_reviews', []);
   const { user } = useAuth();
   const { products, updateProduct } = useProducts();
   const { services, updateService } = useServices();

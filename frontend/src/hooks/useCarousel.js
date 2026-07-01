@@ -1,7 +1,8 @@
+import { useCmsContent } from '../contexts';
 import { useState, useEffect } from 'react';
-import carouselConfig from '../json/icons.json';
 
 export function useCarouselMode(configKey) {
+  const carouselConfig = useCmsContent('icons');
   const config = carouselConfig.carousels?.[configKey] || { carousel: false };
   const [isCarousel, setIsCarousel] = useState(false);
 

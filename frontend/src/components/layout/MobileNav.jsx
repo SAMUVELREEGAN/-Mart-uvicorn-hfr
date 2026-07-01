@@ -1,5 +1,5 @@
+import { useCmsContent } from '../../contexts';
 import { useNavigate } from 'react-router-dom';
-import headerConfig from '../../json/header.json';
 import { Icon } from '../../utils/iconResolver';
 import { useAuth } from '../../contexts/AuthContext';
 import Select from '../common/Select';
@@ -7,6 +7,7 @@ import { useLocation } from '../../contexts/LocationContext';
 import './MobileNav.css';
 
 export default function MobileNav({ isOpen, onClose }) {
+  const headerConfig = useCmsContent('header');
   const navigate = useNavigate();
   const { isAuthenticated, logout } = useAuth();
   const { locations, selectedLocation, selectLocation } = useLocation();

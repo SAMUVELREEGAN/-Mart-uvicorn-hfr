@@ -1,12 +1,14 @@
+import { useCmsContent } from '../../contexts';
 import { Link } from 'react-router-dom';
 import Rating from '../common/Rating';
 import Badge from '../common/Badge';
 import Card from '../common/Card';
-import cardConfig from '../../json/icons.json';
 import { formatPrice } from '../../utils/helpers';
+import { resolveMediaUrl } from '../../utils/mediaUrl';
 import './ProductCard.css';
 
 export default function ProductCard({ product, onClick }) {
+  const cardConfig = useCmsContent('icons');
   const config = cardConfig.productCard;
   const hasPrice = product.price != null && product.price !== '' && !Number.isNaN(Number(product.price));
   const hasRating = product.rating != null && product.rating > 0;
@@ -18,7 +20,7 @@ export default function ProductCard({ product, onClick }) {
           className="product-card__image-wrap"
           style={{ aspectRatio: config.imageAspectRatio || '4 / 3' }}
         >
-          <img src={product.image} alt={product.name} className="product-card__image" loading="lazy" />
+          <img src={resolveMediaUrl(product.image)} alt={product.name} className="product-card__image" loading="lazy" />
           {product.availability && (
             <Badge
               label={product.availability.replace('_', ' ')}

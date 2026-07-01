@@ -1,25 +1,27 @@
+import { useCmsContent } from '../../contexts';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import sidebarConfig from '../../json/sidebar.json';
 import { Icon } from '../../utils/iconResolver';
 import { useAuth } from '../../contexts/AuthContext';
 import Button from '../../components/common/Button';
 import Card from '../../components/common/Card';
 import Modal from '../../components/modal/Modal';
+import { getVendorPostAuthPath } from '../../utils/vendorRedirect';
 import './BusinessTypeSelect.css';
 
 export default function BusinessTypeSelect() {
+  const sidebarConfig = useCmsContent('sidebar');
   const [selected, setSelected] = useState(null);
   const [accountModalOpen, setAccountModalOpen] = useState(false);
-  const { setBusinessType, isAuthenticated, isVendor, user, logout, enableVendorFromUser } = useAuth();
+  const { setBusinessType, isAuthenticated, isVendor, vendor, user, logout, enableVendorFromUser } = useAuth();
   const navigate = useNavigate();
   const config = sidebarConfig.businessTypes;
   const onboarding = sidebarConfig.onboarding;
   const dialog = onboarding.accountDialog;
   const routes = onboarding.routes;
 
-  const goToDashboard = () => {
-    navigate(routes.dashboard);
+  const goToRegistration = (v) => {
+    navigate(getVendorPostAuthPath(v || vendor));
   };
 
   const handleContinue = () => {
@@ -27,7 +29,7 @@ export default function BusinessTypeSelect() {
     setBusinessType(selected);
 
     if (isVendor) {
-      goToDashboard();
+      goToRegistration();
       return;
     }
 
@@ -39,10 +41,10 @@ export default function BusinessTypeSelect() {
     navigate(routes.auth);
   };
 
-  const handleAccountContinue = () => {
-    enableVendorFromUser(user);
+  const handleAccountContinue = async () => {
+    const v = await enableVendorFromUser();
     setAccountModalOpen(false);
-    goToDashboard();
+    goToRegistration(v);
   };
 
   const handleLoginAnother = () => {

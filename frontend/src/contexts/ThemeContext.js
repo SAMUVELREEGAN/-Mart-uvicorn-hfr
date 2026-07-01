@@ -1,27 +1,30 @@
 import { createContext, useContext, useEffect } from 'react';
-import themeData from '../json/theme.json';
+import { useCmsContent } from './CmsContext';
 
 const ThemeContext = createContext(null);
 
 export function ThemeProvider({ children }) {
+  const themeData = useCmsContent('theme');
+
   useEffect(() => {
+    if (!themeData?.colors) return;
     const root = document.documentElement;
-    Object.entries(themeData.colors).forEach(([key, value]) => {
+    Object.entries(themeData.colors || {}).forEach(([key, value]) => {
       root.style.setProperty(`--color-${key}`, value);
     });
-    Object.entries(themeData.fonts).forEach(([key, value]) => {
+    Object.entries(themeData.fonts || {}).forEach(([key, value]) => {
       root.style.setProperty(`--font-${key}`, value);
     });
-    Object.entries(themeData.spacing).forEach(([key, value]) => {
+    Object.entries(themeData.spacing || {}).forEach(([key, value]) => {
       root.style.setProperty(`--spacing-${key}`, value);
     });
-    Object.entries(themeData.radius).forEach(([key, value]) => {
+    Object.entries(themeData.radius || {}).forEach(([key, value]) => {
       root.style.setProperty(`--radius-${key}`, value);
     });
-    Object.entries(themeData.shadows).forEach(([key, value]) => {
+    Object.entries(themeData.shadows || {}).forEach(([key, value]) => {
       root.style.setProperty(`--shadow-${key}`, value);
     });
-    Object.entries(themeData.transitions).forEach(([key, value]) => {
+    Object.entries(themeData.transitions || {}).forEach(([key, value]) => {
       root.style.setProperty(`--transition-${key}`, value);
     });
     if (themeData.mobile) {
@@ -34,7 +37,7 @@ export function ThemeProvider({ children }) {
         root.style.setProperty(`--desktop-${key}`, value);
       });
     }
-  }, []);
+  }, [themeData]);
 
   return (
     <ThemeContext.Provider value={{ theme: themeData }}>

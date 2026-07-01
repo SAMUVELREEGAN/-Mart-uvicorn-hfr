@@ -1,10 +1,11 @@
+import { useCmsContent } from '../../contexts';
 import { useState, useEffect } from 'react';
-import headerConfig from '../../json/header.json';
 import { useLocation } from '../../contexts/LocationContext';
 import Modal from '../modal/Modal';
 import LocationMap from './LocationMap';
 
 export default function LocationPickerModal({ isOpen, onClose }) {
+  const headerConfig = useCmsContent('header');
   const { selectedLocation } = useLocation();
   const [pendingLocation, setPendingLocation] = useState(selectedLocation);
   const modalConfig = headerConfig.location.modal || {};

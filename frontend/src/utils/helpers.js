@@ -1,6 +1,7 @@
-import validations from '../json/validations.json';
+import { getCmsValidations } from './cmsRegistry';
 
 export function validateField(key, value, allValues = {}) {
+  const validations = getCmsValidations();
   const rules = validations[key];
   const errors = [];
 
@@ -23,11 +24,12 @@ export function validateField(key, value, allValues = {}) {
 }
 
 export function validateForm(fields, values) {
+  const validations = getCmsValidations();
   const errors = {};
   fields.forEach((field) => {
     const fieldErrors = [];
     if (field.required && (!values[field.key] || values[field.key] === '')) {
-      fieldErrors.push(validations.required.message);
+      fieldErrors.push(validations.required?.message || 'This field is required');
     }
     const ruleErrors = validateField(field.key, values[field.key], values);
     if (ruleErrors.length) fieldErrors.push(...ruleErrors);

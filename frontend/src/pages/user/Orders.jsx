@@ -1,11 +1,12 @@
+import { useCmsContent } from '../../contexts';
 import { useLocalStorage } from '../../hooks/useHelpers';
 import EmptyState from '../../components/common/EmptyState';
 import Card from '../../components/common/Card';
 import { formatPrice } from '../../utils/helpers';
-import cardConfig from '../../json/icons.json';
 import './Profile.css';
 
 export default function Orders() {
+  const cardConfig = useCmsContent('icons');
   const [orders] = useLocalStorage('mart_orders', []);
 
   return (

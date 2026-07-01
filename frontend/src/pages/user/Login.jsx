@@ -1,21 +1,26 @@
+import { useCmsContent } from '../../contexts';
 import { Link, useNavigate } from 'react-router-dom';
-import formsConfig from '../../json/forms.json';
-import dashboardsConfig from '../../json/dashboards.json';
 import FormBuilder from '../../components/forms/FormBuilder';
 import { useAuth } from '../../contexts/AuthContext';
 import { saveCredentials } from '../../utils/credentials';
 import './Auth.css';
 
 export default function Login() {
+  const formsConfig = useCmsContent('forms');
+  const dashboardsConfig = useCmsContent('dashboards');
   const { loginUser } = useAuth();
   const navigate = useNavigate();
   const authConfig = formsConfig.auth.login;
   const dashboardHome = dashboardsConfig.user.routes.home;
 
-  const handleSubmit = (values) => {
-    loginUser(values.email, values.password);
-    saveCredentials(values.email, values.password);
-    navigate(dashboardHome);
+  const handleSubmit = async (values) => {
+    try {
+      await loginUser(values.email, values.password);
+      saveCredentials(values.email, values.password);
+      navigate(dashboardHome);
+    } catch (err) {
+      alert(err.response?.data?.message || 'Login failed');
+    }
   };
 
   return (

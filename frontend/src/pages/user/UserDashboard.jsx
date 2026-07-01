@@ -1,10 +1,11 @@
+import { useCmsContent } from '../../contexts';
 import { useNavigate } from 'react-router-dom';
-import dashboardsConfig from '../../json/dashboards.json';
 import { useAuth } from '../../contexts/AuthContext';
 import DashboardSectionGrid from '../../components/common/DashboardSectionGrid';
 import './UserDashboard.css';
 
 export default function UserDashboard({ pageConfig }) {
+  const dashboardsConfig = useCmsContent('dashboards');
   const config = pageConfig || dashboardsConfig.user;
   const { user, logout } = useAuth();
   const navigate = useNavigate();

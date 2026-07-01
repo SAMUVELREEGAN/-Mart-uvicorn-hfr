@@ -1,6 +1,5 @@
+import { useCmsContent } from '../../contexts';
 import { Link } from 'react-router-dom';
-import heroConfig from '../../json/hero.json';
-import buttonsConfig from '../../json/buttons.json';
 import { Icon } from '../../utils/iconResolver';
 import './HomeSection.css';
 
@@ -14,6 +13,8 @@ export default function HomeSection({
   fullWidth = false,
   id,
 }) {
+  const heroConfig = useCmsContent('hero');
+  const buttonsConfig = useCmsContent('buttons');
   const bandConfig = heroConfig.homeLayout?.bands?.[band] || {};
 
   return (

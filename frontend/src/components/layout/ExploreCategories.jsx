@@ -1,11 +1,12 @@
+import { useCmsContent } from '../../contexts';
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useCarouselMode } from '../../hooks/useCarousel';
-import categoriesData from '../../json/categories.json';
 import { Icon } from '../../utils/iconResolver';
 import HighlightCard from '../cards/HighlightCard';
 import './ExploreCategories.css';
 
 export default function ExploreCategories({ categories, title, subtitle }) {
+  const categoriesData = useCmsContent('categories');
   const { isCarousel, config } = useCarouselMode('highlights');
   const exploreLayout = categoriesData.exploreCategories || {};
   const navConfig = exploreLayout.navigation || {};

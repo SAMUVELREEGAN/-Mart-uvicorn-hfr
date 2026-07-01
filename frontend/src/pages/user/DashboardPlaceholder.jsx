@@ -1,9 +1,10 @@
+import { useCmsContent } from '../../contexts';
 import { Link } from 'react-router-dom';
-import dashboardsConfig from '../../json/dashboards.json';
 import Button from '../../components/common/Button';
 import './UserDashboard.css';
 
 export default function DashboardPlaceholder({ sectionId }) {
+  const dashboardsConfig = useCmsContent('dashboards');
   const section = dashboardsConfig.user.sections.find((s) => s.id === sectionId);
   const config = dashboardsConfig.user;
 

@@ -1,10 +1,11 @@
+import { useCmsContent } from '../contexts';
 import { Outlet, NavLink } from 'react-router-dom';
-import dashboardsConfig from '../json/dashboards.json';
 import { Icon } from '../utils/iconResolver';
 import { useAuth } from '../contexts/AuthContext';
 import './VendorLayout.css';
 
 export default function VendorLayout() {
+  const dashboardsConfig = useCmsContent('dashboards');
   const { businessType } = useAuth();
   const config = dashboardsConfig.vendor;
 

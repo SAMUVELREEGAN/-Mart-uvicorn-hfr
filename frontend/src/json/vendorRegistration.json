@@ -1,0 +1,151 @@
+{
+  "ui": {
+    "pageTitle": "Vendor Registration",
+    "pageSubtitle": "Complete your profile to start selling on MartPlace",
+    "stepProgress": "Step {current} of {total}",
+    "buttons": {
+      "back": { "label": "Back", "icon": "FaArrowLeft" },
+      "next": { "label": "Continue", "icon": "FaArrowRight" },
+      "submit": { "label": "Submit Application", "icon": "FaPaperPlane" },
+      "save": { "label": "Save & Continue", "icon": "FaSave" }
+    },
+    "pendingApproval": {
+      "title": "Waiting for Admin Approval",
+      "message": "Your vendor application has been submitted successfully. Our team will review your details and notify you once your account is approved.",
+      "icon": "FaClock",
+      "statusLabel": "Status: Pending Approval"
+    },
+    "rejected": {
+      "title": "Application Rejected",
+      "message": "Your vendor application was not approved. Please review the feedback and resubmit your application.",
+      "icon": "FaTimesCircle",
+      "resubmitLabel": "Update Application"
+    },
+    "pricing": {
+      "selectLabel": "Select a plan to continue",
+      "freeLabel": "Free",
+      "perMonthLabel": "/month",
+      "featuresTitle": "Includes"
+    },
+    "terms": {
+      "scrollHint": "Please read the full terms before accepting"
+    },
+    "loading": "Loading registration form...",
+    "error": "Failed to load registration configuration"
+  },
+  "steps": [
+    {
+      "key": "personal",
+      "title": "Personal Details",
+      "subtitle": "Tell us about yourself",
+      "stepType": "form",
+      "sortOrder": 0
+    },
+    {
+      "key": "business",
+      "title": "Business Details",
+      "subtitle": "Share your business information",
+      "stepType": "form",
+      "sortOrder": 1
+    },
+    {
+      "key": "business-terms",
+      "title": "Business Terms",
+      "subtitle": "Review and accept business terms",
+      "stepType": "terms",
+      "termsType": "business",
+      "sortOrder": 2
+    },
+    {
+      "key": "platform-terms",
+      "title": "Platform Terms",
+      "subtitle": "Review and accept platform terms",
+      "stepType": "terms",
+      "termsType": "platform",
+      "sortOrder": 3
+    },
+    {
+      "key": "pricing",
+      "title": "Pricing Plan",
+      "subtitle": "Choose the plan that fits your business",
+      "stepType": "pricing",
+      "sortOrder": 4
+    }
+  ],
+  "sections": [
+    { "stepKey": "personal", "title": "Contact Information", "description": "Your personal contact details", "sortOrder": 0 },
+    { "stepKey": "personal", "title": "Address", "description": "Where you are located", "sortOrder": 1 },
+    { "stepKey": "business", "title": "Business Profile", "description": "Core business information", "sortOrder": 0 },
+    { "stepKey": "business", "title": "Categories & Branding", "description": "What you sell and how you present your business", "sortOrder": 1 }
+  ],
+  "fields": [
+    { "stepKey": "personal", "sectionSortOrder": 0, "name": "fullName", "label": "Full Name", "type": "text", "placeholder": "Enter your full name", "helpText": "", "required": true, "sortOrder": 0 },
+    { "stepKey": "personal", "sectionSortOrder": 0, "name": "mobile", "label": "Mobile Number", "type": "mobile", "placeholder": "+1 234 567 8900", "helpText": "Include country code", "required": true, "validation": { "pattern": "^[+]?[0-9\\s-]{10,15}$", "message": "Enter a valid mobile number" }, "sortOrder": 1 },
+    { "stepKey": "personal", "sectionSortOrder": 0, "name": "email", "label": "Email", "type": "email", "placeholder": "you@example.com", "required": true, "sortOrder": 2 },
+    { "stepKey": "personal", "sectionSortOrder": 1, "name": "address", "label": "Address", "type": "textarea", "placeholder": "Street address", "required": true, "sortOrder": 0 },
+    { "stepKey": "personal", "sectionSortOrder": 1, "name": "city", "label": "City", "type": "text", "placeholder": "City", "required": true, "sortOrder": 1 },
+    { "stepKey": "personal", "sectionSortOrder": 1, "name": "state", "label": "State", "type": "text", "placeholder": "State", "required": true, "sortOrder": 2 },
+    { "stepKey": "personal", "sectionSortOrder": 1, "name": "pincode", "label": "Pincode", "type": "text", "placeholder": "123456", "required": true, "sortOrder": 3 },
+    { "stepKey": "personal", "sectionSortOrder": 0, "name": "profilePhoto", "label": "Profile Photo", "type": "image", "placeholder": "", "helpText": "Upload a clear photo of yourself", "required": true, "sortOrder": 3 },
+    { "stepKey": "business", "sectionSortOrder": 0, "name": "businessName", "label": "Business Name", "type": "text", "placeholder": "Your business name", "required": true, "sortOrder": 0 },
+    { "stepKey": "business", "sectionSortOrder": 0, "name": "businessType", "label": "Business Type", "type": "radio", "required": true, "options": [
+      { "value": "product", "label": "Product" },
+      { "value": "service", "label": "Service" },
+      { "value": "both", "label": "Both" }
+    ], "sortOrder": 1 },
+    { "stepKey": "business", "sectionSortOrder": 1, "name": "productCategories", "label": "Product Categories", "type": "select", "placeholder": "Select product category", "optionsKey": "productCategories", "required": false, "showWhen": { "field": "businessType", "values": ["product", "both"] }, "sortOrder": 0 },
+    { "stepKey": "business", "sectionSortOrder": 1, "name": "serviceCategories", "label": "Service Categories", "type": "select", "placeholder": "Select service category", "optionsKey": "serviceCategories", "required": false, "showWhen": { "field": "businessType", "values": ["service", "both"] }, "sortOrder": 1 },
+    { "stepKey": "business", "sectionSortOrder": 0, "name": "businessAddress", "label": "Business Address", "type": "textarea", "placeholder": "Business location", "required": true, "sortOrder": 2 },
+    { "stepKey": "business", "sectionSortOrder": 0, "name": "gst", "label": "GST Number", "type": "text", "placeholder": "Optional GST number", "required": false, "sortOrder": 3 },
+    { "stepKey": "business", "sectionSortOrder": 0, "name": "businessDescription", "label": "Business Description", "type": "textarea", "placeholder": "Describe your business", "required": true, "sortOrder": 4 },
+    { "stepKey": "business", "sectionSortOrder": 1, "name": "logo", "label": "Logo Upload", "type": "image", "helpText": "Upload your business logo", "required": true, "sortOrder": 2 }
+  ],
+  "terms": [
+    {
+      "type": "business",
+      "title": "Business Terms & Conditions",
+      "content": "By registering as a vendor on MartPlace, you agree to provide accurate business information, comply with all applicable laws, maintain product/service quality standards, honor pricing and delivery commitments, and respond to customer inquiries promptly. You are responsible for all content listed under your account. MartPlace reserves the right to suspend listings that violate these terms.",
+      "acceptanceLabel": "I have read and accept the Business Terms & Conditions",
+      "sortOrder": 0
+    },
+    {
+      "type": "platform",
+      "title": "Platform Terms & Conditions",
+      "content": "MartPlace platform terms govern your use of our marketplace, payment processing policies, data privacy practices, intellectual property rights, and dispute resolution procedures. You agree to our commission structure, refund policies, and account security requirements. Continued use of the platform constitutes acceptance of updates to these terms.",
+      "acceptanceLabel": "I have read and accept the Platform Terms & Conditions",
+      "sortOrder": 0
+    }
+  ],
+  "plans": [
+    {
+      "key": "basic",
+      "name": "Basic",
+      "price": 0,
+      "priceLabel": "Free",
+      "description": "Get started with essential vendor tools",
+      "features": ["Up to 10 listings", "Basic analytics", "Email support", "Standard visibility"],
+      "highlighted": false,
+      "sortOrder": 0
+    },
+    {
+      "key": "medium",
+      "name": "Medium",
+      "price": 29,
+      "priceLabel": "$29/month",
+      "description": "Grow your business with more features",
+      "features": ["Up to 50 listings", "Advanced analytics", "Priority support", "Featured placement", "Promotional tools"],
+      "highlighted": true,
+      "sortOrder": 1
+    },
+    {
+      "key": "max",
+      "name": "Max",
+      "price": 79,
+      "priceLabel": "$79/month",
+      "description": "Maximum reach and premium support",
+      "features": ["Unlimited listings", "Full analytics suite", "Dedicated support", "Top placement", "API access", "Custom branding"],
+      "highlighted": false,
+      "sortOrder": 2
+    }
+  ]
+}

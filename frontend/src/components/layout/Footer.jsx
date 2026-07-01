@@ -1,10 +1,11 @@
+import { useCmsContent } from '../../contexts';
 import { Link } from 'react-router-dom';
-import footerConfig from '../../json/footer.json';
 import { Icon } from '../../utils/iconResolver';
 import { useCategories } from '../../contexts/CategoryContext';
 import './Footer.css';
 
 export default function Footer() {
+  const footerConfig = useCmsContent('footer');
   const config = footerConfig;
   const { productCategories, serviceCategories } = useCategories();
 

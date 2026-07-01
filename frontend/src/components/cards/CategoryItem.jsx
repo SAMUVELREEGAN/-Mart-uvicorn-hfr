@@ -1,9 +1,11 @@
+import { useCmsContent } from '../../contexts';
 import { Link } from 'react-router-dom';
 import { Icon } from '../../utils/iconResolver';
-import categoriesData from '../../json/categories.json';
+import { isUploadedMedia, resolveMediaUrl } from '../../utils/mediaUrl';
 import './CategoryItem.css';
 
 export default function CategoryItem({ category, onClick, to, type = 'product', active = false }) {
+  const categoriesData = useCmsContent('categories');
   const iconsConfig = categoriesData.categoryIcons || {};
   const themeColor = iconsConfig.themeColor || '#2563eb';
   const isMore = category.id === 'more';
@@ -15,6 +17,14 @@ export default function CategoryItem({ category, onClick, to, type = 'product', 
   const borderColor = iconsConfig.borderColor || '#94a3b8';
   const borderWidth = iconsConfig.borderWidth || '1.5px';
   const containerBackground = iconsConfig.containerBackground || '#ffffff';
+  const iconSize = iconsConfig.iconSize || styleConfig.iconSize || '2.5rem';
+  const tabletIconSize = iconsConfig.tabletIconSize || styleConfig.tabletIconSize || '2.375rem';
+  const mobileIconSize = iconsConfig.mobileIconSize || styleConfig.mobileIconSize || '2.25rem';
+  const iconImageSize = iconsConfig.iconImageSize || styleConfig.iconImageSize || '3.25rem';
+  const tabletIconImageSize = iconsConfig.tabletIconImageSize || styleConfig.tabletIconImageSize || '3rem';
+  const mobileIconImageSize = iconsConfig.mobileIconImageSize || styleConfig.mobileIconImageSize || '2.875rem';
+  const containerSize = styleConfig.containerSize || iconsConfig.containerSize || '80px';
+  const mobileContainerSize = styleConfig.mobileContainerSize || '72px';
 
   const content = (
     <>
@@ -25,11 +35,14 @@ export default function CategoryItem({ category, onClick, to, type = 'product', 
           '--cat-border-color': isMore ? undefined : borderColor,
           '--cat-border-width': isMore ? undefined : borderWidth,
           '--cat-radius': styleConfig.borderRadius || (shape === 'circle' ? '50%' : '14px'),
-          '--cat-size': styleConfig.containerSize || '72px',
-          '--cat-size-mobile': styleConfig.mobileContainerSize || styleConfig.containerSize || '68px',
-          '--cat-icon-size': styleConfig.iconSize || '1.5rem',
-          '--cat-icon-size-circle': styleConfig.iconSize || '1.4375rem',
-          '--cat-icon-scale-mobile': styleConfig.mobileIconScale || '1.12',
+          '--cat-size': containerSize,
+          '--cat-size-mobile': mobileContainerSize,
+          '--cat-icon-size': iconSize,
+          '--cat-icon-size-tablet': tabletIconSize,
+          '--cat-icon-size-mobile': mobileIconSize,
+          '--cat-icon-img-size': iconImageSize,
+          '--cat-icon-img-size-tablet': tabletIconImageSize,
+          '--cat-icon-img-size-mobile': mobileIconImageSize,
           '--cat-min-width': styleConfig.minWidth || '96px',
           '--cat-min-width-mobile': styleConfig.mobileMinWidth || '88px',
           '--cat-name-max': styleConfig.nameMaxWidth || '88px',
@@ -38,7 +51,13 @@ export default function CategoryItem({ category, onClick, to, type = 'product', 
           color,
         }}
       >
-        <Icon name={category.icon} className="category-item__icon" />
+        {isUploadedMedia(category.icon) ? (
+          <img src={resolveMediaUrl(category.icon)} alt="" className="category-item__icon-img" />
+        ) : category.icon ? (
+          <Icon name={category.icon} className="category-item__icon" />
+        ) : (
+          <span className="category-item__icon-fallback" />
+        )}
       </div>
       <span className="category-item__name">{category.name || category.title}</span>
     </>

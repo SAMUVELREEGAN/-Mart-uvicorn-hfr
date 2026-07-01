@@ -1,0 +1,125 @@
+.vc-field-editor-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.vc-field-editor {
+  background: #fff;
+  border-radius: 16px;
+  width: min(720px, 100%);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.2);
+}
+
+.vc-field-editor__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.vc-field-editor__header h2 {
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+.vc-field-editor__close {
+  background: none;
+  border: none;
+  font-size: 1.125rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #64748b;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.vc-field-editor__close:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.vc-field-editor__body {
+  padding: 1.25rem 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.vc-field-editor__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.vc-field-editor__toggles,
+.vc-field-editor__checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.vc-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.vc-field-editor__options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.vc-field-editor__option-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.vc-field-editor__remove {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  color: #ef4444;
+}
+
+.vc-field-editor__add-option {
+  align-self: flex-start;
+  background: none;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  color: #4f46e5;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.vc-field-editor__error {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin: 0.5rem 0 0;
+}

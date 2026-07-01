@@ -1,8 +1,8 @@
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import heroConfig from '../../json/hero.json';
 import { useBrands } from '../../contexts/BrandContext';
 import { useCategories } from '../../contexts/CategoryContext';
+import { useCms, useCmsContent } from '../../contexts';
 import { useProducts } from '../../contexts/ProductContext';
 import { useServices } from '../../contexts/ServiceContext';
 import { useLocation } from '../../contexts/LocationContext';
@@ -42,8 +42,10 @@ function filterByLocation(items, locationId) {
 }
 
 export default function Home() {
+  const heroConfig = useCmsContent('hero');
+  const { faqs: cmsFaqs, refreshCms } = useCms();
   const loading = useSimulatedLoading();
-  const { highlightCategories, productCategories, serviceCategories } = useCategories();
+  const { highlightCategories, productCategories, serviceCategories, refreshCategories } = useCategories();
   const { products } = useProducts();
   const { services } = useServices();
   const { selectedLocation } = useLocation();
@@ -53,6 +55,11 @@ export default function Home() {
   const carouselBrands = getCarouselBrands();
   const content = heroConfig.homeContent;
   const locationId = selectedLocation?.id;
+
+  useEffect(() => {
+    refreshCategories();
+    refreshCms();
+  }, [refreshCategories, refreshCms]);
 
   const recentProducts = useMemo(
     () => filterByLocation(products, locationId).slice(0, 4),
@@ -243,12 +250,16 @@ export default function Home() {
         );
       case 'appDeals':
         return <AppPromo key={key} content={content.appDeals} />;
-      case 'faq':
+      case 'faq': {
+        const faqItems = cmsFaqs.length
+          ? cmsFaqs.map((f) => ({ id: f.id, question: f.question, answer: f.answer }))
+          : content.faq?.items;
         return (
           <HomeSection key={key} title={meta.title} subtitle={meta.subtitle} band={cfg.band} fullWidth={cfg.fullWidth}>
-            <FAQAccordion items={content.faq.items} config={content.faq} />
+            <FAQAccordion items={faqItems} config={content.faq} />
           </HomeSection>
         );
+      }
       default:
         return null;
     }

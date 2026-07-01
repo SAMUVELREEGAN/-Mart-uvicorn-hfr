@@ -1,15 +1,16 @@
+import { useCmsContent } from '../../contexts';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCategories } from '../../contexts/CategoryContext';
 import CategoryItem from '../cards/CategoryItem';
 import CardCarousel from '../common/CardCarousel';
 import Sidebar from '../common/Sidebar';
-import sidebarConfig from '../../json/sidebar.json';
-import categoriesData from '../../json/categories.json';
 import { Icon } from '../../utils/iconResolver';
 import './CategoryList.css';
 
 export default function CategoryList({ categories, type = 'product' }) {
+  const sidebarConfig = useCmsContent('sidebar');
+  const categoriesData = useCmsContent('categories');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { moreLabel, moreIcon, moreColor, productCategories, serviceCategories } = useCategories();
   const navigate = useNavigate();

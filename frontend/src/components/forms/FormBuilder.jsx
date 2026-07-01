@@ -1,3 +1,4 @@
+import { useCmsContent } from '../../contexts';
 import { useState } from 'react';
 import Input from '../common/Input';
 import Select from '../common/Select';
@@ -7,7 +8,6 @@ import Button from '../common/Button';
 import { validateForm } from '../../utils/helpers';
 import { useCategories } from '../../contexts/CategoryContext';
 import { useLocation } from '../../contexts/LocationContext';
-import buttonsConfig from '../../json/buttons.json';
 import './FormBuilder.css';
 
 export default function FormBuilder({
@@ -17,6 +17,7 @@ export default function FormBuilder({
   initialValues = {},
   cancelAction,
 }) {
+  const buttonsConfig = useCmsContent('buttons');
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
   const { productCategories, serviceCategories } = useCategories();
@@ -42,14 +43,21 @@ export default function FormBuilder({
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validateForm(fields, values);
     if (Object.keys(validationErrors).length) {
       setErrors(validationErrors);
       return;
     }
-    onSubmit(values);
+    try {
+      await Promise.resolve(onSubmit(values));
+    } catch (err) {
+      // Parent handlers may show their own errors; avoid unhandled rejections.
+      if (!err?.handled) {
+        console.error(err);
+      }
+    }
   };
 
   const submitBtn = buttonsConfig[submitKey] || buttonsConfig.save;

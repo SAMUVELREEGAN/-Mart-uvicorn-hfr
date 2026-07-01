@@ -1,11 +1,11 @@
+import { useCmsContent } from '../../contexts';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useProducts } from '../../contexts/ProductContext';
 import { useReviews } from '../../contexts/ReviewContext';
 import { useSimulatedLoading } from '../../hooks/useHelpers';
 import { formatPrice } from '../../utils/helpers';
-import formsConfig from '../../json/forms.json';
-import buttonsConfig from '../../json/buttons.json';
+import { resolveMediaUrl } from '../../utils/mediaUrl';
 import Rating from '../../components/common/Rating';
 import Badge from '../../components/common/Badge';
 import Button from '../../components/common/Button';
@@ -15,10 +15,12 @@ import FormBuilder from '../../components/forms/FormBuilder';
 import ErrorState from '../../components/common/ErrorState';
 import { SkeletonDetails } from '../../components/skeleton/Skeleton';
 import { Icon } from '../../utils/iconResolver';
-import cardConfig from '../../json/icons.json';
 import './Details.css';
 
 export default function ProductDetails() {
+  const formsConfig = useCmsContent('forms');
+  const buttonsConfig = useCmsContent('buttons');
+  const cardConfig = useCmsContent('icons');
   const { id } = useParams();
   const [activeTab, setActiveTab] = useState('description');
   const loading = useSimulatedLoading();
@@ -33,7 +35,7 @@ export default function ProductDetails() {
     return <ErrorState config={cardConfig.errorState.notFound} />;
   }
 
-  const images = [product.image, ...(product.gallery || [])];
+  const images = [product.image, ...(product.gallery || [])].filter(Boolean).map(resolveMediaUrl);
 
   const handleReview = (values) => {
     addReview(id, 'product', values);

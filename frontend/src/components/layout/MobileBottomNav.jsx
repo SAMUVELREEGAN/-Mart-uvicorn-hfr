@@ -1,10 +1,11 @@
+import { useCmsContent } from '../../contexts';
 import { Link, useLocation } from 'react-router-dom';
-import headerConfig from '../../json/header.json';
 import { Icon } from '../../utils/iconResolver';
 import { useAuth } from '../../contexts/AuthContext';
 import './MobileBottomNav.css';
 
 export default function MobileBottomNav() {
+  const headerConfig = useCmsContent('header');
   const { pathname } = useLocation();
   const { isAuthenticated } = useAuth();
   const config = headerConfig.bottomNavigation;

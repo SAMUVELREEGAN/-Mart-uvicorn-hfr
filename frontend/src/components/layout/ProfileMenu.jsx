@@ -1,11 +1,12 @@
+import { useCmsContent } from '../../contexts';
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import headerConfig from '../../json/header.json';
 import { Icon } from '../../utils/iconResolver';
 import { useAuth } from '../../contexts/AuthContext';
 import './ProfileMenu.css';
 
 export default function ProfileMenu() {
+  const headerConfig = useCmsContent('header');
   const { currentUser, user, logout, isVendor } = useAuth();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);

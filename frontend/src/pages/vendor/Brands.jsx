@@ -1,12 +1,10 @@
+import { useCmsContent } from '../../contexts';
 import { useState } from 'react';
 import { useBrands } from '../../contexts/BrandContext';
-import formsConfig from '../../json/forms.json';
-import buttonsConfig from '../../json/buttons.json';
 import Button from '../../components/common/Button';
 import Modal from '../../components/modal/Modal';
 import FormBuilder from '../../components/forms/FormBuilder';
 import EmptyState from '../../components/common/EmptyState';
-import cardConfig from '../../json/icons.json';
 import './VendorPages.css';
 import './VendorBrands.css';
 
@@ -50,6 +48,9 @@ function brandToForm(brand) {
 }
 
 export default function VendorBrands() {
+  const formsConfig = useCmsContent('forms');
+  const buttonsConfig = useCmsContent('buttons');
+  const cardConfig = useCmsContent('icons');
   const { getVendorBrands, addBrand, updateBrand, deleteBrand } = useBrands();
   const vendorBrands = getVendorBrands();
   const [modalOpen, setModalOpen] = useState(false);

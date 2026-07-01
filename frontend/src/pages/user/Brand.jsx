@@ -1,3 +1,4 @@
+import { useCmsContent } from '../../contexts';
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useBrands } from '../../contexts/BrandContext';
@@ -12,10 +13,10 @@ import BrandGallery from '../../components/common/BrandGallery';
 import HomeSection from '../../components/layout/HomeSection';
 import EmptyState from '../../components/common/EmptyState';
 import { SkeletonCard } from '../../components/skeleton/Skeleton';
-import cardConfig from '../../json/icons.json';
 import './Brand.css';
 
 export default function Brand() {
+  const cardConfig = useCmsContent('icons');
   const { id } = useParams();
   const loading = useSimulatedLoading();
   const { getBrand, pageConfig } = useBrands();

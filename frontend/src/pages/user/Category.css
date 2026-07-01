@@ -11,7 +11,7 @@
   align-items: flex-end;
   border-radius: 0 0 var(--radius-xl) var(--radius-xl);
   overflow: hidden;
-  margin-bottom: var(--spacing-2xl);
+  margin-bottom: 0;
 }
 
 .category-page__banner-overlay {
@@ -46,6 +46,12 @@
   margin-bottom: var(--spacing-md);
 }
 
+.category-page__banner-icon-img {
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+}
+
 .category-page__title {
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 800;
@@ -75,79 +81,14 @@
   100% { background-position: 200% 0; }
 }
 
-.category-page__subcategories {
-  max-width: 1280px;
-  margin: 0 auto var(--spacing-xl);
-  padding: 0 var(--spacing-md);
-}
-
-.category-page__sub-list {
-  display: flex;
-  gap: var(--spacing-md);
-}
-
-.category-page__sub-list.card-carousel__grid {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-}
-
-.category-page__sub-list.card-carousel__grid::-webkit-scrollbar {
-  display: none;
-}
-
-.category-page__related,
-.category-page__items {
-  max-width: 1280px;
-  margin: 0 auto var(--spacing-2xl);
-  padding: 0 var(--spacing-md);
-}
-
-.category-page__section-title {
-  font-size: 1.375rem;
-  font-weight: 800;
-  margin: 0 0 var(--spacing-lg);
-  letter-spacing: -0.02em;
-}
-
-.category-page__count {
-  font-weight: 500;
-  color: var(--color-textMuted);
-  font-size: 1rem;
-  margin-left: var(--spacing-sm);
-}
-
-.category-page__related-list {
-  display: flex;
-  gap: var(--spacing-md);
-  overflow-x: auto;
-  padding-bottom: var(--spacing-sm);
-  scrollbar-width: none;
-}
-
-.category-page__related-list::-webkit-scrollbar { display: none; }
-
 .category-page__grid {
   display: grid;
   gap: var(--spacing-lg);
-}
-
-.category-page__grid--products {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.category-page__grid--services {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--spacing-lg);
-  grid-auto-rows: 1fr;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
 }
 
 @media (max-width: 576px) {
-  .category-page__grid--products,
-  .category-page__grid--services {
-    grid-template-columns: 1fr;
-  }
-
   .category-page__banner { min-height: 240px; }
 }
